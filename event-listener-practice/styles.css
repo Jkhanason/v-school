@@ -1,0 +1,11 @@
+h1 {
+  text-align: center;
+  color: steelblue;
+  margin: 50px;
+}
+div {
+  height: 50vh;
+  width: 50vh;
+  border: 2px solid black;
+  margin: 0 auto;
+}
