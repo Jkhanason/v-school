@@ -1,4 +1,5 @@
 let form = document.addItem;
+sessionStorage.setItem('newItem', 'form');
 
 const addToList = function () {
   event.preventDefault();
