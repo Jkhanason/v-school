@@ -1,0 +1,31 @@
+body, html {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin: 10px auto;
+  height: 95%;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+}
+
+.calc {
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add {
+  background-color: bisque;
+}
+.subtract {
+  background-color: #c2af93;
+}
+.multiply {
+  background-color: #b99a6b;
+}

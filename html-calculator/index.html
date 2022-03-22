@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Calculator</title>
+  <link href="styles.css" rel="stylesheet"/>
+</head>
+<body>
+  <div class="container">
+    <div class="calc add">
+      <form name="add" type="text">
+        <input type="number" name="num1"> plus
+        <input type="number" name="num2">
+        <button>Equals</button>
+      </form>
+      <h3 class="addResult"></h3>
+    </div>
+    <div class="calc subtract">
+      <form name="subtract" type="text">
+        <input type="number" name="num1"> minus
+        <input type="number" name="num2">
+        <button>Equals</button>
+      </form>
+      <h3 class="subResult"></h3>
+    </div>
+    <div class="calc multiply">
+      <form name="multiply" type="text">
+        <input type="number" name="num1"> times
+        <input type="number" name="num2">
+        <button>Equals</button>
+      </form>
+      <h3 class="multResult"></h3>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
