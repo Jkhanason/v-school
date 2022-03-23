@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Form</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Welcome to Fly Dangerously!</h1>
+    </div>
+    <div class="travelForm">
+      <form name="travelerForm">
+        <input name ="firstName" type="text" placeholder="First Name" required/>
+        <input name="lastName" type="text" placeholder="Last Name" required/>
+        <input name="age" type="number" placeholder="age" required/>
+        Male: <input type="radio" name="gender" value="Male" required/>
+        Female: <input type="radio" name="gender" value="Female" required/>
+        Other: <input type="radio" name="gender" value="Other" required/>
+        Destination: <select name="cities">
+          <option value="Cape Town"> Cape Town</option>
+          <option value="Dublin"> Dublin</option>
+          <option value="London">London</option>
+        </select> <br>
+        Gluten Free: <input name ="diet" type="checkbox" value=" Gluten Free"/>
+        Paleo: <input name="diet" type="checkbox" value=" Paleo"/>
+        Halal: <input name="diet" type="checkbox" value=" Halal"/> <br>
+        <button>Submit</button>
+      </form>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
