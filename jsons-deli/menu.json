@@ -1,0 +1,62 @@
+{
+  "appetizers": [
+    {
+      "name": "Mozzarella Cheese Sticks",
+      "ingredients": ["Fresh Mozzarella", "Breadcrumbs", "Marinara Sauce"],
+      "description": "Six Mazzarella Sticks, lightly battered and seasoned inhouse everyday"
+    },
+    {
+      "name": "Chicken Tenders",
+      "ingredients": ["Chicken Breast", "Egg", "Flour", "Salt and Pepper", "Milk", "Onion Powder", "Paprika", "Pickle Juice"],
+      "description": "Air fryer chicken tenders are crunchy on the outside, moist on the inside, and full of flavor. These chicken breast tenders are marinated in pickle juice to help lock in moisture and provide a ton of flavor."
+    }
+  ],
+  "cold sandwiches": [
+    {
+      "name": "Salami, Mozzarella and Roasted Red Pepper Sandwich",
+      "ingredients": ["Italian Sub Roll", "Olive Oil", "Fresh Mozzarella", "Roasted Red Peppers", "Genoa Salami", "Fresh Basil", "Salt and Pepper"],
+      "description": "This simple yet flavorful Italian sandwich is made with fresh mozzarella, zesty salami, sweet roasted red peppers, vibrant basil leaves, and rich, buttery olive oil."
+    },
+    {
+      "name": "Goat Cheese, Rosemary Ham, Apple & Honey Sandwich With Fresh Arugula",
+      "ingredients": ["French Baguette", "Olive Oil", "Rosemary Ham", "Sliced Apple", "Honey", "Baby Arugula", "Goat Cheese", "Lemon", "Salt and Pepper"],
+      "description": "Looking for a way to make your lunchbox more exciting? Try this tasty French-style sandwich with rosemary ham, goat cheese, apple, lemon, and arugula! It's sweet, salty, spicy, and crunchy and makes the perfect lunchtime meal."
+    }
+  ],
+  "hot sandwiches": [
+    {
+      "name": "Classic Grilled Cheese",
+      "ingredients":["Sourdough Bread", "Smoked Gouda Cheese", "Butter"],
+      "description": "The king of comfort foods. A nostalgic taste of being a kid again. This grilled cheese is the stuff memoris are made of. It's warm, flavorful, perfectly melty and just like mom used to make"
+    },
+    {
+      "name": "Grilled Corned Beef and Cabbage Sandwich",
+      "ingredients": ["Marble Rye Bread", "Sharp White Cheese", "Corned Beef", "Cabbage", "Butter", "Salt and Pepper", "Mustard"],
+      "description": "No St. Patrick’s Day celebration is complete without corned beef and cabbage. It’s tradition. But what if you could take that particular tradition and add one of your own? Like that trusty comfort food for the ages, the grilled cheese sandwich? Well, that’s exactly what we’ve done with this Cooper® Corned Beef and Cabbage Grilled Cheese. Two great traditions, together in tasty harmony."
+    }
+  ],
+  "desserts": [
+    {
+      "name": "Chewy Oatmeal Cookies",
+      "ingredients": ["Butter", "Sugar", "Brown Sugar", "Eggs", "Molasses", "Vanilla Extract", "Flour", "Oats", "Baking Soda", "Cinnamon", "Salt", "Pecans", "Chocolate Chips"],
+      "description": "Just like grandma used to make. This classic cookie is full of flavor with a hint of cinnamon and nutmeg. Follow the recipe or switch it up and add chocolate chips, butterscotch chips, or peanut butter-flavored chips for a different take on a classic."
+    },
+    {
+      "name": "Peanut Butter Fudge",
+      "ingredients": ["Butter", "Sugar", "Whole Milk", "Peanut Butter", "Marshmallow Creme"],
+      "description": "Smooth and creamy Fudge, the perfect post meal treat"
+    }
+  ],
+  "drinks": [
+    {
+      "name": "Summer Sweet Lemonade",
+      "ingredients": ["Fresh Lemons", "Sugar", "Water", "Ice"],
+      "description": "When life hands you 8 lemons, make Summer Sweet Lemonade to sip on."
+    },
+    {
+      "name": "Matcha Green Tea",
+      "ingredients": ["Matcha Powder", "Hot Water"],
+      "description": "Matcha, a traditional Japanese tea, is one of the most nutritious beverages you can consume. Bonus: It's pretty yummy, too."
+    }
+  ]
+}
