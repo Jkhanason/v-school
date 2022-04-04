@@ -20,8 +20,6 @@ class Player {
       this.status = statuses[2];
     } else {
       this.status = statuses[3];
-      console.log(`You've Died. Game Over`);
-      clearInterval(beginGame) //why does it have to be here ?
     }
   }
   gotPowerup() {
@@ -53,9 +51,6 @@ const test = new Player('Test', 0, 'Small', false);
 test.setName()
 
 const randomRange = () => {
-  // if (this.status === statuses[3]) {
-  //   clearInterval(beginGame) //instead of here
-  // }
   const decisionMaker = Math.floor(Math.random() * 3);
   if (decisionMaker === 0) {
     test.gotHit();
@@ -65,9 +60,11 @@ const randomRange = () => {
     test.addCoin();
   }
   test.print();
-  // if (this.status === statuses[3]) {
-  //   clearInterval(beginGame) //or here
-  // }
+  
+  if (test.status === statuses[3]) {
+    console.log(`You've Died. Game Over`);
+    clearInterval(beginGame)
+  }
 }
 
 const beginGame = setInterval(randomRange, 1500);
