@@ -70,4 +70,4 @@ const randomRange = () => {
   // }
 }
 
-const beginGame = setInterval(randomRange, 2000);
+const beginGame = setInterval(randomRange, 1500);
