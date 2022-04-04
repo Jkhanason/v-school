@@ -1,28 +1,8 @@
-// class Workout {
-//   constructor(back, chest, legs) {
-//     this.back = back
-//     this.chest = chest
-//     this.legs = legs
-//   }
-//   after() {
-//     console.log('5 sets done!')
-//   }
-//   during() {
-//     console.log(`I'm so slow`)
-//   }
-// }
-
-// class Cardio extends Workout {
-//   constructor(back, chest, legs, runtime) {
-//     super(back, chest, legs)
-//     this.runtime = runtime
-//   }
-// }
 const statuses = ['Powered Up', 'Big', 'Small', 'Dead'];
 class Player {
   constructor(name, totalCoins, status, hasStar) {
     this.name = name
-    this. totalCoins = totalCoins
+    this.totalCoins = totalCoins
     this.status = status
     this.hasStar = hasStar
   }
@@ -69,7 +49,7 @@ class Player {
   }
 }
 
-const test = new Player('', 1, 'Small', false);
+const test = new Player('Test', 0, 'Small', false);
 test.setName()
 
 const randomRange = () => {
