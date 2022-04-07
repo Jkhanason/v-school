@@ -16,7 +16,7 @@ const displayData = data => {
 
   //loop array and for each todo, do these steps
   data.forEach(item => {
-    const title = document.createElement('h4');
+    const title = document.createElement('h2');
     const description = document.createElement('p');
     const price = document.createElement('p');
     const img = document.createElement('img');
@@ -24,6 +24,9 @@ const displayData = data => {
     const label = document.createElement('label');
     const checkboxDiv = document.createElement('div');
     const id = document.createElement('p');
+    const deleteBtn = document.createElement('button');
+    const editBtn = document.createElement('button');
+    const saveBtn = document.createElement('button');
 
     checkbox.type = "checkbox";
     checkbox.id = "completed";
@@ -31,6 +34,10 @@ const displayData = data => {
     label.textContent = "Completed:";
     checkboxDiv.id = 'checkboxDiv';
     id.classList.add('id');
+    deleteBtn.classList.add('deleteBtn');
+    editBtn.classList.add('editBtn');
+    saveBtn.classList.add('saveBtn');
+
 
     //adding text content to each
     title.textContent = `${num}) ${item.title}`;
@@ -38,6 +45,9 @@ const displayData = data => {
     description.textContent = item.description;
     img.src = item.imgUrl;
     id.textContent = item._id;
+    deleteBtn.textContent = 'Delete';
+    editBtn.textContent = 'Edit';
+    saveBtn.textContent = 'Edit';
 
     //checking for price added
     if (item.price === null) {
@@ -53,8 +63,11 @@ const displayData = data => {
     //checking if user marks item as completed
     checkbox.addEventListener('click', itemCompleted)
 
+    //checking if user deletes a todo
+    deleteBtn.addEventListener('click', deleteItem)
+
     //append everyting to dom
-    checkboxDiv.append(title, description, label, checkbox, id)
+    checkboxDiv.append(title, deleteBtn, description, label, checkbox, id)
     document.getElementsByClassName('listItems')[0].append(checkboxDiv, price, img);
   })
 }
@@ -105,3 +118,15 @@ const itemCompleted = (event) => {
   }
 }
 
+
+const deleteItem = (event) => {
+  const itemId = event.srcElement.parentElement.lastChild.textContent;
+
+  axios.delete(`https://api.vschool.io/jasonkhan/todo/${itemId}`)
+    .then(response => {
+      console.log(response.data)
+      getData()
+    })
+    .catch(error => console.log(error))
+
+}
