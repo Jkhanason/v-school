@@ -73,27 +73,73 @@ img:hover {
 }
 #checkboxDiv {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   border-top: 2px solid black;
   border-radius: 5px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(9, 1fr);
 }
-#checkboxDiv input {
-  width: 20px;
-  height: 25px;
+#checkboxDiv > h2 {
+  grid-column: 1 / 4;
+  text-align: center;
 }
-.id {
+p:first-of-type {
+  grid-column: 1 / 4;
+  grid-row: 2;
+  text-align: center;
+}
+p:nth-last-of-type(2) {
+  grid-column: 1 / 4;
+  grid-row: 5;
+  text-align: center;
+}
+#checkboxDiv > label {
+  grid-column: 2;
+  grid-row: 4;
+  text-align: center;
+}
+#checkboxDiv > img {
+  grid-column: 1 / 4;
+  margin: 0 auto;
+  grid-row: 6 / row-end;
+}
+#completed {
+    width: 20px;
+    height: 25px;
+    grid-row: 4;
+    grid-column: 3 / 4;
+}
+.id { /* hides the todo ids */
   display: none;
 }
-.deleteBtn {
-  align-self: flex-end;
-  text-align: center;
-  font-size: 12px;
-  min-width: none;
-  margin-right: 10px;
-  background-color: red;
-  padding: 6px;
+.deleteBtn, .editBtn, .saveBtn {
+  font-size: 15px;
   border: 2px solid black;
   border-radius: 5px;
+  margin: 0 auto;
+  height: 50%;
+  width: 25%;
+  min-width:fit-content;
+  padding: 0 5px;
+}
+.deleteBtn:hover, .editBtn:hover, .saveBtn:hover, .submit:hover {
+  border: 2px solid white;
+  cursor: pointer;
+  color: white;
+}
+.deleteBtn {
+  grid-column: 3 / 4;
+  background-color: red;
+  grid-row: 3
+}
+.editBtn {
+  background-color: #d88810;
+}
+.editBtn, .saveBtn {
+  grid-column: 1 / 2;
+  grid-row: 3
+}
+.saveBtn {
+  display: none;
+  background-color: rgb(36, 157, 232);
 }
