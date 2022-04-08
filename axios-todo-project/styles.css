@@ -71,7 +71,7 @@ img {
 img:hover {
   transform: scale(1.5,1.5);
 }
-#checkboxDiv {
+.checkboxDiv {
   width: 100%;
   border-top: 2px solid black;
   border-radius: 5px;
@@ -79,7 +79,7 @@ img:hover {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(9, 1fr);
 }
-#checkboxDiv > h2 {
+.checkboxDiv > h2 {
   grid-column: 1 / 4;
   text-align: center;
 }
@@ -88,17 +88,17 @@ p:first-of-type {
   grid-row: 2;
   text-align: center;
 }
-p:nth-last-of-type(2) {
+p:nth-last-of-type(1) {
   grid-column: 1 / 4;
   grid-row: 5;
   text-align: center;
 }
-#checkboxDiv > label {
+.checkboxDiv > label {
   grid-column: 2;
   grid-row: 4;
   text-align: center;
 }
-#checkboxDiv > img {
+.checkboxDiv > img {
   grid-column: 1 / 4;
   margin: 0 auto;
   grid-row: 6 / row-end;

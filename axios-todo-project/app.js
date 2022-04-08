@@ -22,7 +22,6 @@ const displayData = data => {
     const checkbox = document.createElement('input');
     const label = document.createElement('label');
     const checkboxDiv = document.createElement('div');
-    const id = document.createElement('p');
     const deleteBtn = document.createElement('button');
     const editBtn = document.createElement('button');
     const saveBtn = document.createElement('button');
@@ -31,29 +30,28 @@ const displayData = data => {
     checkbox.id = "completed";
     label.htmlFor = "completed";
     label.textContent = "Completed:";
-    checkboxDiv.id = 'checkboxDiv';
-    id.classList.add('id');
+    checkboxDiv.classList.add('checkboxDiv');
+    checkboxDiv.id = item._id;
     deleteBtn.classList.add('deleteBtn');
     editBtn.classList.add('editBtn');
     saveBtn.classList.add('saveBtn');
-    editBtn.id = item.id;
-
+    description.style.fontSize = '30px';
 
     //adding text content to each
     title.textContent = item.title;
     description.textContent = item.description;
     img.src = item.imgUrl;
-    id.textContent = item._id;
     deleteBtn.textContent = 'Delete';
     editBtn.textContent = 'Edit';
-    saveBtn.textContent = 'save';
+    saveBtn.textContent = 'Save';
 
     //checking for price added
     if (item.price === null) {
-      price.textContent = 0;
+      price.id = 0;
     } else {
-      price.textContent = item.price;
+      price.id = item.price;
     }
+    price.textContent =  item.price;  ///come back to this later
     //if todo is already completed
     if (item.completed) {
       title.style.color = "green";
@@ -69,7 +67,7 @@ const displayData = data => {
     editBtn.addEventListener('click', editItem)
 
     //append everyting to dom
-    checkboxDiv.append(title, deleteBtn, editBtn, saveBtn, description, label, checkbox, price, img, id)
+    checkboxDiv.append(title, deleteBtn, editBtn, saveBtn, description, label, checkbox, price, img)
     document.getElementsByClassName('listItems')[0].append(checkboxDiv);
   })
 }
@@ -97,7 +95,7 @@ form.addEventListener('submit', (e) => {
 //event to mark items as completed and update the api
 const itemCompleted = event => {
   const itemTitle = event.srcElement.parentElement.firstChild;
-  const itemId = event.srcElement.parentElement.lastChild.textContent;
+  const itemId = event.srcElement.parentElement.id;
   const isComplete = {
     "completed": true
   }
@@ -109,7 +107,7 @@ const itemCompleted = event => {
     itemTitle.style.color = 'green';
     itemTitle.style.textDecoration = 'line-through';
     axios.put(`https://api.vschool.io/jasonkhan/todo/${itemId}`, isComplete)
-    .then(response => console.log(response.data)) //i dont need this response, can i remove??
+    .then(response => console.log(response.data))
     .catch(error => console.log(error))
   } else {
     itemTitle.style.color = 'black';
@@ -122,7 +120,7 @@ const itemCompleted = event => {
 
 //event to delete todos and update api
 const deleteItem = event => {
-  const itemId = event.srcElement.parentElement.lastChild.textContent;
+  const itemId = event.srcElement.parentElement.id;
 
   axios.delete(`https://api.vschool.io/jasonkhan/todo/${itemId}`)
     .then(response => {
@@ -137,7 +135,6 @@ const editItem = event => {
   const saveBtn = event.srcElement.nextSibling;
   const editBtn = event.srcElement;
   const title = event.srcElement.parentElement.firstChild;
-  const id = event.srcElement.parentElement.lastChild.textContent;
   const description = event.srcElement.parentElement.children[4];
   const price = event.srcElement.parentElement.children[7];
   const img = event.srcElement.parentElement.children[8];
@@ -160,8 +157,8 @@ const editItem = event => {
   for (let i = 0; i < currentInfo.length; i++) {
     const input = document.createElement('input');
     if (i === 2) {
+      input.value = currentInfo[i].textContent;
       input.type = "number";
-      input.value = Number(price.textContent);
     }
     input.classList.add('editInput');
     input.style.fontSize = '15px';
@@ -173,75 +170,47 @@ const editItem = event => {
     }
     div.append(input);
   }
+    //setting event to save edited todo's
     saveBtn.addEventListener('click', () => {
-      savedTest(saveBtn, editBtn, title, id, description, img, price)
-
-
+      savedTest(saveBtn, editBtn, title, description, price, img, label, checkbox, div, currentInfo);
     })
 }
 
 
-  //event to display edits and save to api
-  // saveBtn.addEventListener('click', (event) => {
+
+const savedTest = ((saveBtn, editBtn, title, description, price, img, label, checkbox, div, currentInfo) => {
 
 
-  //   console.log({currentInfo}) ///trying to find error
-  //   const allInputs = document.getElementsByClassName('editInput');
-  //   console.log({allInputs})
+    const allInputs = document.getElementsByClassName('editInput');
+    for (let i = 0; i < allInputs.length; i++) {
+      allInputs[i].style.display = 'none';
+      if (i === 3) {
+        currentInfo[i].src = allInputs[i].value;
+      } else {
+        currentInfo[i].textContent = allInputs[i].value;
+      }
+    }
+    saveBtn.style.display = 'none'
+    editBtn.style.display = 'block';
+    title.style.display = 'block';
+    description.style.display = 'block';
+    price.style.display = 'block';
+    img.style.display = 'block';
+    label.style.display = 'block';
+    checkbox.style.display = 'block';
+    div.style.display = 'grid';
 
-  //   for (let i = 0; i < allInputs.length; i++) {
-  //     console.log(currentInfo[i])  ///trying to find error
-  //     allInputs[i].style.display = 'none';
-  //     if (i === 3) {
-  //       currentInfo[i].src = allInputs[i].value;    ///  const currentInfo = [title, description, price, img];
-  //     } else {
-  //       console.log(allInputs[i])
-  //       currentInfo[i].textContent = allInputs[i].value;
-  //     }
-  //   }
-  //   saveBtn.style.display = 'none'
-  //   editBtn.style.display = 'block';
-  //   title.style.display = 'block';
-  //   description.style.display = 'block';
-  //   price.style.display = 'block';
-  //   img.style.display = 'block';
-  //   label.style.display = 'block';
-  //   checkbox.style.display = 'block';
-  //   div.style.display = 'grid';
-
-  //   const editedTodo = {
-  //     title: title.textContent,
-  //     description: description.textContent,
-  //     imgUrl: img.src,
-  //     price: price.textContent
-  //   };
-
-  //   axios.put(`https://api.vschool.io/jasonkhan/todo/${id}`, editedTodo)
-  //   .then(response => {
-  //     console.log(response.data)
-  //     getData()
-  //   })
-  //   .catch(error => console.log(error))
-  // })
-
-
-
-const savedTest = ((saveBtn, editBtn, title, id, description, img, price) => {
-  console.log(saveBtn)
-    console.log(price)
      const editedTodo = {
       title: title.textContent,
       description: description.textContent,
       imgUrl: img.src,
       price: price.textContent
     };
-  axios.put(`https://api.vschool.io/jasonkhan/todo/${id}`, editedTodo)
+  axios.put(`https://api.vschool.io/jasonkhan/todo/${div.id}`, editedTodo)
     .then(response => {
     console.log(response.data)
     getData()
   })
   .catch(error => console.log(error.response.data))
-
-
 })
 
