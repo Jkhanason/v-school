@@ -74,11 +74,14 @@
 
 const arrayOfMultiples = ((num, length) => {
 	const resultsArray = [];
-	let accumulator = num;
+	// let accumulator = num;
 
-	while (resultsArray.length < length) {
-		resultsArray.push(accumulator);
-		accumulator += num;
+	// while (resultsArray.length < length) {
+	// 	resultsArray.push(accumulator);
+	// 	accumulator += num;
+	// }
+	for (let i = 1; i < length + 1; i++) {
+		resultsArray.push(i * num)
 	}
 	return resultsArray
 })
