@@ -72,20 +72,42 @@
 // console.log(totalWeight)
 
 
-const arrayOfMultiples = ((num, length) => {
-	const resultsArray = [];
-	// let accumulator = num;
+// const arrayOfMultiples = ((num, length) => {
+// 	const resultsArray = [];
+// 	// let accumulator = num;
 
-	// while (resultsArray.length < length) {
-	// 	resultsArray.push(accumulator);
-	// 	accumulator += num;
-	// }
-	for (let i = 1; i < length + 1; i++) {
-		resultsArray.push(i * num)
+// 	// while (resultsArray.length < length) {
+// 	// 	resultsArray.push(accumulator);
+// 	// 	accumulator += num;
+// 	// }
+// 	for (let i = 1; i < length + 1; i++) {
+// 		resultsArray.push(i * num)
+// 	}
+// 	return resultsArray
+// })
+
+// console.log(arrayOfMultiples(7, 5))// ➞ [7, 14, 21, 28, 35]
+// console.log(arrayOfMultiples(12, 10))// ➞ [12, 24, 36, 48, 60, 72, 84, 96, 108, 120]
+// console.log(arrayOfMultiples(17, 6))// ➞ [17, 34, 51, 68, 85, 102]
+
+
+
+const puzzlePieces = ((arr1, arr2) => {
+	if (arr1.length !== arr2.length) {
+		return false
 	}
-	return resultsArray
+	const total = arr1[0] + arr2[0];
+	for(let i = 1; i < arr1.length; i++) {
+		if (arr1[i] + arr2[i] !== total) {
+			return false
+		}
+	}
+	return true
 })
 
-console.log(arrayOfMultiples(7, 5))// ➞ [7, 14, 21, 28, 35]
-console.log(arrayOfMultiples(12, 10))// ➞ [12, 24, 36, 48, 60, 72, 84, 96, 108, 120]
-console.log(arrayOfMultiples(17, 6))// ➞ [17, 34, 51, 68, 85, 102]
+
+console.log(puzzlePieces([1, 8, 5, 0, -1, 7], [0, -7, -4, 1, 2, -6]))// ➞ true
+
+console.log(puzzlePieces([1, 1, 2], [1,1,3])) // ➞ false
+
+console.log(puzzlePieces([9, 8, 7], [7, 8, 9, 10])) // ➞ false
