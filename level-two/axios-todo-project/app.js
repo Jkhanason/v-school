@@ -56,6 +56,8 @@ const displayData = data => {
     if (item.completed) {
       title.style.color = "green";
       title.style.textDecoration = 'line-through';
+      checkbox.checked = true;
+
     }
     //if user marks item as completed
     checkbox.addEventListener('click', itemCompleted)
