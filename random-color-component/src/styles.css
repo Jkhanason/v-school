@@ -1,0 +1,12 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.color-container {
+  height: 500px;
+  width: 500px;
+  margin: 100px auto;
+  border: 5px dashed black;
+  border-radius: 5px;
+}
