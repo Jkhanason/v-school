@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.header-container {
+  background-image: url('./header.jpg');
+  height: 500px;
+  background-repeat: no-repeat;
+  background-size: 100% 500px;
+  font-family: "Open Sans";
+  margin-bottom: 80px;
+}
+.nav-container {
+  display: flex;
+  padding-top: 25px;
+}
+.nav-links {
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 1.25rem;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+}
+.nav-links:hover {
+  cursor: pointer;
+  color: lightgrey;
+}
+.first-link {
+  margin-right: auto;
+  margin-left: 40px;
+}
+.last-link {
+  margin-right: 40px;
+}
+.nav-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  min-width: 400px;
+}
+.nav-title h1 {
+  font-size: 80px;
+  margin: 0;
+  font-weight: 700;
+  color: white;
+  justify-self: center;
+  text-shadow: 2px 2px 3px black;
+}
+.nav-title p {
+  font-size: 24px;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+}
+.blog-post {
+  font-family: "Open Sans";
+  max-width: 600px;
+  margin: 0px auto 40px auto;
+  font-size: 27px;
+  padding-bottom: 40px;
+  border-bottom: .5px solid lightgrey;
+}
+#button {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+#button button {
+  background-color: #0085A1;
+  border-color:#0085A1;
+  color: white;
+  padding: 20px 25px;
+  font-size: 15px;
+  font-weight: bold;
+  transition: .15s ease-in-out;
+}
+#button button:hover {
+  cursor: pointer;
+  background-color: #006A80;
+  border-color: #006A80;
+}
+.blog-post:hover {
+  cursor: pointer;
+  color: #0085A1;
+}
+.blog-post > h1 {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+.blog-date {
+  font-family: 'Lora';
+  font-style: italic;
+  font-size: 18px;
+  color: grey;
+  margin-top: 9px;
+}
+.blog-date > span {
+  color: black;
+}
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Lora';
+  font-size: 20px;
+  color: grey;
+  border-top: 1px solid lightgrey;
+  padding-top: 40px;
+  margin-bottom: 40px;
+}
+.icons {
+  background-color: black;
+  margin: 0 15px 20px;
+  padding: 15px;
+  border-radius: 50%;
+  color: white;
+  font-size: 25px
+}
+.facebook {
+ padding: 15px 20px;
+}
+.icons:hover {
+  background-color: #0085A1;
+  cursor: pointer;
+}
