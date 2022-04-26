@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.dice-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+  margin: 10px 2px;
+  width: 400px;
+  margin: 30px auto;
+}
+h3 {
+  padding: 15px;
+  background-color: darkred;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+}
+button {
+  grid-column: 2 / 5;
+}
+button:hover {
+  box-shadow: 3px 3px 3px darkred;
+  cursor: pointer;
+}
