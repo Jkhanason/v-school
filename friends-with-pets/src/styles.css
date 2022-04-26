@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: lightgrey;
+}
+.header-container {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: coral;
+  text-shadow: 2px 2px 5px black;
+
+}
+.header-container > img {
+  margin: 10px;
+  width: 600px;
+  border-radius: 8px;
+}
+.friend-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+  line-height: 1.5;
+  border-bottom: .15px solid black;
+  padding-bottom: 10px;
+}
+.friend-container:last-child {
+  border: none;
+}
+ul {
+  font-style: italic;
+  color: coral;
+}
