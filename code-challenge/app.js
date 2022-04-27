@@ -92,22 +92,31 @@
 
 
 
-const puzzlePieces = ((arr1, arr2) => {
-	if (arr1.length !== arr2.length) {
-		return false
-	}
-	const total = arr1[0] + arr2[0];
-	for(let i = 1; i < arr1.length; i++) {
-		if (arr1[i] + arr2[i] !== total) {
-			return false
-		}
-	}
-	return true
-})
+// const puzzlePieces = ((arr1, arr2) => {
+// 	if (arr1.length !== arr2.length) {
+// 		return false
+// 	}
+// 	const total = arr1[0] + arr2[0];
+// 	for(let i = 1; i < arr1.length; i++) {
+// 		if (arr1[i] + arr2[i] !== total) {
+// 			return false
+// 		}
+// 	}
+// 	return true
+// })
+
+// console.log(puzzlePieces([1, 8, 5, 0, -1, 7], [0, -7, -4, 1, 2, -6]))// ➞ true
+// console.log(puzzlePieces([1, 1, 2], [1,1,3])) // ➞ false
+// console.log(puzzlePieces([9, 8, 7], [7, 8, 9, 10])) // ➞ false
 
 
-console.log(puzzlePieces([1, 8, 5, 0, -1, 7], [0, -7, -4, 1, 2, -6]))// ➞ true
 
-console.log(puzzlePieces([1, 1, 2], [1,1,3])) // ➞ false
+const potatoes = string => {
+	const howManyPotatoes = string.match(/potato/g)
+	return howManyPotatoes ? howManyPotatoes.length : 0;
+}
 
-console.log(puzzlePieces([9, 8, 7], [7, 8, 9, 10])) // ➞ false
+console.log(potatoes("potatoPotato"))// ➞ 1
+console.log(potatoes("potatopotato"))// ➞ 2
+console.log(potatoes("potatoapple"))// ➞ 1
+console.log(potatoes("applecattruck"))// ➞ 0
