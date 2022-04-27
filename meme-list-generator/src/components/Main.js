@@ -7,7 +7,7 @@ function Main () {
     topText: '',
     bottomText: '',
     // eslint-disable-next-line
-    url: "https:\/\/i.imgflip.com\/1g8my4.jpg"
+    url: "https://i.imgflip.com/21uy0f.jpg"
   });
 
   //create state for memes array from api
@@ -18,11 +18,13 @@ function Main () {
     axios.get("https://api.imgflip.com/get_memes")
     .then(response => setMemeApi(response.data.data.memes))
     .catch(error => console.log(error.data))
+    console.count("rendered")
   }, []);
+
+  //console.log('rendered')
 
   //refresh btn changes memes
   function changeMeme(event) {
-    event.preventDefault()
     const randomNum = Math.floor(Math.random() * memeApi.length);
     const nextUrl = memeApi[randomNum].url
     setMemes(prev => ({
@@ -40,6 +42,53 @@ function Main () {
     }));
   }
 
+  //set state to store created memes on submit
+  const [createdMemes, setCreatedMemes] = React.useState([]);
+  function createMeme(event) {
+    event.preventDefault()
+    setCreatedMemes(prev => ([
+        ...prev, memes
+    ]))
+  }
+
+  //map over created memes and render each
+  let count = 1;
+  const eachMeme = createdMemes.map((current, index) => {
+    return (
+      <div
+        key={index}
+        id={index}
+        className="newMemes">
+        <h3 className="newMemeTitle">Meme #{count++}</h3>
+        <div className="image-div">
+          <img
+            className="newMemeImg"
+            src={current.url}
+            alt="current top memes"
+          ></img>
+          <p className="topText">{current.topText}</p>
+          <p className="bottomText ">{current.bottomText}</p>
+        </div>
+        <div className="newMemesBtn">
+          <button className="editBtn">Edit</button>
+          <button
+            className="deleteBtn"
+            onClick={deleteMeme}
+            >Delete</button>
+        </div>
+      </div>
+    )
+  });
+
+  //delete memes
+  function deleteMeme(event) {
+    //save id of the meme div
+    const memeId = Number(event.target.offsetParent.id)
+    //call setter func and filter to remove the meme at index that matches meme id
+    setCreatedMemes(prev => prev.filter((_, index) => index !== memeId))
+  }
+
+
   return (
     <main className="content-container">
       <div className="meme-form">
@@ -56,22 +105,25 @@ function Main () {
           value={memes.bottomText}
         ></input>
         <br></br>
-        <img
-          className="defaultMeme"
-          src={memes.url}
-          alt="current top memes">
-        </img>
-        <br></br>
+        <div className="image-div">
+          <img
+            className="defaultMeme"
+            src={memes.url}
+            alt="current top memes">
+          </img>
+          <p className="topText">{memes.topText}</p>
+          <p className="bottomText">{memes.bottomText}</p>
+        </div>
         <button
           className="submitBtn"
+          onClick={createMeme}
         >Submit</button>
         <button
           className="refreshBtn"
           onClick={changeMeme}
           >Refresh Meme Image</button>
       </div>
-      <p className="topText">{memes.topText}</p>
-      <p className="bottomText">{memes.bottomText}</p>
+      {eachMeme}
     </main>
   );
 }
