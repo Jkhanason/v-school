@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 function Meme (props) {
   const current = props.current;
 
@@ -19,17 +18,18 @@ function Meme (props) {
   //on form submit to save edit..
   function saveEditedMeme(event) {
     event.preventDefault()
-    /*c all saveMeme function with current meme as a parameter, sends state back to main.js
-    */
+    /* call saveMeme function with current meme as a parameter, sends state back to main.js */
     props.saveMeme(currentMeme)
+    //hide inputs and save button
     setDisplay('none')
   }
 
   //create state to toggle edit input display on and off
   const [display, setDisplay] = React.useState('none');
+
   //edit memes already created
   function editMeme(event) {
-    console.log(event)
+    //show inputs and save btn
     setDisplay(true)
   }
 
@@ -74,7 +74,7 @@ function Meme (props) {
         value={currentMeme.bottomText}
         className="editInputs"
         ></input>
-        <button>Save</button>
+        <button className="saveBtn">Save</button>
       </form>
   </div>
   )

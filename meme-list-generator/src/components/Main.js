@@ -4,7 +4,7 @@ import Meme from './Meme.js';
 import { v4 as uuidv4 } from 'uuid';
 
 function Main () {
-  //create state for form inputs and img urls
+  //create state for input values and img urls
   const [memes, setMemes] = React.useState({
     topText: '',
     bottomText: '',
@@ -43,11 +43,12 @@ function Main () {
 
   //create state to store memes created by submit button
   const [createdMemes, setCreatedMemes] = React.useState([]);
+
   //on submit add meme obj to createdMemes array
   function createMeme() {
     //redirect memes to new const
     const newMeme = memes
-    //add an id key to eay meme obj
+    //add an id key to new meme obj
     newMeme.id = uuidv4()
     setCreatedMemes(prev => ([
         ...prev, newMeme
@@ -77,7 +78,7 @@ function Main () {
 
   //to save edited meme info, receive current state from meme.js
   function saveMeme(meme) {
-    //map over memes array and if the ids match, keep the edited meme passed in rom meme.js
+    //map over memes array and if the ids match, keep the edited meme passed in from meme.js
     setCreatedMemes(prev => prev.map(element => {
       if (element.id === meme.id) {
         return meme
@@ -87,7 +88,7 @@ function Main () {
       }
     }));
   }
-console.log(createdMemes)
+
   return (
     <main className="content-container">
       <div className="meme-form">
