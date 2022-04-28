@@ -1,30 +1,29 @@
 import React from 'react';
 import axios from 'axios';
+import Meme from './Meme.js';
+import { v4 as uuidv4 } from 'uuid';
 
 function Main () {
   //create state for form inputs and img urls
   const [memes, setMemes] = React.useState({
     topText: '',
     bottomText: '',
-    // eslint-disable-next-line
-    url: "https://i.imgflip.com/21uy0f.jpg"
+    url: "https://i.imgflip.com/21uy0f.jpg",
   });
 
   //create state for memes array from api
   const [memeApi, setMemeApi] = React.useState([]);
 
-  //make api call and update state
+  //make api call and update memeApi state
   React.useEffect(() => {
     axios.get("https://api.imgflip.com/get_memes")
     .then(response => setMemeApi(response.data.data.memes))
     .catch(error => console.log(error.data))
-    console.count("rendered")
+    // console.count("api call")  //remove this later
   }, []);
 
-  //console.log('rendered')
-
-  //refresh btn changes memes
-  function changeMeme(event) {
+  //refresh button changes memes
+  function changeMeme() {
     const randomNum = Math.floor(Math.random() * memeApi.length);
     const nextUrl = memeApi[randomNum].url
     setMemes(prev => ({
@@ -33,7 +32,7 @@ function Main () {
     }))
   }
 
-  //set state to update as input values change
+  //set meme state to update as input values change
   function handleChange(event) {
     const {name, value} = event.target;
     setMemes(prev => ({
@@ -42,45 +41,33 @@ function Main () {
     }));
   }
 
-  //set state to store created memes on submit
+  //create state to store memes created by submit button
   const [createdMemes, setCreatedMemes] = React.useState([]);
-  function createMeme(event) {
-    event.preventDefault()
+  //on submit add meme obj to createdMemes array
+  function createMeme() {
+    //redirect memes to new const
+    const newMeme = memes
+    //add an id key to eay meme obj
+    newMeme.id = uuidv4()
     setCreatedMemes(prev => ([
-        ...prev, memes
+        ...prev, newMeme
     ]))
   }
 
   //map over created memes and render each
-  let count = 1;
   const eachMeme = createdMemes.map((current, index) => {
     return (
-      <div
+      <Meme
         key={index}
-        id={index}
-        className="newMemes">
-        <h3 className="newMemeTitle">Meme #{count++}</h3>
-        <div className="image-div">
-          <img
-            className="newMemeImg"
-            src={current.url}
-            alt="current top memes"
-          ></img>
-          <p className="topText">{current.topText}</p>
-          <p className="bottomText ">{current.bottomText}</p>
-        </div>
-        <div className="newMemesBtn">
-          <button className="editBtn">Edit</button>
-          <button
-            className="deleteBtn"
-            onClick={deleteMeme}
-            >Delete</button>
-        </div>
-      </div>
+        current = {current}
+        deleteMeme = {deleteMeme}
+        saveMeme = {saveMeme}
+        index = {index}
+      />
     )
   });
 
-  //delete memes
+  //delete memes from array
   function deleteMeme(event) {
     //save id of the meme div
     const memeId = Number(event.target.offsetParent.id)
@@ -88,7 +75,19 @@ function Main () {
     setCreatedMemes(prev => prev.filter((_, index) => index !== memeId))
   }
 
-
+  //to save edited meme info, receive current state from meme.js
+  function saveMeme(meme) {
+    //map over memes array and if the ids match, keep the edited meme passed in rom meme.js
+    setCreatedMemes(prev => prev.map(element => {
+      if (element.id === meme.id) {
+        return meme
+      } else {
+        //else keep meme array as it is
+        return element
+      }
+    }));
+  }
+console.log(createdMemes)
   return (
     <main className="content-container">
       <div className="meme-form">
@@ -129,3 +128,7 @@ function Main () {
 }
 
 export default Main
+
+/* event.target.offsetParent.children[1].children[1].textcontent
+  event.target.offsetParent.children[1].children[2]
+*/
