@@ -17,7 +17,8 @@ function Colors() {
   }
 
   function updateRef(event) {
-    inputRef.current.focus()
+    // inputRef.current.select()
+    event.target.select()
     navigator.clipboard.writeText(event.target.value).then(res => console.log('Code copied to clipboard'))
   }
 

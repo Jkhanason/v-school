@@ -5,8 +5,8 @@
 }
 .colorsContainer {
   height: 70vh;
-  margin: 10px;
-  width: auto;
+  margin: 10px auto;
+  width: 1000px;
   border: 2px solid black;
   display: flex;
 }
@@ -22,6 +22,8 @@
   text-align: center;
   padding-top: 10px;
   font-size: 18px;
+  justify-content: center;
+
 }
 .gradientDisplay {
   width: 90%;
@@ -51,12 +53,14 @@ textarea {
   width: 50px;
   border: 1px solid black;
   text-indent: 4px;
+  margin: 0 auto;
 }
 .copyBtn {
   width: 100px;
   height: 28px;
   border: 1px solid white;
   font-weight: bold;
+  margin: 0 auto;
 }
 .copyBtn:hover {
   color: white;
