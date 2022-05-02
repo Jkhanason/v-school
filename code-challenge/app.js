@@ -111,12 +111,23 @@
 
 
 
-const potatoes = string => {
-	const howManyPotatoes = string.match(/potato/g)
-	return howManyPotatoes ? howManyPotatoes.length : 0;
+// const potatoes = string => {
+// 	const howManyPotatoes = string.match(/potato/g)
+// 	return howManyPotatoes ? howManyPotatoes.length : 0;
+// }
+
+// console.log(potatoes("potatoPotato"))// ➞ 1
+// console.log(potatoes("potatopotato"))// ➞ 2
+// console.log(potatoes("potatoapple"))// ➞ 1
+// console.log(potatoes("applecattruck"))// ➞ 0
+
+
+const secondLargest = array => {
+    const sortedNums = [...array].sort((a, b) => b - a)
+    console.log({array}, {sortedNums})
+    return sortedNums[1]
 }
 
-console.log(potatoes("potatoPotato"))// ➞ 1
-console.log(potatoes("potatopotato"))// ➞ 2
-console.log(potatoes("potatoapple"))// ➞ 1
-console.log(potatoes("applecattruck"))// ➞ 0
+console.log(secondLargest([10, 40, 30, 20, 50])) // 40
+console.log(secondLargest([25, 143, 89, 13, 105])) // 105
+console.log(secondLargest([54, 23, 11, 17, 10])) // 23

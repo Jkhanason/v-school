@@ -129,7 +129,3 @@ function Main () {
 }
 
 export default Main
-
-/* event.target.offsetParent.children[1].children[1].textcontent
-  event.target.offsetParent.children[1].children[2]
-*/

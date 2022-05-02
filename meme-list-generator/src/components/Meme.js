@@ -34,8 +34,7 @@ function Meme (props) {
   }
 
   return (
-    <div
-      className="newMemes">
+    <div className="newMemes">
       <h3 className="newMemeTitle">Meme #{props.index + 1}</h3>
       <div className="image-div">
         <img
@@ -63,14 +62,14 @@ function Meme (props) {
         <input
           name="topText"
           onChange={handleChange}
-          placeholder="Top Text"
+          // placeholder="Top Text"
           value={currentMeme.topText}
           className="editInputs"
         ></input>
         <input
         name="bottomText"
         onChange={handleChange}
-        placeholder="Top Text"
+        // placeholder="Top Text"
         value={currentMeme.bottomText}
         className="editInputs"
         ></input>
