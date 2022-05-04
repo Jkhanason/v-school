@@ -122,12 +122,29 @@
 // console.log(potatoes("applecattruck"))// ➞ 0
 
 
-const secondLargest = array => {
-    const sortedNums = [...array].sort((a, b) => b - a)
-    console.log({array}, {sortedNums})
-    return sortedNums[1]
+// const secondLargest = array => {
+//     const sortedNums = [...array].sort((a, b) => b - a)
+//     console.log({array}, {sortedNums})
+//     return sortedNums[1]
+// }
+
+// console.log(secondLargest([10, 40, 30, 20, 50])) // 40
+// console.log(secondLargest([25, 143, 89, 13, 105])) // 105
+// console.log(secondLargest([54, 23, 11, 17, 10])) // 23
+
+
+const toArray = object => Object.entries(object)
+
+console.log(toArray({ a: 1, b: 2 }))// ➞ [["a", 1], ["b", 2]]
+console.log(toArray({ shrimp: 15, tots: 12 }))// ➞ [["shrimp", 15], ["tots", 12]]
+console.log(toArray({}))// ➞ []
+
+
+const concat = (...array) => {
+    return array.reduce((acc, item) => acc.concat(item), [])
 }
 
-console.log(secondLargest([10, 40, 30, 20, 50])) // 40
-console.log(secondLargest([25, 143, 89, 13, 105])) // 105
-console.log(secondLargest([54, 23, 11, 17, 10])) // 23
+console.log(concat([1, 2, 3], [4, 5], [6, 7]))// ➞ [1, 2, 3, 4, 5, 6, 7]
+console.log(concat([1], [2], [3], [4], [5], [6], [7]))// ➞ [1, 2, 3, 4, 5, 6, 7]
+console.log(concat([1, 2], [3, 4]))// ➞ [1, 2, 3, 4]
+console.log(concat([4, 4, 4, 4, 4]))// ➞ [4, 4, 4, 4, 4]
