@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}.app {
+  width: 900px;
+  margin: 10px auto;
+  border: 1px solid black;
+}
+.formDiv {
+ text-align: center;
+ padding: 10px 0;
+ border-bottom: 2px solid black;
+}
+form {
+  text-align: center;
+}
+input {
+  margin: 0 10px;
+  width: 220px;
+  font-size: 16px;
+  padding: 10px 0;
+  text-indent: 5px;
+  border-radius: 3px;
+}
+.thingsContainer {
+  background-color: red;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(3, 300px);
+}
+.thingsDisplay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 350px;
+  border: .5px solid rgba(0, 0, 0, 0.59);
+}
+.thingsDisplay > img {
+  width: 200px;
+  height: 200px;
+  border-radius: 3px;
+  margin: 10px 0;
+}
+.thingsDisplay > h5 {
+  margin-bottom: 10px;
+}
+button {
+  width: 50px;
+  margin-bottom: 5px;
+  border-radius: 3px;
+}
+.editBtn {
+  width: 100px;
+  padding: 10px 0;
+  margin: 10px;
+}
+button:hover, .editBtn.hover {
+  cursor: pointer;
+  border: 2px solid black;
+}
+/* .titleInput {
+  text-transform: uppercase;
+} */
