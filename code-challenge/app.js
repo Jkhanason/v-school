@@ -133,18 +133,40 @@
 // console.log(secondLargest([54, 23, 11, 17, 10])) // 23
 
 
-const toArray = object => Object.entries(object)
+// const toArray = object => Object.entries(object)
 
-console.log(toArray({ a: 1, b: 2 }))// ➞ [["a", 1], ["b", 2]]
-console.log(toArray({ shrimp: 15, tots: 12 }))// ➞ [["shrimp", 15], ["tots", 12]]
-console.log(toArray({}))// ➞ []
+// console.log(toArray({ a: 1, b: 2 }))// ➞ [["a", 1], ["b", 2]]
+// console.log(toArray({ shrimp: 15, tots: 12 }))// ➞ [["shrimp", 15], ["tots", 12]]
+// console.log(toArray({}))// ➞ []
 
 
-const concat = (...array) => {
-    return array.reduce((acc, item) => acc.concat(item), [])
+// const concat = (...array) => {
+//     return array.reduce((acc, item) => acc.concat(item), [])
+// }
+
+// console.log(concat([1, 2, 3], [4, 5], [6, 7]))// ➞ [1, 2, 3, 4, 5, 6, 7]
+// console.log(concat([1], [2], [3], [4], [5], [6], [7]))// ➞ [1, 2, 3, 4, 5, 6, 7]
+// console.log(concat([1, 2], [3, 4]))// ➞ [1, 2, 3, 4]
+// console.log(concat([4, 4, 4, 4, 4]))// ➞ [4, 4, 4, 4, 4]
+
+
+const numOfDigits = number => {
+    let count = 0;
+
+    if (number === 0) {
+        count++
+    }
+
+    while (number >= 1) {
+        number /= 10
+        count ++
+    }
+    return count
 }
-
-console.log(concat([1, 2, 3], [4, 5], [6, 7]))// ➞ [1, 2, 3, 4, 5, 6, 7]
-console.log(concat([1], [2], [3], [4], [5], [6], [7]))// ➞ [1, 2, 3, 4, 5, 6, 7]
-console.log(concat([1, 2], [3, 4]))// ➞ [1, 2, 3, 4]
-console.log(concat([4, 4, 4, 4, 4]))// ➞ [4, 4, 4, 4, 4]
+console.log(numOfDigits(1000))// ➞ 4
+//100, 10, 1, 0.1
+console.log(numOfDigits(12))// ➞ 2
+//1.2, .12
+console.log(numOfDigits(1305981031))// ➞ 10
+//130598103.1, 13059810.31, 1305981.031, 130598.1031, 13059.81031, 1305.981031
+console.log(numOfDigits(0))// ➞ 1
