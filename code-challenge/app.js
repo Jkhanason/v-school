@@ -150,23 +150,47 @@
 // console.log(concat([4, 4, 4, 4, 4]))// ➞ [4, 4, 4, 4, 4]
 
 
-const numOfDigits = number => {
-    let count = 0;
+// const numOfDigits = number => {
+//     let count = 0;
+//     if (number === 0) {
+//         count++
+//     }
+//     while (number >= 1) {
+//         number /= 10
+//         count ++
+//     }
+//     return count
+// }
+// console.log(numOfDigits(1000))// ➞ 4
+// //100, 10, 1, 0.1
+// console.log(numOfDigits(12))// ➞ 2
+// //1.2, .12
+// console.log(numOfDigits(1305981031))// ➞ 10
+// //130598103.1, 13059810.31, 1305981.031, 130598.1031, 13059.81031, 1305.981031
+// console.log(numOfDigits(0))// ➞ 1
 
-    if (number === 0) {
-        count++
-    }
 
-    while (number >= 1) {
-        number /= 10
-        count ++
+const matchLastItem = array => {
+    //solution 1
+    const lastItem = array[array.length - 1];
+    let remainingItems = '';
+    for (let i = 0; i < array.length - 1; i++) {
+        remainingItems += array[i]
     }
-    return count
+    return remainingItems === lastItem
+
+    //solution 2
+    //return array.slice(0, -1).join('') === array[array.length -1]
+
+    //solution 3
+    // const test = array.reduce((acc, item, index) => {
+    //     if (index !== array.length -1) {
+    //         acc += item
+    //     }
+    //     return acc
+    // }, '')
+    // return test === array[array.length -1]
 }
-console.log(numOfDigits(1000))// ➞ 4
-//100, 10, 1, 0.1
-console.log(numOfDigits(12))// ➞ 2
-//1.2, .12
-console.log(numOfDigits(1305981031))// ➞ 10
-//130598103.1, 13059810.31, 1305981.031, 130598.1031, 13059.81031, 1305.981031
-console.log(numOfDigits(0))// ➞ 1
+console.log(matchLastItem(["rsq", "6hi", "g", "rsq6hig"]))// ➞ true
+console.log(matchLastItem([1, 1, 1, "11"]))// ➞ false
+console.log(matchLastItem([8, "thunder", true, "8thundertrue"]))// ➞ true
