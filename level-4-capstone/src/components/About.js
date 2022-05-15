@@ -15,7 +15,7 @@ function About() {
           <li>Planning</li>
           <li>Implementation</li>
         </ul>
-        <h4>All feedback is welcome.</h4>
+        <p>All feedback is welcome.</p>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import {ThemeContext} from '../themeContext';
-import {Link} from 'react-router-dom';
 
 function Home() {
   const {homeWeather, handleChange, handleSubmit, form} = React.useContext(ThemeContext)
@@ -20,7 +19,6 @@ function Home() {
             onChange={(event) => handleChange(event)}
           ></input><br></br>
           <button className="submitBtn">Search</button>
-          {/* <Link to='/city'><button className="submitBtn">Search</button></Link> */}
         </form>
         <div className="homeWeatherDisplay">
           <h2>{homeWeather.location.name}, {homeWeather.location.region}</h2>
