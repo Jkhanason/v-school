@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #763e4c;
+}
+.App {
+  min-width: 300px;
+  max-width: 900px;
+  margin: 10px auto;
+}
+header {
+  height: 50px;
+  font-size: 26px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 2px solid black;
+  background-color: #a55761;
+}
+a {
+  text-decoration: none;
+  margin: 0 20px;
+  color: white;
+}
+.about, .home, .services, .products {
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid black;
+  background-color: #d77d79;
+}
+.footer {
+  background-color: green;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d9a484;
+}
+.products {
+  display: block;
+}
+.products p {
+  padding: 0 20px;
+}
+.items {
+  margin: 10px 0;
+}
