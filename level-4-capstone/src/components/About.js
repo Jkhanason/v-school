@@ -4,7 +4,7 @@ function About() {
   return (
     <div className="about">
         <h2> About</h2>
-        <p>This is a React website I built to showcase my knowledge of the following concepts.</p>
+        <p>This is a React website that I built to showcase my knowledge of the following concepts.</p>
         <ul>
           <li>React</li>
           <li>React Router</li>

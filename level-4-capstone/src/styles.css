@@ -32,9 +32,13 @@ a {
   padding-top: 10px;
   background-color: #41436A;
   text-shadow: 1px 1px 2px black;
+
 }
 .homeTitle {
   margin-bottom: 20px;
+}
+.homeWeatherDisplay {
+  min-height: 420px;
 }
 form {
   margin-bottom: 20px;
@@ -52,11 +56,12 @@ input {
   margin-top: 15px;
   width: 15%;
   background-color: #974063;
+  min-width: fit-content;
+  border-radius: 5px;
 }
 .submitBtn, .cityBtn {
   letter-spacing: 2px;
   padding: 8px;
-  border-radius: 5px;
   border: 1px solid white;
 }
 .submitBtn:hover, .cityBtn:hover {
@@ -115,6 +120,10 @@ li {
   border-bottom: .5px solid #ffffff80;
   width:fit-content;
   margin: 0 auto;
+}
+.badSearchPrompt {
+  padding-top: 40px;
+  height: 650px;
 }
 .footer {
   display: flex;
