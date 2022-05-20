@@ -170,27 +170,53 @@
 // console.log(numOfDigits(0))// ➞ 1
 
 
-const matchLastItem = array => {
-    //solution 1
-    const lastItem = array[array.length - 1];
-    let remainingItems = '';
-    for (let i = 0; i < array.length - 1; i++) {
-        remainingItems += array[i]
+// const matchLastItem = array => {
+//     //solution 1
+//     const lastItem = array[array.length - 1];
+//     let remainingItems = '';
+//     for (let i = 0; i < array.length - 1; i++) {
+//         remainingItems += array[i]
+//     }
+//     return remainingItems === lastItem
+
+//     //solution 2
+//     //return array.slice(0, -1).join('') === array[array.length -1]
+
+//     //solution 3
+//     // const test = array.reduce((acc, item, index) => {
+//     //     if (index !== array.length -1) {
+//     //         acc += item
+//     //     }
+//     //     return acc
+//     // }, '')
+//     // return test === array[array.length -1]
+// }
+// console.log(matchLastItem(["rsq", "6hi", "g", "rsq6hig"]))// ➞ true
+// console.log(matchLastItem([1, 1, 1, "11"]))// ➞ false
+// console.log(matchLastItem([8, "thunder", true, "8thundertrue"]))// ➞ true
+
+
+// const calcAge = age => {
+//     return age * 365
+// }
+// console.log(calcAge(65))// ➞ 23725
+// console.log(calcAge(0))//➞ 0
+// console.log(calcAge(20))// ➞ 7300
+
+
+const truncateString = ((str, num) => {
+    if (str.length < num) {
+        return str
     }
-    return remainingItems === lastItem
-
-    //solution 2
-    //return array.slice(0, -1).join('') === array[array.length -1]
-
-    //solution 3
-    // const test = array.reduce((acc, item, index) => {
-    //     if (index !== array.length -1) {
-    //         acc += item
-    //     }
-    //     return acc
-    // }, '')
-    // return test === array[array.length -1]
-}
-console.log(matchLastItem(["rsq", "6hi", "g", "rsq6hig"]))// ➞ true
-console.log(matchLastItem([1, 1, 1, "11"]))// ➞ false
-console.log(matchLastItem([8, "thunder", true, "8thundertrue"]))// ➞ true
+    let truncatedStr = '';
+    let i = 0;
+    while (i < num - 3) {
+        truncatedStr += str[i];
+        i++
+    }
+    return truncatedStr + '...'
+   // return str.substring(0, num -3) + '...';
+})
+console.log(truncateString("JavaScript", 7))    // "Java..."
+console.log(truncateString("JS is fun", 10))    // "JS is fun" -- string is less than 10 in length so no need to truncate
+console.log(truncateString("JS is funny", 10))  // "JS is f..."
