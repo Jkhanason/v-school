@@ -4,20 +4,20 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Home from './components/Home';
 import City from './components/City';
-import {ThemeContextProvider} from './themeContext';
+import {WeatherContextProvider} from './weatherContext';
 import {Routes, Route} from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
         <Header/>
-        <ThemeContextProvider>
+        <WeatherContextProvider>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/city' element={<City />} />
         </Routes>
-        </ThemeContextProvider>
+        </WeatherContextProvider>
         <Footer/>
     </div>
   );

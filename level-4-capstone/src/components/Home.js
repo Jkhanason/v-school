@@ -1,8 +1,8 @@
 import React from 'react';
-import {ThemeContext} from '../themeContext';
+import {WeatherContext} from '../weatherContext';
 
 function Home() {
-  const {homeWeather, handleChange, handleSubmit, form} = React.useContext(ThemeContext)
+  const {homeWeather, handleChange, handleSubmit, form} = React.useContext(WeatherContext)
 
   return (
     <div className="home">

@@ -1,9 +1,9 @@
 import React from 'react';
-import {ThemeContext} from '../themeContext';
+import {WeatherContext} from '../weatherContext';
 import {useNavigate} from 'react-router-dom';
 
 function City() {
-  const {cityWeather} = React.useContext(ThemeContext);
+  const {cityWeather} = React.useContext(WeatherContext);
   const navigate = useNavigate();
   return (
     <div className="city">
@@ -31,7 +31,7 @@ function City() {
         :
           <p className='cityFullGrid badSearchPrompt'>Invalid City or Zip code. Please return to the home screen to try your search again.</p>
       }
-      <button className="cityBtn" onClick={()=>navigate(-1)}>Back to Home</button>
+      <button className="cityBtn" onClick={()=>navigate('/')}>Back to Home</button>
     </div>
   );
 }

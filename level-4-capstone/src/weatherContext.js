@@ -2,9 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 
-const ThemeContext = React.createContext()
+const WeatherContext = React.createContext()
 
-function ThemeContextProvider(props) {
+function WeatherContextProvider(props) {
   const navigate = useNavigate()
 
   //create state for form
@@ -47,7 +47,7 @@ function ThemeContextProvider(props) {
   }
 
   return (
-    <ThemeContext.Provider value={{
+    <WeatherContext.Provider value={{
       form: form,
       homeWeather: homeWeather,
       cityWeather: cityWeather,
@@ -55,9 +55,8 @@ function ThemeContextProvider(props) {
       handleSubmit: handleSubmit,
     }}>
       {props.children}
-    </ThemeContext.Provider>
+    </WeatherContext.Provider>
   )
-
 }
 
-export {ThemeContext, ThemeContextProvider}
+export {WeatherContext, WeatherContextProvider}
