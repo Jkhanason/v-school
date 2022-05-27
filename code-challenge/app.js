@@ -204,19 +204,22 @@
 // console.log(calcAge(20))// ➞ 7300
 
 
-const truncateString = ((str, num) => {
-    if (str.length < num) {
-        return str
-    }
-    let truncatedStr = '';
-    let i = 0;
-    while (i < num - 3) {
-        truncatedStr += str[i];
-        i++
-    }
-    return truncatedStr + '...'
-   // return str.substring(0, num -3) + '...';
-})
-console.log(truncateString("JavaScript", 7))    // "Java..."
-console.log(truncateString("JS is fun", 10))    // "JS is fun" -- string is less than 10 in length so no need to truncate
-console.log(truncateString("JS is funny", 10))  // "JS is f..."
+// const truncateString = ((str, num) => {
+//     if (str.length < num) {
+//         return str
+//     }
+//     let truncatedStr = '';
+//     let i = 0;
+//     while (i < num - 3) {
+//         truncatedStr += str[i];
+//         i++
+//     }
+//     return truncatedStr + '...'
+//    // return str.substring(0, num -3) + '...';
+// })
+// console.log(truncateString("JavaScript", 7))    // "Java..."
+// console.log(truncateString("JS is fun", 10))    // "JS is fun" -- string is less than 10 in length so no need to truncate
+// console.log(truncateString("JS is funny", 10))  // "JS is f..."
+
+
+
