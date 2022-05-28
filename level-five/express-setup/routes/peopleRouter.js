@@ -1,6 +1,6 @@
 const express = require('express');
-const peopleRouter = express.Router()
-const {v4: uuidv4} = require('uuid')
+const peopleRouter = express.Router();
+const {v4: uuidv4} = require('uuid');
 
 //fake data
 const users=[
@@ -15,10 +15,21 @@ const users=[
   req.body._id = uuidv4()
   users.push(req.body)
   res.send(req.body)
-})
+});
 
+//get all
 peopleRouter.get('/', (req, res) => {
   res.send(users)
 });
 
+//get only one
+peopleRouter.get('/:personID', (req, res) => {
+  res.send(users.find(user => user._id === req.params.personID))
+});
+//get multiple
+peopleRouter.get('/search/age', (req, res) => {
+  req.query.age ? res.send(users.filter(user => user.age === Number(req.query.age))) : res.send(users)
+  // res.send(users.filter(user => user.name[user.name.length-1] === req.query.lastletter))
+
+})
 module.exports = peopleRouter

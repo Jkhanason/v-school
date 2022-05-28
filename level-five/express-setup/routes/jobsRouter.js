@@ -19,6 +19,7 @@ const jobs = [
 //   res.send(jobs)
 // });
 
+//same route to get all or post new item
 jobsRouter.route('/')
   .post((req, res) => {
     req.body._id = uuidv4()
@@ -29,4 +30,23 @@ jobsRouter.route('/')
     res.send(jobs)
   })
 
+//same route to delete, put or get one
+jobsRouter.route('/:jobId')
+  .delete((req, res) => {
+    const id = req.params.jobId;
+    const index = jobs.findIndex(job => job._id === id);
+    jobs.splice(index, 1);
+    res.send(`The item with Id#: ${id} has been removed`);
+  })
+  .put((req, res) => {
+    const updates = req.body;
+    const index = jobs.findIndex(job => job._id === req.params.jobId);
+    const updatedObj = Object.assign(jobs[index], updates);
+    res.send(updatedObj);
+  })
+  .get((req, res) => {
+    const id = req.params.jobId;
+    const index = jobs.findIndex(job => job._id === id);
+    res.send(jobs[index]);
+  })
 module.exports = jobsRouter
