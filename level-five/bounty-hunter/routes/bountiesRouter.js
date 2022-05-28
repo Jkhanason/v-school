@@ -47,4 +47,23 @@ bountiesRouter.route('/')
     res.send(req.body)
   })
 
+bountiesRouter.route('/:bountyId')
+  .delete((req, res) => {
+    const id = req.params.bountyId;
+    const index = bounties.findIndex(bounty => bounty._id === id);
+    bounties.splice(index, 1);
+    res.send(`Item with ID: ${id} has been deleted`);
+  })
+  .get((req, res) => {
+    const id = req.params.bountyId;
+    const index = bounties.findIndex(bounty => bounty._id === id);
+    res.send(bounties[index]);
+  })
+  .put((req, res) => {
+    const id = req.params.bountyId;
+    const index = bounties.findIndex(bounty => bounty._id === id);
+    const updatedInfo = Object.assign(bounties[index], req.body);
+    res.send(updatedInfo);
+  })
+
 module.exports = bountiesRouter
