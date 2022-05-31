@@ -28,7 +28,7 @@ jobsRouter.route('/')
   })
   .get((req, res) => {
     res.send(jobs)
-  })
+  });
 
 //same route to delete, put or get one
 jobsRouter.route('/:jobId')
@@ -48,5 +48,5 @@ jobsRouter.route('/:jobId')
     const id = req.params.jobId;
     const index = jobs.findIndex(job => job._id === id);
     res.send(jobs[index]);
-  })
+  });
 module.exports = jobsRouter

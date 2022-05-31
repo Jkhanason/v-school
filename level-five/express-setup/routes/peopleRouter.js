@@ -11,21 +11,35 @@ const users=[
   {name:"blow", age:22, _id: uuidv4()}
  ];
 
- peopleRouter.post('/', (req, res) => {
-  req.body._id = uuidv4()
-  users.push(req.body)
-  res.send(req.body)
-});
 
-//get all
-peopleRouter.get('/', (req, res) => {
-  res.send(users)
+ peopleRouter.route('/')
+  .post((req, res) => {
+    req.body._id = uuidv4()
+    users.push(req.body)
+    res.send(users)
+})
+  .get((req, res) => {
+    res.send(users)
 });
 
 //get only one
-peopleRouter.get('/:personID', (req, res) => {
-  res.send(users.find(user => user._id === req.params.personID))
-});
+peopleRouter.route('/:personId')
+  .get((req, res) => {
+    res.send(users.find(user => user._id === req.params.personID));
+  })
+  .delete((req, res) => {
+    const id = req.params.personId;
+    const index = users.findIndex(user => user._id === id);
+    users.splice(index, 1);
+    res.send(`Item with ID: ${id} has been deleted.`);
+  })
+  .put((req, res) => {
+    const id = req.params.personId;
+    const index = users.findIndex(user => user._id === id);
+    const updatedObj = Object.assign(users[index], req.body);
+    res.send(updatedObj)
+  });
+
 //get multiple
 peopleRouter.get('/search/age', (req, res) => {
   req.query.age ? res.send(users.filter(user => user.age === Number(req.query.age))) : res.send(users)
