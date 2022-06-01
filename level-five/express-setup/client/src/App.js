@@ -39,13 +39,11 @@ function App() {
 
   //put request to people api
   function updatePeople(updates, id) {
-    console.log(people)
     axios.put(`/people/${id}`, updates)
       .then(res => {
         setPeople(prev => prev.map(current => current._id === id ? res.data : current))
       })
       .catch(error => console.log(error.data))
-      console.log(people)
   }
 
   const eachPerson = people.map(person => {

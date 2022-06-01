@@ -9,6 +9,10 @@ app.use('/people', require('./routes/peopleRouter.js'))
 
 app.use('/jobs', require('./routes/jobsRouter.js'))
 
+app.use((err, req, res, next) => {
+  return res.send({error: err.message})
+})
+
 app.listen(4545, () => {
   console.log('it works')
 });
