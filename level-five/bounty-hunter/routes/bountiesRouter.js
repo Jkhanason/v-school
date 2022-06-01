@@ -7,7 +7,7 @@ const bounties = [
     firstName: 'Luke',
     lastName: 'Skywalker',
     living: true,
-    Bounty: 1000,
+    bounty: 1000,
     type: 'Jedi',
     _id: uuidv4()
   },
@@ -15,7 +15,7 @@ const bounties = [
     firstName: 'Obi-Wan',
     lastName: 'Kenobi',
     living: true,
-    Bounty: 2000,
+    bounty: 2000,
     type: 'Jedi',
     _id: uuidv4()
   },
@@ -23,7 +23,7 @@ const bounties = [
     firstName: 'Mace',
     lastName: 'Windu',
     living: true,
-    Bounty: 2200,
+    bounty: 2200,
     type: 'Jedi',
     _id: uuidv4()
   },
@@ -31,10 +31,10 @@ const bounties = [
     firstName: 'Count',
     lastName: 'Dooku',
     living: true,
-    Bounty: 3000,
+    bounty: 3000,
     type: 'Sith',
     _id: uuidv4()
-  }
+  },
 ];
 
 bountiesRouter.route('/')
