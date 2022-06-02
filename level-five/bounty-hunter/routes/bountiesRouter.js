@@ -48,20 +48,32 @@ bountiesRouter.route('/')
   })
 
 bountiesRouter.route('/:bountyId')
-  .delete((req, res) => {
+  .delete((req, res, next) => {
     const id = req.params.bountyId;
     const index = bounties.findIndex(bounty => bounty._id === id);
+    if (index === -1) {
+      const error = new Error(`Unable to delete a bounty with ID: ${id}.`);
+      return next(error)
+    }
     bounties.splice(index, 1);
     res.send(`Item with ID: ${id} has been deleted`);
   })
-  .get((req, res) => {
+  .get((req, res, next) => {
     const id = req.params.bountyId;
     const index = bounties.findIndex(bounty => bounty._id === id);
+    if (index === -1) {
+      const error = new Error(`Unable to locate a bounty with ID: ${id}.`);
+      return next(error)
+    }
     res.send(bounties[index]);
   })
-  .put((req, res) => {
+  .put((req, res, next) => {
     const id = req.params.bountyId;
     const index = bounties.findIndex(bounty => bounty._id === id);
+    if (index === -1) {
+      const error = new Error(`Unable to update a bounty with ID: ${id}.`);
+      return next(error)
+    }
     const updatedInfo = Object.assign(bounties[index], req.body);
     res.send(updatedInfo);
   })
