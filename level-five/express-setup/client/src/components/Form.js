@@ -19,7 +19,10 @@ function Form(props) {
     event.preventDefault();
     props.submit(form, props.id)
     setForm(inputs)
-    props.setEditOn(prev => !prev)
+    //prevents error on post request for main form at top of page when this prop is undefined
+    if (props.setEditOn) {
+      props.setEditOn(prev => !prev)
+    }
   }
 
   return (
@@ -33,6 +36,7 @@ function Form(props) {
       ></input>
       <input
         name = 'age'
+        type = "number"
         value = {form.age}
         onChange={handleChange}
         placeholder= 'Age'

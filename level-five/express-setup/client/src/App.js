@@ -8,6 +8,7 @@ function App() {
   //state for hold data for both api calls
   const [people, setPeople] = React.useState([]);
   const [jobs, setJobs] = React.useState([]);
+  const [error, setError] = React.useState('');
 
   React.useEffect(() => {
     axios.get('/people')
@@ -34,7 +35,7 @@ function App() {
     .then(res => {
       setPeople(prev => prev.filter(person => person._id !== id))
     })
-    .catch(error => console.log(error.data))
+    .catch(error => setError(error.response.data.error))
   }
 
   //put request to people api
@@ -53,9 +54,10 @@ function App() {
         person = {person}
         deletePeople = {deletePeople}
         updatePeople = {updatePeople}
+        error = {error}
       />
     )
-  });
+  })
 
   const eachJob = jobs.map(job => {
     return (
