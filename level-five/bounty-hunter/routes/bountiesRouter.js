@@ -39,12 +39,12 @@ const bounties = [
 
 bountiesRouter.route('/')
   .get((req, res) => {
-    res.send(bounties)
+    res.status(200).send(bounties)
   })
   .post((req, res) => {
     req.body._id = uuidv4()
     bounties.push(req.body);
-    res.send(req.body)
+    res.status(201).send(req.body)
   })
 
 bountiesRouter.route('/:bountyId')
@@ -53,29 +53,42 @@ bountiesRouter.route('/:bountyId')
     const index = bounties.findIndex(bounty => bounty._id === id);
     if (index === -1) {
       const error = new Error(`Unable to delete a bounty with ID: ${id}.`);
+      res.status(500)
       return next(error)
     }
     bounties.splice(index, 1);
-    res.send(`Item with ID: ${id} has been deleted`);
+    res.status(200).send(`Item with ID: ${id} has been deleted`);
   })
   .get((req, res, next) => {
     const id = req.params.bountyId;
     const index = bounties.findIndex(bounty => bounty._id === id);
     if (index === -1) {
       const error = new Error(`Unable to locate a bounty with ID: ${id}.`);
+      res.status(500)
       return next(error)
     }
-    res.send(bounties[index]);
+    res.status(200).send(bounties[index]);
   })
   .put((req, res, next) => {
     const id = req.params.bountyId;
     const index = bounties.findIndex(bounty => bounty._id === id);
     if (index === -1) {
       const error = new Error(`Unable to update a bounty with ID: ${id}.`);
+      res.status(500)
       return next(error)
     }
     const updatedInfo = Object.assign(bounties[index], req.body);
-    res.send(updatedInfo);
+    res.status(201).send(updatedInfo);
+  })
+
+  bountiesRouter.get('/search/type', (req, res, next) => {
+    if (!req.query.type) {
+      const error = new Error('Please provide a search parameter')
+      res.status(500)
+      return next(error)
+    }
+    const types = bounties.filter(bounty => bounty.type.toLowerCase() === req.query.type.toLowerCase())
+    res.status(200).send(types.length !== 0 ? types : 'No matches found.')
   })
 
 module.exports = bountiesRouter
