@@ -1,25 +1,36 @@
 const express = require('express');
 const peopleRouter = express.Router();
-const {v4: uuidv4} = require('uuid');
+const Person = require('../models/people.js');
 
 //fake data
-const users=[
-  {name:"joe", age:14, _id: uuidv4()},
-  {name:"moe", age:44, _id: uuidv4()},
-  {name:"slow", age:19, _id: uuidv4()},
-  {name:"flow", age:32, _id: uuidv4()},
-  {name:"blow", age:22, _id: uuidv4()}
- ];
+// const users=[
+//   {name:"joe", age:14, _id: uuidv4()},
+//   {name:"moe", age:44, _id: uuidv4()},
+//   {name:"slow", age:19, _id: uuidv4()},
+//   {name:"flow", age:32, _id: uuidv4()},
+//   {name:"blow", age:22, _id: uuidv4()}
+//  ];
 
 
  peopleRouter.route('/')
-  .post((req, res) => {
-    req.body._id = uuidv4()
-    users.push(req.body)
-    res.status(201).send(users)
+  .post((req, res, next) => {
+    const newPerson = new Person(req.body)
+    newPerson.save((err, addedPerson) => {
+      if(err) {
+        res.status(500)
+        return next(err)
+      }
+      res.status(201).send(addedPerson)
+    });
 })
-  .get((req, res) => {
-    res.status(200).send(users)
+  .get((req, res, next) => {
+    Person.find((err, people) => {
+      if(err) {
+        res.status(500)
+        return next(err)
+      }
+      return res.status(200).send(people)
+    });
 });
 
 //get only one
