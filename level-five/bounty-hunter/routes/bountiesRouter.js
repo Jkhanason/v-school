@@ -1,50 +1,62 @@
 const express = require('express');
-const {v4: uuidv4} = require('uuid');
+// const {v4: uuidv4} = require('uuid');
 const bountiesRouter = express.Router();
+const Bounty = require('../models/bounty.js')
 
-const bounties = [
-  {
-    firstName: 'Luke',
-    lastName: 'Skywalker',
-    living: true,
-    bounty: 1000,
-    type: 'Jedi',
-    _id: uuidv4()
-  },
-  {
-    firstName: 'Obi-Wan',
-    lastName: 'Kenobi',
-    living: true,
-    bounty: 2000,
-    type: 'Jedi',
-    _id: uuidv4()
-  },
-  {
-    firstName: 'Mace',
-    lastName: 'Windu',
-    living: true,
-    bounty: 2200,
-    type: 'Jedi',
-    _id: uuidv4()
-  },
-  {
-    firstName: 'Count',
-    lastName: 'Dooku',
-    living: true,
-    bounty: 3000,
-    type: 'Sith',
-    _id: uuidv4()
-  },
-];
+// const bounties = [
+//   {
+//     firstName: 'Luke',
+//     lastName: 'Skywalker',
+//     living: true,
+//     bounty: 1000,
+//     type: 'Jedi',
+//     _id: uuidv4()
+//   },
+//   {
+//     firstName: 'Obi-Wan',
+//     lastName: 'Kenobi',
+//     living: true,
+//     bounty: 2000,
+//     type: 'Jedi',
+//     _id: uuidv4()
+//   },
+//   {
+//     firstName: 'Mace',
+//     lastName: 'Windu',
+//     living: true,
+//     bounty: 2200,
+//     type: 'Jedi',
+//     _id: uuidv4()
+//   },
+//   {
+//     firstName: 'Count',
+//     lastName: 'Dooku',
+//     living: true,
+//     bounty: 3000,
+//     type: 'Sith',
+//     _id: uuidv4()
+//   },
+// ];
 
 bountiesRouter.route('/')
-  .get((req, res) => {
-    res.status(200).send(bounties)
+  .get((req, res, next) => {
+    Bounty.find((err, bounties) => {
+      if(err) {
+        res.status(500)
+        return next(err)
+      }
+      return res.status(200).send(bounties)
+    })
   })
-  .post((req, res) => {
-    req.body._id = uuidv4()
-    bounties.push(req.body);
-    res.status(201).send(req.body)
+  .post((req, res, next) => {
+    const newBounty = new Bounty(req.body)
+    newBounty.save((err, addedBounty) => {
+      if(err) {
+        res.status(500)
+        return next(err)
+      }
+      res.status(201).send(addedBounty)
+    });
   })
 
 bountiesRouter.route('/:bountyId')
