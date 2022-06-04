@@ -24,7 +24,7 @@ function App() {
   //post request for people api
   function handlePost(newPerson) {
     axios.post('/people', newPerson)
-      .then(res => setPeople(res.data))
+      .then(res => setPeople(prev => [...prev, res.data]))
       .catch(error => console.log(error.data))
   }
 
