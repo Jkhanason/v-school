@@ -9,6 +9,7 @@
   display: grid;
   grid-template-columns: 50% 50%;
   grid-gap: 5px;
+  padding-bottom: 15px;
 }
 .bountyContainer {
   background-color: rgb(188, 147, 94);

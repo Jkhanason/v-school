@@ -6,7 +6,7 @@ function Form(props) {
   const inputs = {
     firstName: props.firstName || '',
     lastName: props.lastName || '',
-    living: props.living || '',
+    living: props.living || false,
     bounty: props.bounty || '',
     type: props.type || ''
   }
@@ -23,9 +23,10 @@ function Form(props) {
   function handleSubmit (event) {
     event.preventDefault()
     props.submit(form, props._id)
-    props.setIsEditOn(prev => !prev)
+    if (props.setIsEditOn) {
+      props.setIsEditOn(prev => !prev)
+    }
     setForm(inputs)
-
   }
 
   return (

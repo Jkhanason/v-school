@@ -20,19 +20,29 @@ function App() {
   function postBounty(newBounty) {
     axios.post('/bounties', newBounty)
     .then(res => setbounties(prev => [...prev, res.data]))
-    .catch(error => console.log(error.data))
+    .catch(error => console.log(error.response.data.error))
   }
 
   function deleteBounty(id) {
     axios.delete('/bounties/' + id)
       .then(res => getBounties())
-      .catch(error => console.log(error.data))
+      .catch(error => console.log(error.response.data.error))
   }
 
   function updateBounty(updates, id) {
     axios.put(`/bounties/${id}`, updates)
       .then(res => getBounties())
-      .catch(error => console.log(error.data))
+      .catch(error => console.log(error.response.data.error))
+  }
+
+  function handleFilter(event) {
+    const {value} = event.target
+    if (value === 'reset') {
+      getBounties()
+    }
+    axios.get(`/bounties/search/type?type=${value}`)
+      .then(res => setbounties(res.data))
+      .catch(err => console.log(err.response.data.error))
   }
 
   const eachBounty = bounties.map(bounty => {
@@ -53,6 +63,12 @@ function App() {
             submit = {postBounty}
             btnText = "Submit New Bounty"
         />
+        <h4>Filter by Type</h4>
+        <select onChange={handleFilter}>
+          <option value="reset">All Bounties</option>
+          <option value="Jedi">Jedi</option>
+          <option value="Sith">Sith</option>
+        </select>
       </div>
       {eachBounty}
     </div>

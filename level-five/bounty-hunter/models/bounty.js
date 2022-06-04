@@ -22,7 +22,7 @@ const bountySchema = new Schema({
   type: {
     type: String,
     required: true,
-    enum: ['Jedi', 'Sith']
+    enum: ['Jedi', 'jedi', 'sith', 'Sith']
   }
 });
 
