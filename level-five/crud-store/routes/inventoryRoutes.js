@@ -2,17 +2,19 @@ const express = require('express');
 const inventoryRouter = express.Router();
 const Inventory = require('../models/inventory.js');
 
-inventoryRouter.route('/')
-  .get((req, res, next) => {
-    Inventory.find((err, items) => {
-      if(err) {
-        res.status(500)
-        return next(err)
-      }
-      res.status(200).send(items)
-    });
-  })
+inventoryRouter.get('/', (req, res, next) => {
+  Inventory.find((err, items) => {
+    if(err) {
+      res.status(500)
+      return next(err)
+    }
+    res.status(200).send(items)
+  });
+});
+
+inventoryRouter.route('/:brandId')
   .post((req, res, next) => {
+    req.body.brand = req.params.brandId
     const newItem = new Inventory(req.body)
     newItem.save((err, addedItem) => {
       if(err) {
@@ -20,8 +22,18 @@ inventoryRouter.route('/')
         return next(err)
       }
       res.status(201).send(addedItem)
-    });
   });
+})
+
+inventoryRouter.get('/brand/:brandId', (req, res, next) => {
+    Inventory.find({brand: req.params.brandId}, (err, items) => {
+      if(err) {
+        res.status(500)
+        return next(err)
+      }
+      res.status(200).send(items)
+  });
+});
 
 inventoryRouter.route('/:itemId')
   .delete((req, res, next) => {
@@ -57,5 +69,6 @@ inventoryRouter.route('/:itemId')
         res.status(201).send(updatedItem)
     });
   })
+
 
 module.exports = inventoryRouter
