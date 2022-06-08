@@ -2,6 +2,7 @@ const express = require('express');
 const inventoryRouter = express.Router();
 const Inventory = require('../models/inventory.js');
 
+//get all
 inventoryRouter.get('/', (req, res, next) => {
   Inventory.find((err, items) => {
     if(err) {
@@ -12,6 +13,7 @@ inventoryRouter.get('/', (req, res, next) => {
   });
 });
 
+//posting new item requires brandId
 inventoryRouter.route('/:brandId')
   .post((req, res, next) => {
     req.body.brand = req.params.brandId
@@ -25,6 +27,7 @@ inventoryRouter.route('/:brandId')
   });
 })
 
+//get all items of same brand
 inventoryRouter.get('/brand/:brandId', (req, res, next) => {
     Inventory.find({brand: req.params.brandId}, (err, items) => {
       if(err) {
