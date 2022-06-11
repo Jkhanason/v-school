@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.App {
+  width: 100%;
+  height: 100%;
+  min-width: 300px;
+  margin: 0px auto;
+  margin-bottom: 5%;
+  padding: 0 5px;
+}
+.headerContainer {
+  background-color: #faebd7;
+  text-align: center;
+}
+.headerContainer h1 {
+  padding-top: 10px;
+  font-size: 1.5rem;
+  margin-bottom: .5rem;
+}
+img {
+  max-width: 65%;
+  display: block;
+  margin: 10px auto;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+a {
+  text-decoration: none;
+  margin: .5rem;
+  font-size: 1.2rem;
+  transition: .3s all ease-in-out;
+}
+a:hover {
+  padding: 5px;
+  color: red;
+  border-bottom: 1px solid black;
+}
+.headerDynamicText {
+  background-color: white;
+  margin-top: 15px;
+  padding: 10px;
+}
+.productDisplay {
+  background-color: azure;
+  border: 1px solid black;
+  padding: 5px;
+  line-height: 1.5rem;
+  font-size: .9rem;
+  text-align: center;
+}
+.productDisplay:hover {
+  background-color: #ccf3f3;
+}
+span {
+  font-weight: bold;
+}
+.adjustCountForm input {
+  width: 15%;
+  padding: 3px;
+  border: 1px solid #8080808d;
+  border-radius: 3px;
+}
+.editCountBtn, .editItemBtn {
+  padding: 3px;
+  border-radius: 3px;
+  background-color: rgba(12, 104, 204, 0.801);
+  border: none;
+  color: white;
+  margin: 3px;
+}
+.editItemBtn {
+  background-color: rgba(162, 12, 204, 0.801);
+}
+.editCountBtn:hover, .editItemBtn:hover, .addNewItemForm button:hover {
+  cursor: pointer;
+  border: 1px solid black;
+}
+.cancelBtn {
+  background-color: #f51c1cd8;
+  color: black;
+}
+.addNewItemForm {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+  padding: 10px 5px;
+  border: 2px solid black;
+}
+.addNewItemForm input, .addNewItemForm select, .addNewItemForm label, .addNewItemForm button  {
+  padding: 3px;
+  margin: 5px;
+  border: 1px solid #050505;
+  text-indent: 5px;
+}
+.addNewItemForm select {
+  text-indent: 0;
+}
+.newItemFormTitle {
+  margin: 0px auto;
+}
+.addNewItemForm button{
+  background-color: #ccf3f3;;
+}
+.editItemsForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.editItemsForm input {
+  padding: 5px;
+  width: 50%;
+  margin: 3px 0;
+  border: 1px solid #8080808d;
+  border-radius: 3px;
+}
+
+
+@media only screen and (min-width: 465px) {
+  .App {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 3px;
+  }
+  .headerContainer {
+    grid-column: 1 / -1;
+  }
+  .productDisplay {
+    text-align: start;
+    font-size: 1rem;
+  }
+  .adjustCountForm input {
+    width: 25%;
+    margin-left: 3px;
+    border-radius: 3px;
+    text-indent: 5px;
+  }
+  .editItemsForm {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+  .editItemsForm input {
+    padding: 5px;
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .App {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}

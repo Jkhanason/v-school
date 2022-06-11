@@ -6,13 +6,13 @@ const app = express()
 app.use(morgan('dev'));
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/familyTree', () => console.log('Connected to database.'));
+mongoose.connect('mongodb://localhost:27017/groceryDb', () => console.log('Connected to database.'));
 
 app.use('/grocery', require('./routes/groceryRouter.js'));
-app.use('/department', require('./routes/departmentRouter.js'));
+app.use('/dept', require('./routes/departmentRouter.js'));
 
 app.use((err, req, res, next) => {
-  res.send({error: err.message});
+  res.send({error: err.message})
 })
 
 app.listen(4545, () => {
