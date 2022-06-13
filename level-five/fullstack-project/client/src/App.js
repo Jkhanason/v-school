@@ -50,6 +50,7 @@ function App() {
         index={index+= 1}
         updateCount={updateCount}
         editItems={editItems}
+        all = 'all'
         />
     )
   });

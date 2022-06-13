@@ -57,6 +57,9 @@ a:hover {
 span {
   font-weight: bold;
 }
+#showDept {
+  color: rgb(212, 46, 46)
+}
 .adjustCountForm input {
   width: 15%;
   padding: 3px;
@@ -154,5 +157,4 @@ span {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
-
 }

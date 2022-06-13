@@ -4,6 +4,7 @@ function ProductDisplay(props) {
   const item = props.item;
   const [editCountOn, setEditCountOn] = React.useState(false);
   const [editButtonOn, setEditButtonOn] = React.useState(true);
+  const [showDeptOn, setShowDeptOn] = React.useState(false)
   const [countForm, setCountForm] = React.useState({ count: 0});
   const [editItemsForm, setEditItemsForm] = React.useState({
     name: item.name,
@@ -44,12 +45,32 @@ function ProductDisplay(props) {
     props.editItems(editItemsForm, item._id)
   }
 
+  function handleMouseEnter() {
+    setShowDeptOn(true)
+  }
+
+  function handleMouseLeave () {
+    setShowDeptOn(false)
+  }
+
+  let test = ''
+  if (item.department === '62a0ad1e75dd0911590ed6ed') {
+    test = 'Grocery'
+  } else if (item.department === '62a0ad3175dd0911590ed6ef') {
+    test = "Dairy"
+  } else {
+    test = "Produce"
+  }
+
   return (
-    <div className='productDisplay'>
+    <div className='productDisplay' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <h3>{`${props.index}) ${item.name}`}</h3>
       <p><span>Price:</span> ${item.price}</p>
       <p><span>In Stock:</span> {item.inStock ? 'Yes' : 'No'}</p>
       <p><span>Units on Hand:</span> {item.unitsOnHand}</p>
+      {props.all && showDeptOn &&
+        <p><span id="showDept">**{test} item**</span></p>
+      }
       <button className="editCountBtn" onClick={toggleAdjustButtons}>Adjust Count</button>
 
       {editButtonOn &&

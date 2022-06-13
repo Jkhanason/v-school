@@ -5,7 +5,7 @@ function Form(props) {
     "name": "",
     "department": "",
     "price": "",
-    "inStock": '',
+    "inStock": false,
     "unitsOnHand": '',
   };
   const [newItemForm, setNewItemForm] = React.useState(inputs);
@@ -57,7 +57,6 @@ function Form(props) {
         name='inStock'
         checked={newItemForm.inStock}
         onChange={handleChange}
-        required
         id="inStock"
         type="checkbox">
       </input></label>

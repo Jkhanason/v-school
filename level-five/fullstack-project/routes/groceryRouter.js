@@ -51,7 +51,7 @@ groceryRouter.route('/:id')
         res.status(500);
         return next(err);
       }
-      res.status(200).send(`${deletedItem.name} Grocery has been removed.`);
+      res.status(200).send(`${deletedItem.name} has been removed.`);
     });
   })
   .post((req, res, next) => {
