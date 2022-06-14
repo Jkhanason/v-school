@@ -68,7 +68,7 @@ function ProductDisplay(props) {
       <p><span>Price:</span> ${item.price}</p>
       <p><span>In Stock:</span> {item.inStock ? 'Yes' : 'No'}</p>
       <p><span>Units on Hand:</span> {item.unitsOnHand}</p>
-      {props.all && showDeptOn &&
+      {props.showDept && showDeptOn &&
         <p><span id="showDept">**{test} item**</span></p>
       }
       <button className="editCountBtn" onClick={toggleAdjustButtons}>Adjust Count</button>

@@ -4,22 +4,22 @@ const Department = require('../models/department.js');
 
 departmentRouter.route('/')
   .get((req, res, next) => {
-    Department.find((err, brands) => {
+    Department.find((err, depts) => {
         if(err) {
           res.status(500);
           return next(err);
         }
-        res.status(200).send(brands);
+        res.status(200).send(depts);
       });
   })
   .post((req, res, next) => {
     const newBrand = new Department(req.body);
-    newBrand.save((err, savedBrand) => {
+    newBrand.save((err, savedDept) => {
       if(err) {
         res.status(500);
         return next(err);
       }
-      res.status(201).send(savedBrand)
+      res.status(201).send(savedDept)
     });
   })
 

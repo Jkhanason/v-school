@@ -77,7 +77,7 @@ span {
 .editItemBtn {
   background-color: rgba(162, 12, 204, 0.801);
 }
-.editCountBtn:hover, .editItemBtn:hover, .addNewItemForm button:hover {
+.editCountBtn:hover, .editItemBtn:hover, .addNewItemForm button:hover, .scrollBtnDiv button:hover {
   cursor: pointer;
   border: 1px solid black;
 }
@@ -119,6 +119,17 @@ span {
   margin: 3px 0;
   border: 1px solid #8080808d;
   border-radius: 3px;
+}
+.scrollBtnDiv {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin: 10px auto;
+}
+.scrollBtnDiv button {
+  width: 100%;
+  padding: 3px;
+  border: none;
+  background-color: rgb(216, 216, 216);
 }
 
 

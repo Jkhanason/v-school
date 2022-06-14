@@ -5,12 +5,12 @@ const Grocery = require('../models/grocery.js');
 //get all
 groceryRouter.route('/')
   .get((req, res, next) => {
-    Grocery.find((err, brands) => {
+    Grocery.find((err, allItems) => {
         if(err) {
           res.status(500);
           return next(err);
         }
-        res.status(200).send(brands);
+        res.status(200).send(allItems);
       });
   })
 
@@ -27,7 +27,6 @@ groceryRouter.get('/dept/:deptId', (req, res, next) => {
 
 //update quantity
 groceryRouter.put('/order/:itemId', (req, res, next) => {
-  console.log(req.body)
   Grocery.findOneAndUpdate(
     {_id: req.params.itemId},
     { $inc: { unitsOnHand: req.body.count}},

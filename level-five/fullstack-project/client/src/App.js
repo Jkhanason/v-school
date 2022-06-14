@@ -2,13 +2,13 @@ import React from 'react';
 import axios from 'axios';
 import Header from './components/Header.js';
 import ProductDisplay from './components/ProductDisplay.js';
-import Form from './components/Form.js';
+import Departments from './components/Departments';
+import Scroll from './components/Scroll.js';
 import {Routes, Route} from 'react-router-dom';
 
 function App() {
   //create state for allProducts
   const [allProducts, setAllProducts] = React.useState([]);
-  const [editMainForm, setEditMainForm] = React.useState(true); //come back to this
 
   function getallProducts() {
     axios.get('/grocery')
@@ -19,6 +19,7 @@ function App() {
   React.useEffect(() => {
     getallProducts()
   }, []);
+
 
   function updateCount(id, count) {
     axios.put(`/grocery/order/${id}`, {count})
@@ -50,7 +51,7 @@ function App() {
         index={index+= 1}
         updateCount={updateCount}
         editItems={editItems}
-        all = 'all'
+        showDept = 'showDept'
         />
     )
   });
@@ -96,11 +97,13 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={eachItem} />
-        <Route path='/grocery' element={groceryItems} />
-        <Route path='/dairy' element={dairyItems} />
-        <Route path='/produce' element={produceItems} />
+        <Route path='/department' element={<Departments addNewItem={addNewItem}/>}>
+          <Route path='grocery' element={groceryItems} />
+          <Route path='dairy' element={dairyItems} />
+          <Route path='produce' element={produceItems} />
+        </Route>
       </Routes>
-      {editMainForm &&<Form addNewItem={addNewItem}/>}
+      <Scroll/>
     </div>
   );
 }

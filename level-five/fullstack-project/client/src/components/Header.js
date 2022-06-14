@@ -14,9 +14,9 @@ function Header () {
       <h1>Welcome to your Store Replenishment System!</h1>
       <nav>
         <Link to='/' title="items across all Departments" onClick={handleClick}>Home</Link>
-        <Link to='/grocery' title="Grocery Department items" onClick={handleClick}>Grocery</Link>
-        <Link to='/dairy' title="Dairy Department items" onClick={handleClick}>Dairy</Link>
-        <Link to='/produce' title="Produce Department items" onClick={handleClick}>Produce</Link>
+        <Link to='/department/grocery' title="Grocery Department items" onClick={handleClick}>Grocery</Link>
+        <Link to='/department/dairy' title="Dairy Department items" onClick={handleClick}>Dairy</Link>
+        <Link to='/department/produce' title="Produce Department items" onClick={handleClick}>Produce</Link>
       </nav>
       <picture>
         <source media="(min-width:900px)" srcSet="https://www.supermarketnews.com/sites/supermarketnews.com/files/P1040325.jpg"/>
