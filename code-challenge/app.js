@@ -223,26 +223,38 @@
 
 
 
-function balanced(string) {
+// function balanced(string) {
+//     const alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+//     let sum = 0;
+//     const midpoint = Math.floor(string.length / 2);
 
-    const alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-    let sum = 0;
-    const midpoint = Math.floor(string.length / 2);
-    
-    for(let i = 0; i < string.length; i++) {
-        if (string.length % 2 !== 0 && i === midpoint) {
-            continue
-        }
-        if(i < midpoint) {
-            sum += alphabet.indexOf(string[i]) + 1
-        } else {
-            sum -= alphabet.indexOf(string[i]) + 1
-        }
-    }
-    return sum === 0
+//     for(let i = 0; i < string.length; i++) {
+//         if (string.length % 2 !== 0 && i === midpoint) {
+//             continue
+//         }
+//         if(i < midpoint) {
+//             sum += alphabet.indexOf(string[i]) + 1
+//         } else {
+//             sum -= alphabet.indexOf(string[i]) + 1
+//         }
+//     }
+//     return sum === 0
+// }
+// console.log(balanced("zips"))// ➞ true
+// // "zips" = "zi|ps" = 26+9|16+19 = 35|35 = true
+// console.log(balanced("brake"))// ➞ false
+// // "brake" = "br|ke" = 2+18|11+5 = 20|16 = false
+
+
+
+const filterArray = array => {
+
+    const numsArr = array.filter(item => typeof(item) !== 'string');
+
+    return numsArr.filter((num, index) => numsArr.indexOf(num) === index)
+
 }
 
-console.log(balanced("zips"))// ➞ true
-// "zips" = "zi|ps" = 26+9|16+19 = 35|35 = true
-console.log(balanced("brake"))// ➞ false
-// "brake" = "br|ke" = 2+18|11+5 = 20|16 = false
+console.log(filterArray([1, 2, "a", "b"]))// ➞ [1, 2]
+console.log(filterArray([1, "a", "b", 0, 15]))// ➞ [1, 0, 15]
+console.log(filterArray([1, 2, "aasf", "1", "123", 123, 1]))// ➞ [1, 2, 123]
