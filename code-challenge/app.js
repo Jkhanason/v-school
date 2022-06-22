@@ -257,26 +257,32 @@
 // console.log(filterArray([1, 2, "aasf", "1", "123", 123, 1]))// ➞ [1, 2, 123]
 
 
-function shiftSentence(sentence) {
-    const splitSentence = sentence.split(' ');
-    if (splitSentence.length === 1) {
-        return sentence
-    }
-    let test = ''
-    for (let i = 0; i < splitSentence.length; i++) {
-        let letter = splitSentence[i][0]
-        test += letter + (splitSentence[i] + 1).slice(1) + ' '
-    }
-    return test
-}
+// function shiftSentence(sentence) {
+//   const words = sentence.split(' ');
+//   //return if only one word
+//   if (words.length === 1) {
+//       return sentence
+//   }
 
-console.log(shiftSentence("create a function")) // "freate c aunction"
+//   let resultStr = ''
+//   //save first letter of last word
+//   let letter = words[words.length - 1][0];
 
+//   for (let i = 0; i < words.length; i++) {
+//     //begin with last letter and the first word, minus its first letter
+//     resultStr += letter + words[i].slice(1) + ' '
+
+//     /* reset letter to be first letter of current word.
+//     letter will lag behind i by one */
+//     letter = words[i][0]
+//   }
+//   return resultStr.slice(0, -1)
+// }
+
+// console.log(shiftSentence("create a function")) // "freate c aunction"
 // console.log(shiftSentence("it should shift the sentence")) // "st ihould shift she tentence"
-
 // console.log(shiftSentence("the output is not very legible")) // "lhe tutput os iot nery vegible"
-
-console.log(shiftSentence("edabit")) // "edabit"
+// console.log(shiftSentence("edabit")) // "edabit"
 
 
 // const seriesResistance = nums => {
