@@ -247,14 +247,48 @@
 
 
 
-const filterArray = array => {
+// const filterArray = array => {
+//     const numsArr = array.filter(item => typeof(item) !== 'string');
+//     return numsArr.filter((num, index) => numsArr.indexOf(num) === index)
+// }
 
-    const numsArr = array.filter(item => typeof(item) !== 'string');
+// console.log(filterArray([1, 2, "a", "b"]))// ➞ [1, 2]
+// console.log(filterArray([1, "a", "b", 0, 15]))// ➞ [1, 0, 15]
+// console.log(filterArray([1, 2, "aasf", "1", "123", 123, 1]))// ➞ [1, 2, 123]
 
-    return numsArr.filter((num, index) => numsArr.indexOf(num) === index)
 
+function shiftSentence(sentence) {
+    const splitSentence = sentence.split(' ');
+    if (splitSentence.length === 1) {
+        return sentence
+    }
+    let test = ''
+    for (let i = 0; i < splitSentence.length; i++) {
+        let letter = splitSentence[i][0]
+        test += letter + (splitSentence[i] + 1).slice(1) + ' '
+    }
+    return test
 }
 
-console.log(filterArray([1, 2, "a", "b"]))// ➞ [1, 2]
-console.log(filterArray([1, "a", "b", 0, 15]))// ➞ [1, 0, 15]
-console.log(filterArray([1, 2, "aasf", "1", "123", 123, 1]))// ➞ [1, 2, 123]
+console.log(shiftSentence("create a function")) // "freate c aunction"
+
+// console.log(shiftSentence("it should shift the sentence")) // "st ihould shift she tentence"
+
+// console.log(shiftSentence("the output is not very legible")) // "lhe tutput os iot nery vegible"
+
+console.log(shiftSentence("edabit")) // "edabit"
+
+
+// const seriesResistance = nums => {
+//   const total = nums.reduce((acc, num) => acc += num, 0)
+
+//   if (total <= 1) {
+//     return total + '.0 omh'
+//   } else {
+//     return total + ' ohms'
+//   }
+
+// }
+// console.log(seriesResistance([1, 5, 6, 3]))// ➞ "15 ohms"
+// console.log(seriesResistance([16, 3.5, 6]))// ➞ "25.5 ohms"
+// console.log(seriesResistance([0.5, 0.5]))//➞ "1.0 ohm"
