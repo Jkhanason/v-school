@@ -298,3 +298,27 @@
 // console.log(seriesResistance([1, 5, 6, 3]))// ➞ "15 ohms"
 // console.log(seriesResistance([16, 3.5, 6]))// ➞ "25.5 ohms"
 // console.log(seriesResistance([0.5, 0.5]))//➞ "1.0 ohm"
+
+// function happy (num) {
+//   //split num into digits
+//   const digits = String(num).split('');
+//   //grab total of each digit squared
+//   const squaresDigits = digits.reduce((acc, number) => acc += (number * number), 0);
+//   // 1 = happy num
+//   if (squaresDigits === 1) {
+//     return true
+//     //4 = unhappy num
+//   } else if (squaresDigits === 4) {
+//     return false
+//   } else {
+//     //call func on current number, runs until num is either 1 or 4
+//    return happy(squaresDigits)
+//   }
+// }
+
+// console.log(happy(203)) // true
+// console.log(happy(11)) // false
+// console.log(happy(107)) // false
+// console.log(happy(100)) // true
+// console.log(happy(102)) // false
+// console.log(happy(103)) // true
