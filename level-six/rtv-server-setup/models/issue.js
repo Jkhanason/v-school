@@ -1,16 +1,30 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
+const requiredString = {
+  type: String,
+  required: true
+}
+
+const commentsSchema = new Schema({
+  username: requiredString,
+  title: requiredString,
+  comment: requiredString,
+  postedBy: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: "User"
+  },
+
+})
+
 const issueSchema = new Schema({
   title: {
     type: String,
     required: true,
     unique: true
   },
-  description: {
-    type: String,
-    required: true
-  },
+  description: requiredString,
   datedPosted: {
     type: Date,
     default: Date.now
@@ -31,7 +45,8 @@ const issueSchema = new Schema({
     type: Schema.Types.ObjectId,
     required: true,
     ref: "User"
-  }
+  },
+  comments: [commentsSchema]
 })
 
 module.exports = mongoose.model("Issue", issueSchema)

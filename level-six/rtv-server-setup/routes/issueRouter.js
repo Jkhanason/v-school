@@ -26,7 +26,7 @@ issueRouter.route('/')
     })
   })
 
-  //add upvote to issue
+  //edit an existing issue
   issueRouter.put('/:issueId', (req, res, next) => {
     Issue.findOneAndUpdate(
       {_id: req.params.issueId},
@@ -42,7 +42,7 @@ issueRouter.route('/')
   })
 
   //add upvote, pull downvote if any
-  issueRouter.put('/upvote/:issueId', (req, res, next) => {
+issueRouter.put('/upvote/:issueId', (req, res, next) => {
     Issue.findOneAndUpdate(
       {_id: req.params.issueId},
       { $addToSet: { upvotes: req.auth._id },
@@ -54,20 +54,30 @@ issueRouter.route('/')
           res.status(500)
           return next(err)
         }
-    // Issue.find({_id: req.params.issueId}, (err, issue) => {
+
+    //this would also work to update the upvotes/downvotes array only once
+    // Issue.findOne({_id: req.params.issueId}, (err, issue) => {
     //     if(err) {
     //       res.status(500)
     //       return next(err)
     //     }
-    //   for (let i = 0; i < issue.length; i++) {
-    //     if (issue[i].upvotes.indexOf(req.auth._id) !== -1) {
+
+    //     if (issue.upvotes.indexOf(req.auth._id) !== -1) {
     //       res.status(403)
     //       return next(new Error('You can only upvote an issue one time.'))
     //     } else {
-    //       issue[i].upvotes.push(req.auth._id)
+    //       issue.upvotes.push(req.auth._id)
     //     }
-    //   }
-        res.status(201).send(updatedIssue)
+    //     issue.save((err, savedIssue) => {
+    //       if(err) {
+    //         res.status(500)
+    //         return next(err)
+    //       }
+    //       res.status(201).send(savedIssue)
+
+    //     })
+
+      res.status(201).send(updatedIssue)
     })
   })
 
@@ -85,6 +95,27 @@ issueRouter.route('/')
           return next(err)
         }
         res.status(201).send(updatedIssue)
+    })
+  })
+
+  //add comments
+  issueRouter.put('/comments/:issueId', (req, res, next) => {
+    Issue.findOne({_id: req.params.issueId}, (err, issue) => {
+      if(err) {
+        res.status(500)
+        return next(err)
+      }
+      req.body.username = req.auth.username
+      req.body.postedBy = req.auth._id
+      // const comment = new commentsSchema(req.body)
+      issue.comments.push(req.body)
+      issue.save((err, savedIssue) => {
+        if(err) {
+          res.status(500)
+          return next(err)
+        }
+        res.status(201).send(savedIssue)
+      })
     })
   })
 
