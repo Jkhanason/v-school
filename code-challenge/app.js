@@ -322,3 +322,36 @@
 // console.log(happy(100)) // true
 // console.log(happy(102)) // false
 // console.log(happy(103)) // true
+
+
+function isValid(str){
+  const resultsArr = [];
+  const splitStr = str.split('');
+
+  for (let i = 0; i < splitStr.length; i++) {
+
+    if (splitStr[i] === '1') {
+      console.log(i)
+      let index = splitStr.indexOf('2')
+
+      if(index > i) {
+        splitStr.splice(index, 1)
+        splitStr.splice(i, 1)
+      }
+    }
+  }
+  //splitStr.join('')
+  //isValid(splitStr.join(''))
+
+ //return splitStr.join('')
+
+}
+
+// test data
+console.log(isValid('1212121')) // true
+// console.log(isValid('(]')) // false
+// console.log(isValid('()[]{}')) // true
+// console.log(isValid('({})')) // true
+// console.log(isValid("(([]){})")) // true
+// console.log(isValid("([]){}")) // true
+// console.log(isValid('})({')) // false
