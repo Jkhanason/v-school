@@ -325,33 +325,34 @@
 
 
 function isValid(str){
-  const resultsArr = [];
-  const splitStr = str.split('');
-
-  for (let i = 0; i < splitStr.length; i++) {
-
-    if (splitStr[i] === '1') {
-      console.log(i)
-      let index = splitStr.indexOf('2')
-
-      if(index > i) {
-        splitStr.splice(index, 1)
-        splitStr.splice(i, 1)
-      }
+  const openBracket = [];
+  const closeBracket = [];
+  const map = {
+    '}': '{',
+    ']': '[',
+    ')': '('
+  }
+  for (let i = 0; i < str.length; i++) {
+    //push all opening brackets into the array
+    if (str[i] === '{' || str[i] === '(' || str[i] === '[') {
+      openBracket.push(str[i])
+      //if current is a closing bracket, and if it pairs with the last opening bracket, remove last opening bracket
+    } else if (map[str[i]] === openBracket[openBracket.length - 1]) {
+        openBracket.pop()
+    } else {
+      //otherwise push the closing bracket into an array
+        closeBracket.push(str[i])
     }
   }
-  //splitStr.join('')
-  //isValid(splitStr.join(''))
-
- //return splitStr.join('')
-
+  //if true all opening brackets were removed from array and no closing brackets were added to the array
+  return openBracket.length === 0 && closeBracket.length === 0
 }
 
 // test data
-console.log(isValid('1212121')) // true
-// console.log(isValid('(]')) // false
-// console.log(isValid('()[]{}')) // true
-// console.log(isValid('({})')) // true
-// console.log(isValid("(([]){})")) // true
-// console.log(isValid("([]){}")) // true
-// console.log(isValid('})({')) // false
+console.log(isValid('{{({})}}')) // true
+console.log(isValid('(]')) // false
+console.log(isValid('()[]{}')) // true
+console.log(isValid('({})')) // true
+console.log(isValid("(([]){})")) // true
+console.log(isValid("([]){}")) // true
+console.log(isValid('})({')) // false
