@@ -1,7 +1,6 @@
 {
   "name": "rtv-server-setup",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,6 +15,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.0",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.16"
-  }
+    "nodemon": "^2.0.16",
+    "react-router-dom": "^6.3.0"
+  },
+  "description": ""
 }

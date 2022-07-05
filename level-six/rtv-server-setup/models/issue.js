@@ -15,7 +15,6 @@ const commentsSchema = new Schema({
     required: true,
     ref: "User"
   },
-
 })
 
 const issueSchema = new Schema({
