@@ -9,6 +9,8 @@ function Auth() {
     password: ''
   })
   const [toggle, setToggle] = React.useState(false)
+
+  //pulling funcs from context to invoke on form submission below
   const {signup, login} = React.useContext(UserContext)
 
   function handleChange(event) {
@@ -19,25 +21,43 @@ function Auth() {
     }))
   }
 
-  function handleSubmit(event) {
+  function handleSignup(event) {
     event.preventDefault()
     signup(inputs)
   }
-  // function signup(inputs) {
 
-  // }
+  function handleLogin(event) {
+    event.preventDefault()
+    login(inputs)
+
+  }
 
   return (
-    <>
-    <AuthForm
-      handleChange={handleChange}
-      handleSubmit={handleSubmit}
-      inputs={inputs}
-      btnText="Sign Up"
-    />
-
-
-    </>
+    <div className="authContainer">
+    {/* render either the sign up or login form when user clicks the P tag*/}
+      <h1>Todo App</h1>
+      { !toggle ?
+        <>
+          <AuthForm
+            handleChange={handleChange}
+            handleSubmit={handleSignup}
+            inputs={inputs}
+            btnText="Sign Up"
+          />
+          <p onClick={() => setToggle(prev => !prev)}>Already a member?</p>
+        </>
+      :
+        <>
+          <AuthForm
+            handleChange={handleChange}
+            handleSubmit={handleLogin}
+            inputs={inputs}
+            btnText="Login"
+          />
+          <p onClick={() => setToggle(prev => !prev)}>Not a member yet?</p>
+        </>
+      }
+    </div>
   )
 }
 
