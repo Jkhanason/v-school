@@ -35,7 +35,7 @@ function Auth() {
   return (
     <div className="authContainer">
     {/* render either the sign up or login form when user clicks the P tag*/}
-      <h1>Todo App</h1>
+      <h1>Voice Your Issues</h1>
       { !toggle ?
         <>
           <AuthForm

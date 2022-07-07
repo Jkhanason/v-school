@@ -4,13 +4,25 @@ import {useNavigate} from 'react-router-dom';
 
 const UserContext = React.createContext()
 
+/*create a new instance of axios that can be customized.
+could name it anything if I wanted*/
+const userAxios = axios.create()
+
+//set up an interceptor for requests
+userAxios.interceptors.request.use(config => {
+  const token = localStorage.getItem('token')
+  //just like postman, set headers authorization to the bearers token
+  config.headers.Authorization = `Bearer ${token}`
+  return config
+})
+
 function UserProvider(props) {
   const navigate = useNavigate()
   const initalState = {
     //if user or token are saved in local strorage (saved below) pull from that first, OR default to blank
     user: JSON.parse(localStorage.getItem('user')) || {},
     token: localStorage.getItem('token') || '',
-    todos: []
+    issues: []
   }
   const [userState, setUserState] = React.useState(initalState);
 
@@ -32,7 +44,7 @@ function UserProvider(props) {
         })
       })
       .catch(err => console.log(err.response.data.errorMsg))
-    }
+  }
 
     function login(credentials) {
       axios.post('/auth/login', credentials)
@@ -56,10 +68,19 @@ function UserProvider(props) {
       setUserState({
         user: {},
         token: '',
-        todos: []
+        issues: []
       })
       //send user back to login/signup page
       navigate('/')
+    }
+
+    function addIssue(newIssue) {
+      userAxios.post('/api/issues', newIssue)
+        .then(res => setUserState(prevState => ({
+          ...prevState,
+          issues: [...prevState.issues, res.data]
+        })))
+        .catch(err => console.log(err.response.data.errorMsg))
     }
 
   return (
@@ -68,7 +89,8 @@ function UserProvider(props) {
         ...userState, //spread in state so each item is destructured
         signup,
         login,
-        logout
+        logout,
+        addIssue
       }}>
       {props.children}
     </UserContext.Provider>

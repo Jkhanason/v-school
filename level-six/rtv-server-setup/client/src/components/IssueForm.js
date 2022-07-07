@@ -1,11 +1,11 @@
 import React from 'react';
 
-function TodoForm() {
+function IssueForm(props) {
+  const {addIssue} = props
 
   const [inputs, setInputs] = React.useState({
     title: '',
     description: '',
-    imgUrl: ''
   })
 
   function handleChange(event) {
@@ -20,11 +20,15 @@ function TodoForm() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    //add todos
+    addIssue(inputs)
+    setInputs({
+      title: '',
+      description: ''
+    })
   }
 
   //deconstruct inputs for easier access
-  const {title, description, imgUrl} = inputs
+  const {title, description} = inputs
 
   return (
     <form onSubmit={handleSubmit}>
@@ -34,6 +38,7 @@ function TodoForm() {
         value={title}
         onChange={handleChange}
         placeholder="Title"
+        required
       />
       <input
         name="description"
@@ -41,17 +46,11 @@ function TodoForm() {
         value={description}
         onChange={handleChange}
         placeholder="Description"
+        required
       />
-      <input
-        name="imgUrl"
-        type="text"
-        value={imgUrl}
-        onChange={handleChange}
-        placeholder="Image Url"
-      />
-      <button>Add New Todo</button>
+      <button>Add A New Issue</button>
     </form>
   )
 }
 
-export default TodoForm
+export default IssueForm
