@@ -358,19 +358,37 @@
 // console.log(isValid('})({')) // false
 
 
-function numberSplit(num) {
-  let half = 0;
-  //if num is even, divide and return half twice
-  if (num % 2 === 0) {
-    half = num / 2;
-    return [half, half]
-  } else {
-    //subtract 1 to make num even, find both halves, then add 1 back to second half
-    half = (num - 1) / 2;
-    return [half, half + 1]
+// function numberSplit(num) {
+//   let half = 0;
+//   //if num is even, divide and return half twice
+//   if (num % 2 === 0) {
+//     half = num / 2;
+//     return [half, half]
+//   } else {
+//     //subtract 1 to make num even, find both halves, then add 1 back to second half
+//     half = (num - 1) / 2;
+//     return [half, half + 1]
+//   }
+// }
+// console.log(numberSplit(4))// ➞ [2, 2]
+// console.log(numberSplit(10))// ➞ [5, 5]
+// console.log(numberSplit(11))// ➞ [5, 6]
+// console.log(numberSplit(-9))// ➞ [-5, -4]
+
+function moveZeroes(nums) {
+
+  for(let i = 0; i < nums.length; i++) {
+    if (nums[i] === 0) {
+      //zero is now an array, [0]
+      let zero = nums.splice(i, 1)
+      nums = [...nums, ...zero]
+      //or this way
+      // nums.push(zero[0])
+    }
   }
+  return nums
 }
-console.log(numberSplit(4))// ➞ [2, 2]
-console.log(numberSplit(10))// ➞ [5, 5]
-console.log(numberSplit(11))// ➞ [5, 6]
-console.log(numberSplit(-9))// ➞ [-5, -4]
+
+console.log(moveZeroes([0,1,0,3,12])) // [1,3,12,0,0]
+console.log(moveZeroes([0])) // [0]
+console.log(moveZeroes([-4,0,5,0,-5,0,2])) // [-4,5,-5,2,0,0,0]
