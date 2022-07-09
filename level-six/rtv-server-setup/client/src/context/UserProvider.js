@@ -31,7 +31,7 @@ function UserProvider(props) {
       .then(res => {
         //deconstruct response from server
         const {token, user} = res.data
-        //save token and user in local storage to info persists page refresh
+        //save token and user in local storage so info persists page refresh
         localStorage.setItem('token', token)
         localStorage.setItem('user', JSON.stringify(user));
         //update user state with incoming response data
@@ -52,6 +52,9 @@ function UserProvider(props) {
           const {token, user} = res.data
           localStorage.setItem('token', token)
           localStorage.setItem('user', JSON.stringify(user))
+          //as they login, run a get request to pull all their issues
+          getAllUserIssues()
+
           setUserState(prev => ({ //added parenthesis on opening line instead of using return keyword
             ...prev,
             token,
@@ -74,12 +77,29 @@ function UserProvider(props) {
       navigate('/')
     }
 
+    function getAllUserIssues() {
+      userAxios.get('/api/issues/user')
+        .then(res =>  setUserState(prevState => ({
+          ...prevState,
+          //issues and res.data are both arrays, no need for brackets. just set issues to be the incoming array
+          issues: res.data
+        })))
+        .catch(err => console.log(err.response.data.errorMsg))
+    }
+
     function addIssue(newIssue) {
+      //using custom instance of axios with token Authorization already applied
       userAxios.post('/api/issues', newIssue)
         .then(res => setUserState(prevState => ({
           ...prevState,
           issues: [...prevState.issues, res.data]
         })))
+        .catch(err => console.log(err.response.data.errorMsg))
+    }
+
+    function addComment(newComment, id) {
+      userAxios.put(`/api/issues/comments/${id}`, newComment)
+        .then(res =>  getAllUserIssues())
         .catch(err => console.log(err.response.data.errorMsg))
     }
 
@@ -90,7 +110,8 @@ function UserProvider(props) {
         signup,
         login,
         logout,
-        addIssue
+        addIssue,
+        addComment
       }}>
       {props.children}
     </UserContext.Provider>

@@ -40,7 +40,7 @@ function IssueForm(props) {
         placeholder="Title"
         required
       />
-      <input
+      <textarea
         name="description"
         type="text"
         value={description}

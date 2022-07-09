@@ -14,7 +14,7 @@ function Profile() {
       {/* passing addIssue func to the form as a prop */}
       <IssueForm addIssue = {addIssue}/>
       <h3>Your Previous Issues</h3>
-      {/* passing the issues array from state as a prop */}
+      {/* passing the issues array from context as a prop */}
       <IssueList issues={issues} />
     </div>
   )

@@ -8,7 +8,6 @@ const requiredString = {
 
 const commentsSchema = new Schema({
   username: requiredString,
-  title: requiredString,
   comment: requiredString,
   postedBy: {
     type: Schema.Types.ObjectId,

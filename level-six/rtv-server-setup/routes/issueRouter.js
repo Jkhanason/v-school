@@ -26,6 +26,17 @@ issueRouter.route('/')
     })
   })
 
+  //get issues by specific user
+  issueRouter.get('/user', (req, res, next) => {
+    Issue.find({postedBy: req.auth._id}, (err, issues) => {
+      if(err) {
+        res.status(500)
+        return next(err)
+      }
+      res.status(200).send(issues)
+    })
+  })
+
   //edit an existing issue
   issueRouter.put('/:issueId', (req, res, next) => {
     Issue.findOneAndUpdate(

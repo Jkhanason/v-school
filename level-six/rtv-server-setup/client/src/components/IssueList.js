@@ -9,10 +9,10 @@ function IssueList(props) {
   return (
     <div className="issueList">
       {/* map over the array of issues and for each issue render
-      an Issue component, with the entire issue object passed
+      an Issue component, with the entire current issue object passed
       to it as a prop.
        */}
-      {issues.map(issue => <Issue {...issue} />)}
+      {issues.map(issue => <Issue {...issue} key = {issue._id}/>)}
     </div>
   )
 }
