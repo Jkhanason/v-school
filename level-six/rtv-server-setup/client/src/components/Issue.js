@@ -4,8 +4,8 @@ import {UserContext} from '../context/UserProvider'
 
 function Issue(props) {
 
-  //pull func from context
-  const {addComment} = React.useContext(UserContext)
+  //pull necessary functions from context
+  const {addComment, deleteIssue} = React.useContext(UserContext)
   //destructure props for easy referencing
   const {title, description, upvotes, downvotes, comments, _id} = props
 
@@ -19,19 +19,29 @@ function Issue(props) {
   const [showForm, setShowForm] = React.useState(false)
   const [postBtnText, setPostBtnText] = React.useState('Post Comment')
 
+  //create state to toggle delete prompt
+  const [deleteText, setDeleteText] = React.useState('Delete this Issue?')
+  //state to display delete button
+  const [showDeleteBtn, setShowDeleteBtn] = React.useState(false)
+
   //state to control the comments form
   const [comment, setComment] = React.useState('')
 
-  //adjusts state to hide or display comments
+  //adjusts state to hide or display comments, switch btn text
   function toggleComments() {
     setShowBtnText(prev => prev === 'Show Comments' ? 'Hide Comments' : 'Show Comments')
     setShowBtn(prev => !prev)
   }
 
-  //adjust state to hide or display comment form
+  //adjust state to hide or display comment form, switch btn text
   function toggleForm() {
     setPostBtnText(prev => prev === 'Post Comment' ? 'Cancel Comment' : 'Post Comment')
     setShowForm(prev => !prev)
+  }
+
+  //controls comment form
+  function handleChange(event) {
+    setComment(prev => event.target.value)
   }
 
   //add new comment
@@ -39,13 +49,17 @@ function Issue(props) {
     event.preventDefault()
     //sending comment with {} to create a comment key to match the validation required by the comment model
     addComment({comment}, _id)
+    //clear text
     setComment('')
+    //hide the form
     setShowForm(prev => !prev)
+    //swap post button text
     setPostBtnText('Post Comment')
   }
 
-  function handleChange(event) {
-    setComment(prev => event.target.value)
+  function toggleDeleteText() {
+    setShowDeleteBtn(prev => !prev)
+    setDeleteText(prev => prev === "Delete this Issue?" ? "Keep this Issue." : "Delete this Issue?")
   }
 
   return (
@@ -60,11 +74,16 @@ function Issue(props) {
           <button onClick={toggleComments}>{showBtnText}</button>
         }
         <button onClick={toggleForm}>{postBtnText}</button>
+        <p className="deletePrompt" onClick={toggleDeleteText} >{deleteText}</p>
+        {/* calling delete function inline with the issue id passed in */}
+        { showDeleteBtn &&
+          <button onClick={() => deleteIssue(_id)}>Remove Issue</button>
+        }
       </div>
-      { showBtn &&
+      { showBtn && //if show btn is clicked, then render comments
         comments.map(comment => <Comment {...comment} key = {comment._id} />)
       }
-      { showForm &&
+      { showForm && //if post button is clicked, render comments form
         <form onSubmit={sendComment}>
           <textarea
             name='comment'

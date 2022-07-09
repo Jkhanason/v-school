@@ -38,19 +38,32 @@ issueRouter.route('/')
   })
 
   //edit an existing issue
-  issueRouter.put('/:issueId', (req, res, next) => {
-    Issue.findOneAndUpdate(
-      {_id: req.params.issueId},
-      req.body,
-      {new: true},
-      (err, updatedIssue) => {
+  issueRouter.route('/:issueId')
+    .put((req, res, next) => {
+      Issue.findOneAndUpdate(
+        {_id: req.params.issueId},
+        req.body,
+        {new: true},
+        (err, updatedIssue) => {
+          if(err) {
+            res.status(500)
+            return next(err)
+          }
+          res.status(201).send(updatedIssue)
+      })
+    })
+
+    //delete an issue
+    .delete((req, res, next) => {
+      const id = req.params.issueId
+      Issue.findOneAndDelete({_id: id}, (err, issue) => {
         if(err) {
           res.status(500)
           return next(err)
         }
-        res.status(201).send(updatedIssue)
+        res.status(200).send(`Issue with id ${id} has been removed.`)
+      })
     })
-  })
 
   //add upvote, pull downvote if any
 issueRouter.put('/upvote/:issueId', (req, res, next) => {
@@ -129,5 +142,7 @@ issueRouter.put('/upvote/:issueId', (req, res, next) => {
       })
     })
   })
+
+
 
 module.exports = issueRouter

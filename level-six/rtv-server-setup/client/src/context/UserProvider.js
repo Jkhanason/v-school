@@ -103,6 +103,15 @@ function UserProvider(props) {
         .catch(err => console.log(err.response.data.errorMsg))
     }
 
+    function deleteIssue(id) {
+      userAxios.delete(`/api/issues/${id}`)
+        .then(res => setUserState(prev => ({
+          ...prev,
+          issues: [...prev.issues.filter(prev => prev._id !== id)]
+        })))
+        .catch(err => console.log(err.response.data.errMsg))
+    }
+
   return (
     <UserContext.Provider
       value={{
@@ -111,7 +120,8 @@ function UserProvider(props) {
         login,
         logout,
         addIssue,
-        addComment
+        addComment,
+        deleteIssue
       }}>
       {props.children}
     </UserContext.Provider>
