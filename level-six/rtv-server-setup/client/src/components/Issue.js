@@ -1,11 +1,12 @@
 import React from 'react';
 import Comment from './Comments';
 import {UserContext} from '../context/UserProvider'
+import IssueForm from './IssueForm';
 
 function Issue(props) {
 
   //pull necessary functions from context
-  const {addComment, deleteIssue} = React.useContext(UserContext)
+  const {addComment, deleteIssue, editIssue} = React.useContext(UserContext)
   //destructure props for easy referencing
   const {title, description, upvotes, downvotes, comments, _id} = props
 
@@ -26,6 +27,11 @@ function Issue(props) {
 
   //state to control the comments form
   const [comment, setComment] = React.useState('')
+
+  //state to control edit btn text
+  const [editBtnText, setEditBtnText] = React.useState('Edit This Issue')
+  //state to hide or display edit form
+  const [showEditForm, setShowEditForm] = React.useState(false)
 
   //adjusts state to hide or display comments, switch btn text
   function toggleComments() {
@@ -59,7 +65,12 @@ function Issue(props) {
 
   function toggleDeleteText() {
     setShowDeleteBtn(prev => !prev)
-    setDeleteText(prev => prev === "Delete this Issue?" ? "Keep this Issue." : "Delete this Issue?")
+    setDeleteText(prev => prev === "Delete this Issue?" ? "Keep this Issue?" : "Delete this Issue?")
+  }
+
+  function toggleEditForm() {
+    setEditBtnText(prev => prev === 'Edit This Issue' ? 'Cancel Edits' : "Edit This Issue")
+    setShowEditForm(prev => !prev)
   }
 
   return (
@@ -74,6 +85,7 @@ function Issue(props) {
           <button onClick={toggleComments}>{showBtnText}</button>
         }
         <button onClick={toggleForm}>{postBtnText}</button>
+        <button onClick={toggleEditForm}>{editBtnText}</button>
         <p className="deletePrompt" onClick={toggleDeleteText} >{deleteText}</p>
         {/* calling delete function inline with the issue id passed in */}
         { showDeleteBtn &&
@@ -94,6 +106,16 @@ function Issue(props) {
           />
           <button>Send Comment</button>
         </form>
+      }
+      { showEditForm &&
+        <IssueForm
+          submit={editIssue}
+          title={title}
+          description={description}
+          btnText = 'Submit Edits'
+          id = {_id}
+          toggleEditForm = {toggleEditForm}
+        />
       }
     </div>
   )

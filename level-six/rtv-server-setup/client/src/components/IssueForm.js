@@ -1,11 +1,13 @@
 import React from 'react';
 
 function IssueForm(props) {
-  const {addIssue} = props
+  const {submit} = props
+  const btnText = props.btnText || 'Add A New Issue'
 
   const [inputs, setInputs] = React.useState({
-    title: '',
-    description: '',
+    //form is reuseable. set to empty unless props are passed in
+    title: props.title || '',
+    description: props.description || '',
   })
 
   function handleChange(event) {
@@ -20,7 +22,12 @@ function IssueForm(props) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    addIssue(inputs)
+    //if props.id exists pass it, for put request. Not needed for post request
+
+    submit(inputs, props.id)
+    if (props.toggleEditForm) {
+      props.toggleEditForm()
+    }
     setInputs({
       title: '',
       description: ''
@@ -48,7 +55,7 @@ function IssueForm(props) {
         placeholder="Description"
         required
       />
-      <button>Add A New Issue</button>
+      <button>{btnText}</button>
     </form>
   )
 }

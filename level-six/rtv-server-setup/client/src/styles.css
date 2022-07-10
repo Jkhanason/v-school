@@ -17,6 +17,8 @@ button:hover {
   min-width: 250px;
   background-color: rgba(255, 0, 0, 0.482);
   padding: 1rem;
+  background-color: #eff0f1;
+  color: #272525;
 }
 .navbar {
   display: flex;
@@ -87,7 +89,21 @@ button:hover {
 }
 .commentBtns button {
   margin: .3rem;
-  border: none;
+  border: white;
+  color: #e2e5e8;
+  text-shadow: 2px 2px 3px black;
+}
+.commentBtns button:nth-of-type(1) {
+  background-color: #3a73b3;
+}
+.commentBtns button:nth-of-type(2) {
+  background-color: #1f376a;
+}
+.commentBtns button:nth-of-type(3) {
+  background-color: #132237;
+}
+.commentBtns button:nth-of-type(4) {
+  background-color: #c19d43;
 }
 .deletePrompt {
   font-size: .8rem;

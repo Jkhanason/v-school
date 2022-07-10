@@ -39,7 +39,8 @@ issueRouter.route('/')
 
   //edit an existing issue
   issueRouter.route('/:issueId')
-    .put((req, res, next) => {
+  .put((req, res, next) => {
+      console.log(req.body)
       Issue.findOneAndUpdate(
         {_id: req.params.issueId},
         req.body,

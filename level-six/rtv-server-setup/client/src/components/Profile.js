@@ -12,7 +12,7 @@ function Profile() {
       <h1>Welcome {username}!</h1>
       <h3>Post a new Issue</h3>
       {/* passing addIssue func to the form as a prop */}
-      <IssueForm addIssue = {addIssue}/>
+      <IssueForm submit = {addIssue}/>
       <h3>Your Previous Issues</h3>
       {/* passing the issues array from context as a prop */}
       <IssueList issues={issues} />
