@@ -4,7 +4,7 @@ import IssueForm from './IssueForm';
 import IssueList from './IssueList';
 
 function Profile() {
-  //destructing the nexted username within the user object
+  //destructing the nested username within the user object
   const {user: {username}, addIssue, issues} = React.useContext(UserContext)
 
   return (
@@ -14,8 +14,10 @@ function Profile() {
       {/* passing addIssue func to the form as a prop */}
       <IssueForm submit = {addIssue}/>
       <h3>Your Previous Issues</h3>
-      {/* passing the issues array from context as a prop */}
-      <IssueList issues={issues} />
+      {/* 1) passing the issues array from context as a prop.
+          2) sending "profile true" to allow user specific functionality not allowed
+          on public page. */}
+      <IssueList issues={issues} profile={true}/>
     </div>
   )
 }

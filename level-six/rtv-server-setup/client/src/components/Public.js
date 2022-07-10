@@ -1,21 +1,19 @@
 import React from 'react';
+import IssueForm from './IssueForm';
+import IssueList from './IssueList';
 import {UserContext} from '../context/UserProvider';
 
 function Public() {
-  const {allIssues} = React.useContext(UserContext)
+  const {allIssues, addIssue} = React.useContext(UserContext)
 
-  const eachIssue = allIssues.map(issue => {
-    return (
-      <div key={issue._id}>
-        <h2>{issue.title}</h2>
-        <h3>{issue.description}</h3>
-      </div>
-    )
-  })
   return (
     <div className="public">
-      <h3>public page</h3>
-      {eachIssue}
+      <h2>Post a new issue here!</h2>
+      <IssueForm submit={addIssue}/>
+      <h3>Issues from other users</h3>
+      {/* calling the prop "issues" to support reuseablility, based on how
+      IssueList is rendered from the Profile component*/}
+      <IssueList issues = {allIssues} />
     </div>
   )
 }

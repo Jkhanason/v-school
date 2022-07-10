@@ -6,9 +6,11 @@ import IssueForm from './IssueForm';
 function Issue(props) {
 
   //pull necessary functions from context
-  const {addComment, deleteIssue, editIssue} = React.useContext(UserContext)
+  const {addComment, deleteIssue, editIssue, addUpvote, addDownvote} = React.useContext(UserContext)
   //destructure props for easy referencing
-  const {title, description, upvotes, downvotes, comments, _id} = props
+  const {title, description, upvotes, downvotes, comments, _id, profile} = props
+  /*profile prop is only passed from profile component, too allow functionality not
+  allowed on publiv page */
 
   //create state to control show button display and text
   const [showBtn, setShowBtn] = React.useState(false)
@@ -81,16 +83,35 @@ function Issue(props) {
       <h5 className='inline'>Downvotes: {downvotes.length}</h5>
       <h5 className='inline'>Comments: {comments.length}</h5>
       <div className="commentBtns">
+        {/* if an issue has commets, render this button */}
         { hasComments &&
           <button onClick={toggleComments}>{showBtnText}</button>
         }
+
         <button onClick={toggleForm}>{postBtnText}</button>
-        <button onClick={toggleEditForm}>{editBtnText}</button>
-        <p className="deletePrompt" onClick={toggleDeleteText} >{deleteText}</p>
+        {/* if profile prop is passed, render these. Not seen on public page */}
+        { profile &&
+        <>
+          <button onClick={toggleEditForm}>{editBtnText}</button>
+
+          <p className="deletePrompt" onClick={toggleDeleteText} >{deleteText}</p>
+        </>
+        }
+
         {/* calling delete function inline with the issue id passed in */}
         { showDeleteBtn &&
           <button onClick={() => deleteIssue(_id)}>Remove Issue</button>
         }
+
+        {/* This will only appear on the public page, bc it doesnt have a profile prop passed to it */}
+        {
+          !profile &&
+          <>
+            <button onClick={(event) => addUpvote(event, _id)}>Upvote</button>
+            <button onClick={(event) => addDownvote(event, _id)}>DownVote</button>
+          </>
+        }
+
       </div>
       { showBtn && //if show btn is clicked, then render comments
         comments.map(comment => <Comment {...comment} key = {comment._id} />)

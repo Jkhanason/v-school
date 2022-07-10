@@ -23,8 +23,8 @@ function IssueForm(props) {
   function handleSubmit(event) {
     event.preventDefault()
     //if props.id exists pass it, for put request. Not needed for post request
-
     submit(inputs, props.id)
+    //reset edit form and button state in issue component
     if (props.toggleEditForm) {
       props.toggleEditForm()
     }

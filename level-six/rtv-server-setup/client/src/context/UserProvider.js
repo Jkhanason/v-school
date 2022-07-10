@@ -114,18 +114,26 @@ const UserContext = React.createContext()
       .then(res => setUserState(prevState => ({
         ...prevState,
         issues: [...prevState.issues, res.data]
-      })))
+      })),
+      //update both states when new issues are posted
+      getAllIssues()
+      )
       .catch(err => console.log(err.response.data.errorMsg))
   }
 
   function addComment(newComment, id) {
     userAxios.put(`/api/issues/comments/${id}`, newComment)
-      .then(res =>  getAllUserIssues())
+      .then(res => {
+        //update both states when new comments are posted
+        getAllIssues()
+        getAllUserIssues()
+      })
       .catch(err => console.log(err.response.data.errorMsg))
   }
 
   function deleteIssue(id) {
     userAxios.delete(`/api/issues/${id}`)
+    //filter state to remove the deleted issue, instead of a new get request
       .then(res => setUserState(prev => ({
         ...prev,
         issues: [...prev.issues.filter(prev => prev._id !== id)]
@@ -136,6 +144,28 @@ const UserContext = React.createContext()
   function editIssue(edits, id) {
     userAxios.put(`/api/issues/${id}`, edits)
       .then(res => getAllUserIssues())
+      .catch(err => console.log(err.response.data.errMsg))
+  }
+
+  function addUpvote(event, id) {
+   // event.target.style.color = "#1ac91a"
+    userAxios.put(`/api/issues/upvote/${id}`)
+    .then(res => {
+      //update both both states to reflect upvote
+      getAllIssues()
+      getAllUserIssues()
+    })
+    .catch(err => console.log(err.response.data.errMsg))
+  }
+
+  function addDownvote(event, id) {
+    //event.target.style.color = "#fa0000"
+    userAxios.put(`/api/issues/downvote/${id}`)
+      .then(res => {
+        //update both both states to reflect downvote
+        getAllIssues()
+        getAllUserIssues()
+      })
       .catch(err => console.log(err.response.data.errMsg))
   }
 
@@ -151,7 +181,9 @@ const UserContext = React.createContext()
         addComment,
         deleteIssue,
         editIssue,
-        getAllIssues
+        getAllIssues,
+        addUpvote,
+        addDownvote
       }}>
       {props.children}
     </UserContext.Provider>

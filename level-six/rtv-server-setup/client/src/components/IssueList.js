@@ -4,7 +4,9 @@ import Issue from './Issue';
 function IssueList(props) {
 
   //takes in the entire issues array as a prop
-  const {issues} = props
+  /*profile prop is only passed from Profile component, if present, allow user specific
+  functionality on issues page, that arent allowed on public page */
+  const {issues, profile} = props
 
   return (
     <div className="issueList">
@@ -12,7 +14,7 @@ function IssueList(props) {
       an Issue component, with the entire current issue object passed
       to it as a prop.
        */}
-      {issues.map(issue => <Issue {...issue} key = {issue._id}/>)}
+      {issues.map(issue => <Issue {...issue} key = {issue._id} profile={profile}/>)}
     </div>
   )
 }
