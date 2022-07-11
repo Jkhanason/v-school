@@ -10,7 +10,7 @@ function Public() {
     <div className="public">
       <h2>Post a new issue here!</h2>
       <IssueForm submit={addIssue}/>
-      <h3>Issues from other users</h3>
+      <h3>Issues from all users.</h3>
       {/* calling the prop "issues" to support reuseablility, based on how
       IssueList is rendered from the Profile component*/}
       <IssueList issues = {allIssues} />

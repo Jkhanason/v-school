@@ -44,6 +44,7 @@ const issueSchema = new Schema({
     required: true,
     ref: "User"
   },
+  author: requiredString,
   comments: [commentsSchema]
 })
 

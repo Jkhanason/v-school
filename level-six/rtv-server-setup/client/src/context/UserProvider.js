@@ -148,8 +148,7 @@ const UserContext = React.createContext()
       .catch(err => console.log(err.response.data.errMsg))
   }
 
-  function addUpvote(event, id) {
-   // event.target.style.color = "#1ac91a"
+  function addUpvote(id) {
     userAxios.put(`/api/issues/upvote/${id}`)
     .then(res => {
       //update both both states to reflect upvote
@@ -159,8 +158,7 @@ const UserContext = React.createContext()
     .catch(err => console.log(err.response.data.errMsg))
   }
 
-  function addDownvote(event, id) {
-    //event.target.style.color = "#fa0000"
+  function addDownvote(id) {
     userAxios.put(`/api/issues/downvote/${id}`)
       .then(res => {
         //update both both states to reflect downvote

@@ -8,7 +8,7 @@ function Issue(props) {
   //pull necessary functions from context
   const {addComment, deleteIssue, editIssue, addUpvote, addDownvote} = React.useContext(UserContext)
   //destructure props for easy referencing
-  const {title, description, upvotes, downvotes, comments, _id, profile} = props
+  const {title, description, upvotes, downvotes, comments, _id, profile, author} = props
   /*profile prop is only passed from profile component, too allow functionality not
   allowed on publiv page */
 
@@ -34,6 +34,11 @@ function Issue(props) {
   const [editBtnText, setEditBtnText] = React.useState('Edit This Issue')
   //state to hide or display edit form
   const [showEditForm, setShowEditForm] = React.useState(false)
+
+  //state to track an upvotes
+  const [addedUpvote, setAddedUpvote] = React.useState(false)
+  //state to track downvotes
+  const [addedDownvote, setAddedDownvote] = React.useState(false)
 
   //adjusts state to hide or display comments, switch btn text
   function toggleComments() {
@@ -75,10 +80,25 @@ function Issue(props) {
     setShowEditForm(prev => !prev)
   }
 
+  function sendUpvote() {
+    addUpvote(_id)
+    //toggle display of upvote / downvote text
+    setAddedUpvote(true)
+    setAddedDownvote(false)
+  }
+
+  function sendDownvote() {
+    addDownvote(_id)
+    //toggle display of upvote / downvote text
+    setAddedDownvote(true)
+    setAddedUpvote(false)
+  }
+
   return (
     <div className = "issue">
       <h2>{title}</h2>
       <h4>{description}</h4>
+      <h4>Posted by: {author}</h4>
       <h5 className='inline'>Upvotes: {upvotes.length}</h5>
       <h5 className='inline'>Downvotes: {downvotes.length}</h5>
       <h5 className='inline'>Comments: {comments.length}</h5>
@@ -107,8 +127,8 @@ function Issue(props) {
         {
           !profile &&
           <>
-            <button onClick={(event) => addUpvote(event, _id)}>Upvote</button>
-            <button onClick={(event) => addDownvote(event, _id)}>DownVote</button>
+            <button onClick={sendUpvote}>Upvote</button>
+            <button onClick={sendDownvote}>DownVote</button>
           </>
         }
 
@@ -137,6 +157,12 @@ function Issue(props) {
           id = {_id}
           toggleEditForm = {toggleEditForm}
         />
+      }
+      {addedUpvote &&
+        <p>Your upvote has been logged.</p>
+      }
+      {addedDownvote &&
+        <p>Your downvote has been logged.</p>
       }
     </div>
   )

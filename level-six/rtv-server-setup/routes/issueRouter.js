@@ -16,6 +16,7 @@ issueRouter.route('/')
   //add a new issue
   .post((req, res, next) => {
     req.body.postedBy = req.auth._id
+    req.body.author = req.auth.username
     const issue = new Issue(req.body)
     issue.save((err, savedIssue) => {
       if(err) {
@@ -132,7 +133,6 @@ issueRouter.put('/upvote/:issueId', (req, res, next) => {
       }
       req.body.username = req.auth.username
       req.body.postedBy = req.auth._id
-      // const comment = new commentsSchema(req.body)
       issue.comments.push(req.body)
       issue.save((err, savedIssue) => {
         if(err) {
