@@ -44,7 +44,7 @@ function Auth() {
             inputs={inputs}
             btnText="Sign Up"
           />
-          <p onClick={() => setToggle(prev => !prev)}>Already a member?</p>
+          <p onClick={() => setToggle(prev => !prev)}>Already a member? Click here.</p>
         </>
       :
         <>
@@ -54,7 +54,7 @@ function Auth() {
             inputs={inputs}
             btnText="Login"
           />
-          <p onClick={() => setToggle(prev => !prev)}>Not a member yet?</p>
+          <p onClick={() => setToggle(prev => !prev)}>Not a member? Click here.</p>
         </>
       }
     </div>

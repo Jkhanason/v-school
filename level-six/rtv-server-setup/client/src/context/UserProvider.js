@@ -104,7 +104,8 @@ const UserContext = React.createContext()
   //get issues from ALL users
   function getAllIssues() {
     userAxios.get('/api/issues')
-      .then(res => setAllIssues(res.data))
+      //sorting issues by upvote count before setting state
+      .then(res => setAllIssues(res.data.sort((a, b) => b.upvotes.length - a.upvotes.length)))
       .catch(err => console.log(err.response.data.errMsg))
   }
 

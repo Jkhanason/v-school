@@ -52,6 +52,7 @@ button:hover {
 }
 .authContainer p:hover {
   cursor: pointer;
+  color: blue;
 }
 .authContainer button, .profile button, .public button {
   padding: .4rem 1rem;
