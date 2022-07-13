@@ -26,14 +26,15 @@ authRouter.post('/signup', (req, res, next) => {
       return next(new Error('This username is not available.')) //custom error to try a new username
     }
     const newUser = new User(req.body);
-    newUser.save((err, user) => {
+    newUser.save((err, savedUser) => {
       if(err) {
         res.status(500)
         return next(err)
       }
-      console.log(user)
-      const token = jwt.sign(user.toObject(), process.env.SECRET); //
-      res.status(201).send({token, user}) //single entries bc keys and values are identical
+      //jwt takes two arguemtns, the payload (user data) and the secret key
+      //.withoutpassword invoked the user schema method to remove the password from being sent to front end
+      const token = jwt.sign(savedUser.withoutPassword(), process.env.SECRET); //
+      res.status(201).send({token, user: savedUser.withoutPassword()}) //token is single entries bc key and value are identical
     })
   })
 })
@@ -49,12 +50,22 @@ authRouter.post('/login', (req, res, next) => {
       res.status(403)
       return next(new Error('Username or password is incorrect.'));
     }
-    if(req.body.password !== user.password) {
-      res.status(403)
-      return next(new Error('Username or password is incorrect.'));
-    }
-    const token = jwt.sign(user.toObject(), process.env.SECRET) //give user a token and the secret key
-    res.status(200).send({token, user})
+    /*call the password check method declared in the user model
+    it returns an error or a boolean for is the password is correct*/
+    user.checkPassword(req.body.password, (err, isMatch) => {
+      if(err) {
+        res.status(403)
+        return next(new Error('Username or password is/are incorrect'))
+      }
+      if(!isMatch) {
+        return next(new Error('Username or password is/are incorrect'))
+      }
+      //they're authenticated, add token and allow login
+      //jwt takes two arguemtns, the payload (user data) and the secret key
+      //.withoutpassword invokes the user schema method to remove the password from being sent to front end
+      const token = jwt.sign(user.withoutPassword(), process.env.SECRET)
+      res.status(200).send({token, user: user.withoutPassword()})
+    })
   })
 })
 
