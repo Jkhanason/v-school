@@ -112,6 +112,11 @@ button:hover {
   cursor: pointer;
   color: red;
 }
+.errMsg {
+  color: red;
+  font-size: .8rem;
+  margin-bottom: 0;
+}
 /* .inline {
   display: inline;
   margin: 0 .5rem;

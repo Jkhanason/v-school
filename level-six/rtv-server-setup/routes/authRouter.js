@@ -55,16 +55,17 @@ authRouter.post('/login', (req, res, next) => {
     user.checkPassword(req.body.password, (err, isMatch) => {
       if(err) {
         res.status(403)
-        return next(new Error('Username or password is/are incorrect'))
+        return next(new Error('Username or password is incorrect.'))
       }
       if(!isMatch) {
-        return next(new Error('Username or password is/are incorrect'))
+        res.status(403)
+        return next(new Error('Username or password is incorrect.'))
       }
       //they're authenticated, add token and allow login
       //jwt takes two arguemtns, the payload (user data) and the secret key
       //.withoutpassword invokes the user schema method to remove the password from being sent to front end
       const token = jwt.sign(user.withoutPassword(), process.env.SECRET)
-      res.status(200).send({token, user: user.withoutPassword()})
+      return res.status(200).send({token, user: user.withoutPassword()})
     })
   })
 })

@@ -5,6 +5,7 @@ function AuthForm(props) {
     handleChange,
     handleSubmit,
     btnText,
+    errMsg,
     inputs: {
       username,
       password
@@ -28,6 +29,7 @@ function AuthForm(props) {
         placeholder="Password"
       />
       <button>{btnText}</button>
+      <p className="errMsg">{errMsg}</p>
     </form>
   )
 }

@@ -10,8 +10,8 @@ function Auth() {
   })
   const [toggle, setToggle] = React.useState(false)
 
-  //pulling funcs from context to invoke on form submission below
-  const {signup, login} = React.useContext(UserContext)
+  //pulling necessary funcs from context
+  const {signup, login, clearErrMsg, errMsg} = React.useContext(UserContext)
 
   function handleChange(event) {
     const {name, value} = event.target
@@ -32,6 +32,13 @@ function Auth() {
 
   }
 
+  function handleToggle() {
+    //switches between login and sign up prompts
+    setToggle(prev => !prev)
+    //clears error message if any
+    clearErrMsg()
+  }
+
   return (
     <div className="authContainer">
     {/* render either the sign up or login form when user clicks the P tag*/}
@@ -43,8 +50,9 @@ function Auth() {
             handleSubmit={handleSignup}
             inputs={inputs}
             btnText="Sign Up"
+            errMsg={errMsg}
           />
-          <p onClick={() => setToggle(prev => !prev)}>Already a member? Click here.</p>
+          <p onClick={handleToggle}>Already a member? Click here.</p>
         </>
       :
         <>
@@ -53,8 +61,9 @@ function Auth() {
             handleSubmit={handleLogin}
             inputs={inputs}
             btnText="Login"
+            errMsg={errMsg}
           />
-          <p onClick={() => setToggle(prev => !prev)}>Not a member? Click here.</p>
+          <p onClick={handleToggle}>Not a member? Click here.</p>
         </>
       }
     </div>

@@ -24,7 +24,8 @@ const UserContext = React.createContext()
       //if user or token are saved in local strorage (saved below) pull from that first, OR default to blank
       user: JSON.parse(localStorage.getItem('user')) || {},
       token: localStorage.getItem('token') || '',
-      issues: []
+      issues: [],
+      errMsg: ''
     }
 
   //state for each user on login/signup
@@ -51,7 +52,10 @@ const UserContext = React.createContext()
           }
         })
       })
-      .catch(err => console.log(err.response.data.errorMsg))
+      .catch(err => setUserState(prev => ({
+        ...prev,
+        errMsg: err.response.data.errorMsg
+      })))
   }
 
   //handle login
@@ -60,7 +64,7 @@ const UserContext = React.createContext()
       .then(res => {
         const {token, user} = res.data
         localStorage.setItem('token', token)
-        localStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem('user', JSON.stringify(user));
 
         //as they login, run a get request to pull all their issues
         getAllUserIssues()
@@ -74,7 +78,10 @@ const UserContext = React.createContext()
           user
         }))
       })
-      .catch(err => console.log(err.response.data.errorMsg))
+      .catch(err => setUserState(prev => ({
+        ...prev,
+        errMsg: err.response.data.errorMsg
+      })))
   }
 
   function logout() {
@@ -84,7 +91,8 @@ const UserContext = React.createContext()
     setUserState({
       user: {},
       token: '',
-      issues: []
+      issues: [],
+      errMsg: ''
     })
     //send user back to login/signup page
     navigate('/')
@@ -106,7 +114,7 @@ const UserContext = React.createContext()
     userAxios.get('/api/issues')
       //sorting issues by upvote count before setting state
       .then(res => setAllIssues(res.data.sort((a, b) => b.upvotes.length - a.upvotes.length)))
-      .catch(err => console.log(err.response.data.errMsg))
+      .catch(err => console.log(err.response.data.errorMsg))
   }
 
   function addIssue(newIssue) {
@@ -139,13 +147,13 @@ const UserContext = React.createContext()
         ...prev,
         issues: [...prev.issues.filter(prev => prev._id !== id)]
       })))
-      .catch(err => console.log(err.response.data.errMsg))
+      .catch(err => console.log(err.response.data.errorMsg))
   }
 
   function editIssue(edits, id) {
     userAxios.put(`/api/issues/${id}`, edits)
       .then(res => getAllUserIssues())
-      .catch(err => console.log(err.response.data.errMsg))
+      .catch(err => console.log(err.response.data.errorMsg))
   }
 
   function addUpvote(id) {
@@ -155,7 +163,7 @@ const UserContext = React.createContext()
       getAllIssues()
       getAllUserIssues()
     })
-    .catch(err => console.log(err.response.data.errMsg))
+    .catch(err => console.log(err.response.data.errorMsg))
   }
 
   function addDownvote(id) {
@@ -165,7 +173,14 @@ const UserContext = React.createContext()
         getAllIssues()
         getAllUserIssues()
       })
-      .catch(err => console.log(err.response.data.errMsg))
+      .catch(err => console.log(err.response.data.errorMsg))
+  }
+
+  function clearErrMsg() {
+    setUserState(prev => ({
+      ...prev,
+      errMsg: ''
+    }))
   }
 
   return (
@@ -182,7 +197,8 @@ const UserContext = React.createContext()
         editIssue,
         getAllIssues,
         addUpvote,
-        addDownvote
+        addDownvote,
+        clearErrMsg
       }}>
       {props.children}
     </UserContext.Provider>
