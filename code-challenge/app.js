@@ -375,20 +375,36 @@
 // console.log(numberSplit(11))// ➞ [5, 6]
 // console.log(numberSplit(-9))// ➞ [-5, -4]
 
-function moveZeroes(nums) {
+// function moveZeroes(nums) {
 
-  for(let i = 0; i < nums.length; i++) {
-    if (nums[i] === 0) {
-      //zero is now an array, [0]
-      let zero = nums.splice(i, 1)
-      nums = [...nums, ...zero]
-      //or this way
-      // nums.push(zero[0])
-    }
-  }
-  return nums
+//   let lastIndex = nums.length -1;
+//   for(let i = 0; i < lastIndex; i++) {
+//     while (nums[i] === 0) {
+//       let lastNum = nums[lastIndex]; //12
+//       nums[lastIndex] = nums[i]; //0
+//       nums[i] = lastNum;
+//       lastIndex--
+//     }
+//   }
+//   return nums
+// }
+
+// console.log(moveZeroes([0,1,0,3,12])) // [1,3,12,0,0]
+// console.log(moveZeroes([0])) // [0]
+//console.log(moveZeroes([-4,0,5,0,-5,0,2])) // [-4,5,-5,2,0,0,0]
+
+
+function subSequence(nums, k) {
+  const sortedNums = nums.sort((a, b) => b - a)
+  return sortedNums.splice(0, k)
+
+  // while(k > 0) {
+  //   resultsArr.push(sortedNums.shift())
+  //   k--
+  // }
+
+  return resultsArr
 }
-
-console.log(moveZeroes([0,1,0,3,12])) // [1,3,12,0,0]
-console.log(moveZeroes([0])) // [0]
-console.log(moveZeroes([-4,0,5,0,-5,0,2])) // [-4,5,-5,2,0,0,0]
+console.log(subSequence([2,1,3,3], 2))
+console.log(subSequence([-1,-2,3,4], 3))
+console.log(subSequence([3,4,3,3], 2))
