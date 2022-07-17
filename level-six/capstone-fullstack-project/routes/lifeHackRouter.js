@@ -27,4 +27,30 @@ lifeHackRouter.route('/')
     })
   })
 
+//get hacks by user
+lifeHackRouter.get('/user', (req, res, next) => {
+  LifeHack.find({authorId: req.auth._id}, (err, hacks) => {
+    if(err) {
+      res.status(500)
+      return next(err)
+    }
+    res.status(200).send(hacks)
+  })
+})
+
+//edit a posted hack
+lifeHackRouter.put('/:hackId', (req, res, next) => {
+  LifeHack.findOneAndUpdate(
+    {_id: req.params.hackId},
+    req.body,
+    {new: true},
+    (err, updatedHack) => {
+      if(err) {
+        res.status(500)
+        return next(err)
+      }
+      res.status(201).send(updatedHack)
+    })
+})
+
 module.exports = lifeHackRouter
