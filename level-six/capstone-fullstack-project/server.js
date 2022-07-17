@@ -13,6 +13,9 @@ app.use(express.json());
 mongoose.connect('mongodb://localhost:27017/life-hacks', () => console.log('Database is running.'));
 
 app.use('/auth', require('./routes/authRouter'));
+//any path to api requires a token to proceed
+app.use('/api', expressjwt({secret: process.env.SECRET, algorithms: ['HS256']}));
+app.use('/api/hacks', require('./routes/lifeHackRouter'));
 
 app.use((err, req, res, next) => {
   console.log(err)
