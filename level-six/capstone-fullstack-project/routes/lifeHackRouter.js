@@ -39,10 +39,73 @@ lifeHackRouter.get('/user', (req, res, next) => {
 })
 
 //edit a posted hack
-lifeHackRouter.put('/:hackId', (req, res, next) => {
+lifeHackRouter.route('/:hackId')
+  .put((req, res, next) => {
   LifeHack.findOneAndUpdate(
     {_id: req.params.hackId},
     req.body,
+    {new: true},
+    (err, updatedHack) => {
+      if(err) {
+        res.status(500)
+        return next(err)
+      }
+      res.status(201).send(updatedHack)
+    })
+  })
+
+//delete a hack
+  .delete((req, res, next) => {
+    LifeHack.findOneAndDelete({_id: req.params.hackId}, (err, hack) => {
+      if(err) {
+        res.status(500)
+        return next(err)
+      }
+      res.status(200).send(`Life hack ID:${hack._id} has been deleted.`)
+    })
+  })
+
+//add an upvote and remove a downvote
+lifeHackRouter.put('/upvote/:hackId', (req, res, next) => {
+  LifeHack.findOneAndUpdate(
+    {_id: req.params.hackId},
+    { $addToSet: {upvotes: req.auth.username},
+      $pull: {downvotes: req.auth.username}
+    },
+    {new: true},
+    (err, updatedHack) => {
+      if(err) {
+        res.status(500)
+        return next(err)
+      }
+      res.status(201).send(updatedHack)
+    })
+})
+
+//add a downvote and remove an upvote
+lifeHackRouter.put('/downvote/:hackId', (req, res, next) => {
+  LifeHack.findOneAndUpdate(
+    {_id: req.params.hackId},
+    { $addToSet: {downvotes: req.auth.username},
+      $pull: {upvotes: req.auth.username},
+    },
+    {new: true},
+    (err, updatedHack) => {
+      if(err) {
+        res.status(500)
+        return next(err)
+      }
+      res.status(201).send(updatedHack)
+    })
+})
+
+//add comments
+lifeHackRouter.put('/comment/:hackId', (req, res, next) => {
+  req.body.postedBy = req.auth.username
+  req.body.authorId = req.auth._id
+  LifeHack.findOneAndUpdate(
+    {_id: req.params.hackId},
+    { $push: {comments: req.body}},
     {new: true},
     (err, updatedHack) => {
       if(err) {
