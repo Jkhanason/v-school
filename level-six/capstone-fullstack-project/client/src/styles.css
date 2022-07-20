@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}
+.App {
+  background-color: red;
+  margin: 1rem auto;
+  max-width: 350px;
+  min-width: 250px;
+}
+.navbar {
+  background-color: green;
+  height: 4rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.navbar a {
+  color: black;
+}
+.navbar button {
+  background: none;
+  border: none;
+  text-decoration: underline;
+}
+.navbar button:hover {
+  cursor: pointer;
+}
+.auth{
+  background-color: yellow;
+  text-align: center;
+  padding: 1rem 0;
+}
+.auth h2 {
+  font-size: 18px;
+}
+.authForm {
+  background-color: bisque;
+  padding: 1rem 0;
+}
+.authForm form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.authForm form input {
+  margin: 1rem 0;
+  width: 75%;
+  padding: .5rem;
+  border-radius: 5px;
+}
+.mainBtns {
+  padding: .3rem 1rem;
+  border-radius: 5px;
+  border: none;
+}
+.mainBtns:hover {
+  cursor: pointer;
+  border: 1px solid black;
+}
+.loginPrompt {
+  color:rgb(0, 0, 253)
+}
+.loginPrompt:hover {
+  cursor: pointer;
+}
+.errorText {
+  padding: .5rem 0;
+  color: red;
+}

@@ -4,7 +4,9 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const {expressjwt} = require('express-jwt');
+const cors = require('cors')
 
+app.use(cors()) // register middleware 
 //displays server data in console
 app.use(morgan('dev'));
 //convert incoming requests to json
