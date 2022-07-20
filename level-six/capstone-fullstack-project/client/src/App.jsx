@@ -1,8 +1,10 @@
 import React from 'react'
 import Auth from './components/Auth';
 import Navbar from './components/Navbar';
-import Public from './components/Public'
+import Public from './components/Public';
+import Profile from './components/Profile';
 import {HackContext} from './context/HackProvider';
+import {Routes, Route, Navigate} from 'react-router-dom';
 import './styles.css'
 
 function App() {
@@ -11,11 +13,16 @@ function App() {
 
   return (
     <div className="App">
+      {/* only render if token is exists */}
       {token &&
         <Navbar logout={logout}/>
       }
-      <Auth />
-      <Public/>
+      <Routes>
+        <Route path='/' element={token ? <Navigate to='/profile'/> : <Auth/>}/>
+        <Route path='/profile' element={<Profile/>}/>
+        <Route path='public' element={<Public />}/>
+      </Routes>
+
     </div>
   )
 }

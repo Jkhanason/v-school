@@ -21,7 +21,7 @@ function Auth() {
       <h2>Hack your life!</h2>
       {toggle ?
       <>
-        <h2>Please Login to proceed.</h2>
+        <h3>Please Login to proceed.</h3>
         <AuthForm
           btnText='Login'
           submit={login}
@@ -31,7 +31,7 @@ function Auth() {
       </>
       :
       <>
-        <h2>Please Sign up to proceed.</h2>
+        <h3>Please Sign up to proceed.</h3>
         <AuthForm
           btnText='Sign up'
           submit={signup}

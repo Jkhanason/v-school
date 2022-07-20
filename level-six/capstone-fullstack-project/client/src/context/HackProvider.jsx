@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 
 
 const HackContext = React.createContext()
@@ -17,6 +18,8 @@ userAxios.interceptors.request.use(config => {
 })
 
 function HackProvider(props) {
+  //used in logout function to return to auth page
+  const navigate = useNavigate()
 
   //state to hold user info
   const [userState, setUserState] = React.useState({
@@ -26,7 +29,7 @@ function HackProvider(props) {
     hacks: []
   })
   //state to hold all lifehacks
-  const [lifeHacks, setLifeHacks] = React.useState([])
+  const [alllifeHacks, setAllLifeHacks] = React.useState([])
   //state to capture error msgs
   const [error, setError] = React.useState('')
 
@@ -34,6 +37,8 @@ function HackProvider(props) {
   function signup(credentials) {
     axios.post('http://localhost:4545/auth/signup', credentials)
       .then(res => {
+        //invoke get request all life hacks
+        getAllHacks()
         //deconstruct response from server
         const {token, user} = res.data
         //save token and user info in local storage so it persists page refresh
@@ -52,7 +57,8 @@ function HackProvider(props) {
   function login(credentials) {
     axios.post('http://localhost:4545/auth/login', credentials)
       .then(res => {
-        //invoke get to populate state on page load
+        //invoke get request all life hacks and this users hacks
+        getUserHacks()
         getAllHacks()
         const {token, user} = res.data
         localStorage.setItem('token', token)
@@ -81,26 +87,49 @@ function HackProvider(props) {
       token: '',
       hacks: []
     })
+    //send user back to auth page on log out
+    navigate('/')
   }
 
-  //request all life hacks, using userAxios that that the Bearer token attached
+  //request all life hacks, using userAxios that has the Bearer token attached
   function getAllHacks() {
     userAxios.get('http://localhost:4545/api/hacks')
-      .then(res => setLifeHacks(res.data))
+      .then(res => setAllLifeHacks(res.data))
       .catch(err => console.log(err.response.data.errorMsg))
   }
 
+  //request all life hacks by user
+  function getUserHacks() {
+    userAxios.get('http://localhost:4545/api/hacks/user')
+      .then(res => setUserState(prev => ({
+        ...prev,
+        //spread in any previous hacks and incoming hacks
+        hacks: [...prev.hacks, ...res.data]
+      })))
+      .catch(err => console.log(err.response.data.errorMsg))
+  }
+
+  //post a new life hack
+  function newLifeHack(newhack) {
+    userAxios.post('http://localhost:4545/api/hacks', newhack)
+      .then(res => {
+        getAllHacks()
+        getUserHacks()
+      })
+      .catch(err => console.log(err.response.data.errorMsg))
+  }
 
   return (
     <HackContext.Provider
       value={{
         ...userState,
-        lifeHacks,
+        alllifeHacks,
         signup,
         login,
         error,
         clearError,
-        logout
+        logout,
+        newLifeHack 
       }}>
       {props.children}
     </HackContext.Provider>
