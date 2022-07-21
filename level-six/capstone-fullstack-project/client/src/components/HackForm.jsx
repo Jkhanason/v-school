@@ -3,11 +3,14 @@ import React from 'react'
 
 function HackForm(props) {
 
-  const {submit} = props
+  /* submit is either a delete or post function depending on where the form is rendered
+  */
+  const {submit, id, allowEditForm} = props
 
   const initInputs = {
-    description: '',
-    category: ''
+    //form is reuseable. if props are passed in set value to that instead of blank
+    description: props.description || '',
+    category: props.category || ''
   }
   const [form, setForm] = React.useState(initInputs)
 
@@ -21,8 +24,13 @@ function HackForm(props) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    submit(form)
+    //id prop is only passed from EachHack component for edit post function
+    submit(form, id)
     setForm(initInputs)
+    //hides edit form in EachHack component after submitting edits
+    if (allowEditForm) {
+      allowEditForm()
+    }
 
   }
   const {description, category} = form

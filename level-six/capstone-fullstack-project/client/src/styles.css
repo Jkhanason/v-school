@@ -79,10 +79,10 @@
 .profile {
   text-align: center;
 }
-.profile h3, .profile h4 {
+.profile > h3, .profile > h4 {
   padding-bottom: 1rem;
 }
-.profile h3 {
+.profile > h3 {
   font-size: 18px;
 }
 .hackForm {
@@ -101,4 +101,49 @@
 }
 .hackForm button {
   margin-bottom: 1rem;
+}
+.eachHack {
+  border: 1px solid grey;
+  margin: .5rem;
+  margin-top: 0;
+  padding: .5rem;
+}
+.eachHack p {
+  margin-bottom: .8rem;
+}
+.eachHack button {
+  margin: .3rem;
+}
+.eachHackBtns {
+  color: rgb(20, 144, 20);
+}
+#description {
+  font-weight: 500;
+  color:rgb(105, 51, 13)
+}
+span {
+  font-weight: 500;
+}
+.hackStats {
+  font-size: 14px;
+}
+.deletePrompt {
+  color: red;
+  font-size: 15px;
+  margin: 0 1rem;
+  margin-top: .5rem;
+  border: 1px solid black;
+  padding: .5rem;
+}
+.deletePrompt:hover {
+  cursor: pointer;
+  background-color: rgba(235, 235, 235, 0.417);
+}
+.comments {
+  border: 1px solid rgba(75, 75, 75, 0.434);
+  margin: .5rem 0;
+  padding: .5rem 0;
+}
+.comments > h3 {
+  padding-bottom: .5rem;
 }

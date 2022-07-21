@@ -98,13 +98,13 @@ function HackProvider(props) {
       .catch(err => console.log(err.response.data.errorMsg))
   }
 
-  //request all life hacks by user
+  //request all life hacks BY USER
   function getUserHacks() {
     userAxios.get('http://localhost:4545/api/hacks/user')
       .then(res => setUserState(prev => ({
         ...prev,
-        //spread in any previous hacks and incoming hacks
-        hacks: [...prev.hacks, ...res.data]
+        //res.data is an array
+        hacks: res.data
       })))
       .catch(err => console.log(err.response.data.errorMsg))
   }
@@ -119,6 +119,26 @@ function HackProvider(props) {
       .catch(err => console.log(err.response.data.errorMsg))
   }
 
+  //delete a life hack
+  function deleteLifeHack(id) {
+    userAxios.delete(`http://localhost:4545/api/hacks/${id}`)
+      .then(res => {
+        getAllHacks()
+        getUserHacks()
+      })
+      .catch(err => console.log(err.response.data.errorMsg))
+  }
+
+  //edit a life hack
+  function editLifeHack(edits, id) {
+    userAxios.put(`http://localhost:4545/api/hacks/${id}`, edits)
+      .then(res => {
+        getAllHacks()
+        getUserHacks()
+      })
+      .catch(err => console.log(err.response.data.errMsg))
+  }
+
   return (
     <HackContext.Provider
       value={{
@@ -129,7 +149,9 @@ function HackProvider(props) {
         error,
         clearError,
         logout,
-        newLifeHack 
+        newLifeHack,
+        deleteLifeHack,
+        editLifeHack
       }}>
       {props.children}
     </HackContext.Provider>
