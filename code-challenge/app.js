@@ -68,8 +68,8 @@
 // const onlyCats = animals.filter(animal => animal.species === "Cat")
 // console.log(onlyCats)
 
-// const totalWeight = animals.reduce((total, animal) => total += animal.weightInPounds, 0)
-// console.log(totalWeight)
+// const maxWeight = animals.reduce((max, animal) => max += animal.weightInPounds, 0)
+// console.log(maxWeight)
 
 
 // const arrayOfMultiples = ((num, length) => {
@@ -96,9 +96,9 @@
 // 	if (arr1.length !== arr2.length) {
 // 		return false
 // 	}
-// 	const total = arr1[0] + arr2[0];
+// 	const max = arr1[0] + arr2[0];
 // 	for(let i = 1; i < arr1.length; i++) {
-// 		if (arr1[i] + arr2[i] !== total) {
+// 		if (arr1[i] + arr2[i] !== max) {
 // 			return false
 // 		}
 // 	}
@@ -286,12 +286,12 @@
 
 
 // const seriesResistance = nums => {
-//   const total = nums.reduce((acc, num) => acc += num, 0)
+//   const max = nums.reduce((acc, num) => acc += num, 0)
 
-//   if (total <= 1) {
-//     return total + '.0 omh'
+//   if (max <= 1) {
+//     return max + '.0 omh'
 //   } else {
-//     return total + ' ohms'
+//     return max + ' ohms'
 //   }
 
 // }
@@ -302,7 +302,7 @@
 // function happy (num) {
 //   //split num into digits
 //   const digits = String(num).split('');
-//   //grab total of each digit squared
+//   //grab max of each digit squared
 //   const squaresDigits = digits.reduce((acc, number) => acc += (number * number), 0);
 //   // 1 = happy num
 //   if (squaresDigits === 1) {
@@ -394,17 +394,37 @@
 //console.log(moveZeroes([-4,0,5,0,-5,0,2])) // [-4,5,-5,2,0,0,0]
 
 
-function subSequence(nums, k) {
-  const sortedNums = nums.sort((a, b) => b - a)
-  return sortedNums.splice(0, k)
+// function subSequence(nums, k) {
+//   const sortedNums = nums.sort((a, b) => b - a)
+//   return sortedNums.splice(0, k)
 
-  // while(k > 0) {
-  //   resultsArr.push(sortedNums.shift())
-  //   k--
-  // }
 
-  return resultsArr
-}
-console.log(subSequence([2,1,3,3], 2))
-console.log(subSequence([-1,-2,3,4], 3))
-console.log(subSequence([3,4,3,3], 2))
+//   return resultsArr
+// }
+// console.log(subSequence([2,1,3,3], 2))
+// console.log(subSequence([-1,-2,3,4], 3))
+// console.log(subSequence([3,4,3,3], 2))
+
+function maximumSubarray(arr, k) {
+
+  let result = Number.MIN_SAFE_INTEGER;
+  let temp = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    temp += arr[i]
+    //only increments temp by k nums at a time
+    if (i >= k - 1) {
+      //update result to be the largest of temp or result
+      result = Math.max(temp, result)
+   /* subtract the first num from temp,
+      temp is now the sum of 2 nums,
+      next loop will add a new num so temp equals k total nums */
+      temp -= arr[i - (k - 1)]
+    }
+  }
+  return result
+ }
+
+ console.log(maximumSubarray([1, 2, 6, 2, 4, 1], 3)) // 12
+ console.log(maximumSubarray([4, 3, 9, 5, 1, 2], 3)) // 17
+ console.log(maximumSubarray([1, 2, 3], 2)) // 5
