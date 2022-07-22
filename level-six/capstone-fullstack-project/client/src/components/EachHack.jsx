@@ -23,7 +23,11 @@ function EachHack(props) {
   //boolean to toggle the show comments button
   const hasComments = comments.length > 0
 
-  //state to control the buttons
+  //state to control the upvote and downvote buttons
+  const [showUpvote, setShowUpvote] = React.useState(false)
+  const [showDownvote, setShowDownvote] = React.useState(false)
+
+  //state to control the 4 profile buttons
   const [allState, setAllState] = React.useState({
     showDeletePrompt: false,
     showEditForm: false,
@@ -80,10 +84,14 @@ function EachHack(props) {
 
   function handleUpvote() {
     upvote(_id)
+    setShowUpvote(true)
+    setShowDownvote(false)
   }
 
   function handleDownvote() {
     downvote(_id)
+    setShowDownvote(true)
+    setShowUpvote(false)
   }
 
   return (
@@ -95,18 +103,32 @@ function EachHack(props) {
       <p className="hackStats">Downvotes: {downvotes.length}</p>
       <p className="hackStats">Comments: {comments.length}</p>
 
+      {/* if upvote is clicked render this */}
+      {
+        showUpvote &&
+        <p className='votePrompt'>Your upvote has been logged!</p>
+      }
+
+      {/* if downvote is clicked render this */}
+      {
+        showDownvote &&
+        <p className='votePrompt'>Your downvote has been logged!</p>
+      }
+
       {/* only these buttons will only render on the profile page */}
       { profile &&
         <>
           <button
             className="mainBtns eachHackBtns"
             onClick={toggleEditForm}
-            name="showEditForm">{!allState.showEditForm ? 'Edit' : 'Cancel Edit'}</button>
+            name="showEditForm"
+            id='editBtn'>{!allState.showEditForm ? 'Edit' : 'Cancel Edit'}</button>
 
           <button
             className="mainBtns eachHackBtns"
             onClick={toggleDeletePrompt}
-            name="showDeletePrompt">{!allState.showDeletePrompt ? 'Delete' : 'Cancel Delete'}</button>
+            name="showDeletePrompt"
+            id='deleteBtn'>{!allState.showDeletePrompt ? 'Delete' : 'Cancel Delete'}</button>
         </>
       }
 
@@ -116,23 +138,27 @@ function EachHack(props) {
         <button
           onClick={toggleComments}
           className="mainBtns eachHackBtns"
-          name='showComments'>{!allState.showComments ? 'Show Comments' : 'Hide Comments'}</button>
+          name='showComments'
+          id='showCommentsBtn'>{!allState.showComments ? 'Show Comments' : 'Hide Comments'}</button>
       }
 
       <button
         onClick={toggleCommentForm}
         className="mainBtns eachHackBtns"
-        name="showCommentForm">{!allState.showCommentForm ? 'Post a Comment' : 'Cancel Comment'}</button>
+        name="showCommentForm"
+        id='postCommentsBtn'>{!allState.showCommentForm ? 'Post a Comment' : 'Cancel Comment'}</button>
 
       {
           !profile &&
         <>
           <button
             className='mainBtns'
-            onClick={handleUpvote}>Upvote</button>
+            onClick={handleUpvote}
+            id="upvote">Upvote</button>
           <button
             className='mainBtns'
-            onClick={handleDownvote}>DownVote</button>
+            onClick={handleDownvote}
+            id="downvote">DownVote</button>
         </>
 
       }

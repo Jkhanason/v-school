@@ -60,7 +60,7 @@ function HackForm(props) {
         <option value='Cleaning'>Cleaning</option>
         <option value='Other'>Other</option>
       </select>
-      <button className='mainBtns'>Submit</button>
+      <button id='submitBtn' className='mainBtns'>Submit</button>
     </form>
   )
 }

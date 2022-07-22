@@ -40,7 +40,7 @@ function AuthForm(props) {
         value={password}
         onChange={handleChange}
       />
-      <button className="mainBtns">{btnText}</button>
+      <button id="submitBtn" className="mainBtns">{btnText}</button>
       {/* if theres a signup/login error, display this */}
       {error &&
         <p className='errorText'>{error}</p>

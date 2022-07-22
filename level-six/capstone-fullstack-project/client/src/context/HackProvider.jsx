@@ -96,7 +96,8 @@ function HackProvider(props) {
   //request all life hacks, using userAxios that has the Bearer token attached
   function getAllHacks() {
     userAxios.get('http://localhost:4545/api/hacks')
-      .then(res => setAllLifeHacks(res.data))
+      //sort hacks by up vote count
+      .then(res => setAllLifeHacks(res.data.sort((a, b) => b.upvotes.length - a.upvotes.length )))
       .catch(err => console.log(err.response.data.errorMsg))
   }
 

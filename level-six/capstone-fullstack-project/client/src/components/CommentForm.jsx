@@ -32,7 +32,7 @@ function CommentForm(props) {
         placeholder='Add your comment here'
         required
       />
-      <button className="mainBtns">Send Comment</button>
+      <button id='submitBtn' className="mainBtns">Send Comment</button>
     </form>
   )
 }

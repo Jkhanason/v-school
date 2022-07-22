@@ -10,7 +10,7 @@
   margin: 1rem auto;
   max-width: 350px;
   min-width: 250px;
-  border: 1px solid red;
+  border: 1px solid rgb(136, 134, 134);
 }
 .navbar {
   /* background-color: green; */
@@ -61,6 +61,7 @@
   padding: .3rem 1rem;
   border-radius: 5px;
   border: none;
+  color: white;
 }
 .mainBtns:hover {
   cursor: pointer;
@@ -119,9 +120,6 @@
 .eachHack button {
   margin: .3rem;
 }
-.eachHackBtns {
-  color: rgb(20, 144, 20);
-}
 #description {
   font-weight: 500;
   color:rgb(105, 51, 13)
@@ -168,8 +166,31 @@ span {
   margin-top: .5rem;
   padding: 1rem 0;
 }
-
-
+.votePrompt {
+  font-size: 14px;
+  color: blue;
+}
+#editBtn {
+  background-color: #132237;
+}
+#deleteBtn {
+  background-color: #1f376a;
+}
+#showCommentsBtn {
+  background-color: #c19d43;
+}
+#postCommentsBtn {
+  background-color: #3a73b3;
+}
+#submitBtn {
+  background-color: #9d1f03;
+}
+#upvote {
+  background-color: #1f376a;
+}
+#downvote {
+  background-color: #132237;
+}
 /* .commentForm {
   display: flex;
   flex-direction: column;
