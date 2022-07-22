@@ -117,11 +117,33 @@ lifeHackRouter.put('/comment/:hackId', (req, res, next) => {
 })
 
 //edit a comment
-lifeHackRouter.put('/comment/edit/:hackId', (req, res, next) => {
+lifeHackRouter.put('/comment/edit/:hackId/:commentId', (req, res, next) => {
   LifeHack.findOneAndUpdate(
-    {_id: req.params.hackId, },
-    { $pull: {comments}}
-  )
+    {_id: req.params.hackId, "comments._id": req.params.commentId },
+    { $set: {"comments.$.comment" : req.body.comment }},
+    {new: true},
+    (err, comment) => {
+      if(err) {
+        res.status(500)
+        return next(err)
+      }
+      res.status(201).send(comment)
+    })
+})
+
+//delete a comment
+lifeHackRouter.put('/comment/delete/:hackId/:commentId', (req, res, next) => {
+  LifeHack.findOneAndUpdate(
+    {_id: req.params.hackId, "comments._id": req.params.commentId},
+    { $pull: {comments: {_id: req.params.commentId}}},
+    {new: true},
+    (err, updatedHack) => {
+      if(err) {
+        res.status(500)
+        return next(err)
+      }
+      res.status(201).send(updatedHack)
+    })
 })
 
 

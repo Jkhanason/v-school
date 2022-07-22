@@ -152,6 +152,26 @@ function HackProvider(props) {
       .catch(err => console.log(err.response.data.errorMsg))
   }
 
+  //edit a comment
+  function editComments(comment, hackId, commentId) {
+    userAxios.put(`http://localhost:4545/api/hacks/comment/edit/${hackId}/${commentId}`, {comment})
+      .then(res => {
+        getAllHacks()
+        getUserHacks()
+      })
+      .catch(err => console.log(err.response.data.errorMsg))
+  }
+
+  //delete a comment
+  function deleteComment(hackId, commentId) {
+    userAxios.put(`http://localhost:4545/api/hacks/comment/delete/${hackId}/${commentId}`)
+      .then(res => {
+        getAllHacks()
+        getUserHacks()
+      })
+      .catch(err => console.log(err.response.data.errorMsg))
+  }
+
   return (
     <HackContext.Provider
       value={{
@@ -165,7 +185,9 @@ function HackProvider(props) {
         newLifeHack,
         deleteLifeHack,
         editLifeHack,
-        addComments
+        addComments,
+        editComments,
+        deleteComment
       }}>
       {props.children}
     </HackContext.Provider>

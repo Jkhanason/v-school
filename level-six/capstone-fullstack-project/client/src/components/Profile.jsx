@@ -4,7 +4,7 @@ import HackForm from './HackForm';
 import EachHack from './EachHack';
 function Profile (props) {
   //pull necessary data from context
-  const {hacks, user: {username}, newLifeHack, deleteLifeHack, editLifeHack, addComments} = React.useContext(HackContext)
+  const {hacks, user: {username}, newLifeHack, deleteLifeHack, editLifeHack, addComments, editComments,  deleteComment} = React.useContext(HackContext)
 
   //iterate the hacks array and render an EachHack component for each one
   const hack = hacks.map(hack => {
@@ -17,6 +17,8 @@ function Profile (props) {
         deleteLifeHack={deleteLifeHack}
         editLifeHack={editLifeHack}
         addComments={addComments}
+        editComments={editComments}
+        deleteComment={deleteComment}
         />
     )
   })

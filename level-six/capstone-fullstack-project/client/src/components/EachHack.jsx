@@ -5,7 +5,16 @@ import CommentForm from './CommentForm';
 
 function EachHack(props) {
   //destructure props
-  const {category, comments, description, downvotes, upvotes, deleteLifeHack, _id, editLifeHack, addComments} = props
+  const {
+    category,
+    comments,
+    description,
+    downvotes,
+    upvotes,
+    deleteLifeHack,
+    _id,
+    editLifeHack,
+    addComments, editComments, deleteComment} = props
 
   //boolean to toggle the show comments button
   const hasComments = comments.length > 0
@@ -68,7 +77,7 @@ function EachHack(props) {
 
   return (
     <div className="eachHack">
-      <p>Category: <span>{category}</span></p>
+      <h3>Category: {category}</h3>
       <p id='description'>{description}</p>
       <p className="hackStats">Upvotes: {upvotes.length}</p>
       <p className="hackStats">Downvotes: {downvotes.length}</p>
@@ -101,7 +110,16 @@ function EachHack(props) {
       {/* if this is true, map over comments array and render the comments component */}
       {
         allState.showComments &&
-        comments.map(comment => <Comments {...comment} key={comment._id}/>)
+        comments.map(comment => {
+          return (
+            <Comments
+              {...comment}
+              key={comment._id}
+              hackId={_id}
+              editComments={editComments}
+              deleteComment={deleteComment}
+            />
+          )})
       }
 
       {/* clicking delete button will toggle this on or off */}
@@ -131,7 +149,7 @@ function EachHack(props) {
         //uses state to toggle off comment form on submit
         submit={addComments}
         setAllState={setAllState}
-        id = {_id}/>
+        hackId = {_id}/>
       }
     </div>
   )

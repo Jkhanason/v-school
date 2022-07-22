@@ -1,13 +1,16 @@
 import React from 'react';
 
 function CommentForm(props) {
-  const {submit, id, setAllState} = props
+  const {submit, setAllState, currentComment, hackId, commentId} = props
 
-  const [comment, setComment] = React.useState('')
+  //form is reuseable/ set state to be incoming prop or blank
+  const [comment, setComment] = React.useState(currentComment || '')
 
   function handleSubmit(e) {
     e.preventDefault()
-    submit(comment, id)
+    //to post a comment submit takes the comment and hackId
+    //to reuse form for comment edits, submit adds the comment Id as a third parameter
+    submit(comment, hackId, commentId)
 
     //reset comment form state to toggle off after submit
     setAllState(prev => ({
