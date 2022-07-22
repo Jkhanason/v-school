@@ -53,12 +53,14 @@ function Comments(props) {
         <button
           className='mainBtns'
           name="showCommentForm"
-          onClick={toggleEdits}>{!showCommentForm ? 'Edit' : 'Cancel Edit'}</button>
+          onClick={toggleEdits}
+          id="editBtn">{!showCommentForm ? 'Edit' : 'Cancel Edit'}</button>
 
         <button
           className='mainBtns'
           name="showDeletePrompt"
-          onClick={toggleDeletePrompt}>{!showDeletePrompt ? 'Delete' : 'Cancel Delete'}</button>
+          onClick={toggleDeletePrompt}
+          id="deleteBtn">{!showDeletePrompt ? 'Delete' : 'Cancel Delete'}</button>
       </>
     }
 

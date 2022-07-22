@@ -9,11 +9,10 @@
   /* background-color: red; */
   margin: 1rem auto;
   max-width: 350px;
-  min-width: 250px;
+  min-width: 275px;
   border: 1px solid rgb(136, 134, 134);
 }
 .navbar {
-  /* background-color: green; */
   height: 4rem;
   display: flex;
   justify-content: space-around;
@@ -31,7 +30,6 @@
   cursor: pointer;
 }
 .auth{
-  /* background-color: yellow; */
   text-align: center;
   padding: 1rem 0;
 }
@@ -43,7 +41,6 @@
   margin-bottom: -.5rem;
 }
 .authForm {
-  /* background-color: bisque; */
   padding: 1rem 0;
 }
 .authForm form {
@@ -68,10 +65,13 @@
   border: 1px solid black;
 }
 .loginPrompt {
-  color:rgb(0, 0, 253)
+  color:rgb(0, 0, 253);
+  width: fit-content;
+  margin: 0 auto;
 }
 .loginPrompt:hover {
   cursor: pointer;
+  text-decoration: underline;
 }
 .errorText {
   padding: .5rem 0;
@@ -90,8 +90,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1.5rem;
-  padding: .5rem 0;
+  margin: 0 .5rem 1rem .5rem;
+  padding: 1.5rem 0;
+  border: 1px solid grey;
 }
 .hackForm input, .commentForm input {
   height: 2rem;
@@ -110,6 +111,7 @@
   margin: 1rem .5rem;
   margin-top: 0;
   padding: .5rem;
+  /* text-align: center; */
 }
 .eachHack > h3 {
   padding-bottom: .5rem;
@@ -133,17 +135,18 @@ span {
 .deletePrompt {
   color: red;
   font-size: 15px;
-  margin: 0 1rem;
-  margin-top: .5rem;
-  border: 1px solid black;
   padding: .5rem;
+  border-radius: 5px;
+  width:fit-content;
+  margin: .5rem auto;
 }
 .deletePrompt:hover {
   cursor: pointer;
   background-color: rgba(235, 235, 235, 0.417);
+  border: 1px solid black;
 }
 .comments {
-  border: 1px solid rgba(75, 75, 75, 0.434);
+  border: 1px solid rgba(75, 75, 75, 0.745);
   margin: .5rem 0;
   padding: .5rem;
 }
@@ -156,15 +159,6 @@ span {
 }
 .public > h2, .public > p {
   margin-bottom: .7rem;
-}
-#publicIntro1 {
-  border-bottom: 2px solid black;
-  padding-bottom: 3rem;
-}
-#publicIntro2 {
-  border-top: 2px solid black;
-  margin-top: .5rem;
-  padding: 1rem 0;
 }
 .votePrompt {
   font-size: 14px;
@@ -191,9 +185,30 @@ span {
 #downvote {
   background-color: #132237;
 }
-/* .commentForm {
-  display: flex;
-  flex-direction: column;
-  margin: 1rem 0;
-  align-items: center;
-} */
+
+@media only screen and (min-width: 350px) {
+  * {
+    font-size: 18px;
+  }
+  .App {
+    max-width: 750px;
+    box-shadow: 0px 0px 10px 5px rgba(79, 79, 79, 0.553);
+
+  }
+  .deletePrompt {
+    width:fit-content;
+  }
+  .comments {
+    margin: 1rem 0;
+  }
+  .navbar a, .navbar button {
+    color: rgb(13, 13, 199);
+  }
+  .hackStats {
+    font-size: 16px;
+  }
+  .mainBtns {
+    padding: .2rem .3rem;
+    font-size: 16px;
+  }
+}

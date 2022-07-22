@@ -19,7 +19,7 @@ function Auth() {
   return (
     <div className="auth">
       <h2>Hack your life!</h2>
-      {!toggle ?
+      {toggle ?
       <>
         <h3>Please Login to proceed.</h3>
         <AuthForm
