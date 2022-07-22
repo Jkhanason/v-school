@@ -5,47 +5,49 @@ import CommentForm from './CommentForm';
 
 function EachHack(props) {
   //destructure props
-  const {category, comments, description, downvotes, upvotes, deleteLifeHack, _id, editLifeHack} = props
+  const {category, comments, description, downvotes, upvotes, deleteLifeHack, _id, editLifeHack, addComments} = props
 
-  //state to show delete prompt
-  const [deletePrompt, setDeletePrompt] = React.useState(false)
-
-  //state to control delete button text
-  const [deleteBtnTxt, setDeleteBtnText] = React.useState('Delete')
-
-  //state to show edit form
-  const [showEditForm, setShowEditForm] = React.useState(false)
-
-  //state to control edit button text
-  const [editBtnText, setEditBtnText] = React.useState('Edit')
-
-  //state to render comments
-  const [showComments, setShowComments] = React.useState(false)
-
-  //boolean to toggle show comments button
+  //boolean to toggle the show comments button
   const hasComments = comments.length > 0
 
-  //state to control comment button text
-  const [showCommentsBtnText, setShowCommentsBtnText] = React.useState('Show Comments')
+  //state to control the buttons
+  const [allState, setAllState] = React.useState({
+    showDeletePrompt: false,
+    showEditForm: false,
+    showComments: false,
+    showCommentForm: false
+  })
 
-  //toggles delete btn text and display of delete prompt
-  function showDeletePrompt(){
-    setDeletePrompt(prev => !prev)
-    setDeleteBtnText(prev => prev === 'Delete' ? 'Cancel Delete' : 'Delete')
+  //when any button is clicked, toggle off any other button that was in use
+  function resetAllState(name) {
+    //name is the button name pulled from the click event
+    //the button names match the state names below
+    setAllState(prev => ({
+      showDeletePrompt: false,
+      showEditForm: false,
+      showComments: false,
+      showCommentForm: false,
 
-    //reset edit state
-    setShowEditForm(false)
-    setEditBtnText('Edit')
+      /*
+      example: button is named showDeletePrompt,
+      set everything to false, then..
+      [showDeletePrompt]: !prev[showDeletePrompt]
+      if showDeletePrompt was false, it is now true
+      */
+
+      [name]: !prev[name]
+
+    }))
   }
 
-  //toggles edit btn text and display of edit form
-  function allowEditForm() {
-    setShowEditForm(prev => !prev)
-    setEditBtnText(prev => prev === 'Edit' ? 'Cancel Edit' : 'Edit')
+  //displays the delete prompt
+  function toggleDeletePrompt(e){
+    resetAllState(e.target.name)
+  }
 
-    //reset delete state.
-    setDeletePrompt(false)
-    setDeleteBtnText('Delete')
+  //displays the edit form
+  function toggleEditForm(e) {
+    resetAllState(e.target.name)
   }
 
   //delete a life hack
@@ -53,15 +55,16 @@ function EachHack(props) {
     deleteLifeHack(_id)
   }
 
-  function toggleComments() {
-    setShowCommentsBtnText(prev => prev === "Show Comments" ? "Hide Comments" : "Show Comments")
-    //toggle comments rendering on and off
-    setShowComments(prev => !prev)
+  //displays already posted comments
+  function toggleComments(e) {
+    resetAllState(e.target.name)
   }
 
-  function allowCommentForm() {
-
+  //displays form to add new comment
+  function toggleCommentForm(e) {
+    resetAllState(e.target.name)
   }
+
 
   return (
     <div className="eachHack">
@@ -73,45 +76,62 @@ function EachHack(props) {
 
       <button
         className="mainBtns eachHackBtns"
-        onClick={allowEditForm}>{editBtnText}</button>
+        onClick={toggleEditForm}
+        name="showEditForm">{!allState.showEditForm ? 'Edit' : 'Cancel Edit'}</button>
 
       <button
         className="mainBtns eachHackBtns"
-        onClick={showDeletePrompt}>{deleteBtnTxt}</button>
+        onClick={toggleDeletePrompt}
+        name="showDeletePrompt">{!allState.showDeletePrompt ? 'Delete' : 'Cancel Delete'}</button>
 
       {/* only render button if hack has comments already*/}
       {
         hasComments &&
         <button
           onClick={toggleComments}
-          className="mainBtns eachHackBtns">{showCommentsBtnText}</button>
+          className="mainBtns eachHackBtns"
+          name='showComments'>{!allState.showComments ? 'Show Comments' : 'Hide Comments'}</button>
       }
 
       <button
-        onClick={allowCommentForm}
-        className="mainBtns eachHackBtns">Post a comment</button>
+        onClick={toggleCommentForm}
+        className="mainBtns eachHackBtns"
+        name="showCommentForm">{!allState.showCommentForm ? 'Post a Comment' : 'Cancel Comment'}</button>
 
       {/* if this is true, map over comments array and render the comments component */}
       {
-        showComments &&
+        allState.showComments &&
         comments.map(comment => <Comments {...comment} key={comment._id}/>)
       }
 
+      {/* clicking delete button will toggle this on or off */}
       {
-        deletePrompt &&
+        allState.showDeletePrompt &&
         <p className="deletePrompt" onClick={handleDelete}>Click here to delete this life hack.</p>
       }
 
+      {/* edit button will toggle this */}
       {
-        showEditForm &&
+        allState.showEditForm &&
         <HackForm
-        //prefill the form with these props, edit hacks with submit and id
+        //prefill the form with these props, edit hacks with submit and id, state is passed to toggle off edit form on submit
           category={category}
           description={description}
           submit={editLifeHack}
           id={_id}
-          allowEditForm={allowEditForm}
-        />
+          setAllState={setAllState}
+          />
+        }
+
+      {/* post comment button toggles this*/}
+      {
+        allState.showCommentForm &&
+        <CommentForm
+        //needs the hack id and addComments func to post new comments
+        //uses state to toggle off comment form on submit
+        submit={addComments}
+        setAllState={setAllState}
+        id = {_id}/>
       }
     </div>
   )

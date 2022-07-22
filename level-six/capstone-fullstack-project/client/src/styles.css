@@ -85,12 +85,13 @@
 .profile > h3 {
   font-size: 18px;
 }
-.hackForm {
+.hackForm, .commentForm{
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: .5rem;
 }
-.hackForm input {
+.hackForm input, .commentForm input {
   height: 2rem;
   width: 90%;
   margin-bottom: 1rem;
@@ -147,3 +148,9 @@ span {
 .comments > h3 {
   padding-bottom: .5rem;
 }
+/* .commentForm {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+  align-items: center;
+} */

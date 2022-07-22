@@ -5,7 +5,7 @@ function HackForm(props) {
 
   /* submit is either a delete or post function depending on where the form is rendered
   */
-  const {submit, id, allowEditForm} = props
+  const {submit, id, setAllState} = props
 
   const initInputs = {
     //form is reuseable. if props are passed in set value to that instead of blank
@@ -27,9 +27,13 @@ function HackForm(props) {
     //id prop is only passed from EachHack component for edit post function
     submit(form, id)
     setForm(initInputs)
-    //hides edit form in EachHack component after submitting edits
-    if (allowEditForm) {
-      allowEditForm()
+
+    //for edit post function, hide edit form after submitting edits
+    if (setAllState) {
+      setAllState(prev => ({
+        ...prev,
+        showEditForm: false
+      }))
     }
 
   }

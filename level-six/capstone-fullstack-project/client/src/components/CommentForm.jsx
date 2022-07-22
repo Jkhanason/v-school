@@ -1,11 +1,19 @@
 import React from 'react';
 
 function CommentForm(props) {
+  const {submit, id, setAllState} = props
 
   const [comment, setComment] = React.useState('')
 
   function handleSubmit(e) {
+    e.preventDefault()
+    submit(comment, id)
 
+    //reset comment form state to toggle off after submit
+    setAllState(prev => ({
+      ...prev,
+      showCommentForm: false
+    }))
   }
 
   function handleChange(e) {
@@ -13,7 +21,7 @@ function CommentForm(props) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='commentForm' onSubmit={handleSubmit}>
       <input
         name='comment'
         value={comment}
@@ -21,7 +29,7 @@ function CommentForm(props) {
         placeholder='Add your comment here'
         required
       />
-      <button>Send Comment</button>
+      <button className="mainBtns">Send Comment</button>
     </form>
   )
 }

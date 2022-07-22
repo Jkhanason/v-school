@@ -28,8 +28,10 @@ function HackProvider(props) {
     token: localStorage.getItem('token') || '',
     hacks: []
   })
+
   //state to hold all lifehacks
   const [alllifeHacks, setAllLifeHacks] = React.useState([])
+
   //state to capture error msgs
   const [error, setError] = React.useState('')
 
@@ -57,7 +59,7 @@ function HackProvider(props) {
   function login(credentials) {
     axios.post('http://localhost:4545/auth/login', credentials)
       .then(res => {
-        //invoke get request all life hacks and this users hacks
+        //invoke get requests for all life hacks and this users hacks
         getUserHacks()
         getAllHacks()
         const {token, user} = res.data
@@ -139,6 +141,17 @@ function HackProvider(props) {
       .catch(err => console.log(err.response.data.errMsg))
   }
 
+  //post a comment
+  function addComments(comment, id) {
+    //comment is a string. convert to obj with key name comment to meet validation requirements
+    userAxios.put(`http://localhost:4545/api/hacks/comment/${id}`, {comment: comment})
+      .then(res => {
+        getAllHacks()
+        getUserHacks()
+      })
+      .catch(err => console.log(err.response.data.errorMsg))
+  }
+
   return (
     <HackContext.Provider
       value={{
@@ -151,7 +164,8 @@ function HackProvider(props) {
         logout,
         newLifeHack,
         deleteLifeHack,
-        editLifeHack
+        editLifeHack,
+        addComments
       }}>
       {props.children}
     </HackContext.Provider>

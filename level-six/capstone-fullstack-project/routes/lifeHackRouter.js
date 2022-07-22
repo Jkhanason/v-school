@@ -116,4 +116,13 @@ lifeHackRouter.put('/comment/:hackId', (req, res, next) => {
     })
 })
 
+//edit a comment
+lifeHackRouter.put('/comment/edit/:hackId', (req, res, next) => {
+  LifeHack.findOneAndUpdate(
+    {_id: req.params.hackId, },
+    { $pull: {comments}}
+  )
+})
+
+
 module.exports = lifeHackRouter
