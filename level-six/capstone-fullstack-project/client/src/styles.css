@@ -89,7 +89,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: .5rem;
+  margin-top: 1.5rem;
+  padding: .5rem 0;
 }
 .hackForm input, .commentForm input {
   height: 2rem;
@@ -105,9 +106,12 @@
 }
 .eachHack {
   border: 1px solid grey;
-  margin: .5rem;
+  margin: 1rem .5rem;
   margin-top: 0;
   padding: .5rem;
+}
+.eachHack > h3 {
+  padding-bottom: .5rem;
 }
 .eachHack p {
   margin-bottom: .8rem;
@@ -148,6 +152,24 @@ span {
 .comments > h3 {
   padding-bottom: .5rem;
 }
+
+.public {
+  text-align: center;
+}
+.public > h2, .public > p {
+  margin-bottom: .7rem;
+}
+#publicIntro1 {
+  border-bottom: 2px solid black;
+  padding-bottom: 3rem;
+}
+#publicIntro2 {
+  border-top: 2px solid black;
+  margin-top: .5rem;
+  padding: 1rem 0;
+}
+
+
 /* .commentForm {
   display: flex;
   flex-direction: column;

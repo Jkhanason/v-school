@@ -30,7 +30,7 @@ function HackProvider(props) {
   })
 
   //state to hold all lifehacks
-  const [alllifeHacks, setAllLifeHacks] = React.useState([])
+  const [allLifeHacks, setAllLifeHacks] = React.useState([])
 
   //state to capture error msgs
   const [error, setError] = React.useState('')
@@ -172,11 +172,31 @@ function HackProvider(props) {
       .catch(err => console.log(err.response.data.errorMsg))
   }
 
+  //add an upvote
+  function upvote(hackId) {
+    userAxios.put(`http://localhost:4545/api/hacks/upvote/${hackId}`)
+      .then(res => {
+        getAllHacks()
+        getUserHacks()
+      })
+      .catch(err => console.log(err.response.data.errorMsg))
+  }
+
+  //add an downvote
+  function downvote(hackId) {
+    userAxios.put(`http://localhost:4545/api/hacks/downvote/${hackId}`)
+      .then(res => {
+        getAllHacks()
+        getUserHacks()
+      })
+      .catch(err => console.log(err.response.data.errorMsg))
+  }
+
   return (
     <HackContext.Provider
       value={{
         ...userState,
-        alllifeHacks,
+        allLifeHacks,
         signup,
         login,
         error,
@@ -187,7 +207,9 @@ function HackProvider(props) {
         editLifeHack,
         addComments,
         editComments,
-        deleteComment
+        deleteComment,
+        downvote,
+        upvote
       }}>
       {props.children}
     </HackContext.Provider>

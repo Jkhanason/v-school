@@ -14,7 +14,11 @@ function EachHack(props) {
     deleteLifeHack,
     _id,
     editLifeHack,
-    addComments, editComments, deleteComment} = props
+    addComments,
+    username,
+    profile,
+    upvote,
+    downvote, editComments, deleteComment} = props
 
   //boolean to toggle the show comments button
   const hasComments = comments.length > 0
@@ -74,24 +78,37 @@ function EachHack(props) {
     resetAllState(e.target.name)
   }
 
+  function handleUpvote() {
+    upvote(_id)
+  }
+
+  function handleDownvote() {
+    downvote(_id)
+  }
 
   return (
     <div className="eachHack">
       <h3>Category: {category}</h3>
+      <p>Posted by: {username}</p>
       <p id='description'>{description}</p>
       <p className="hackStats">Upvotes: {upvotes.length}</p>
       <p className="hackStats">Downvotes: {downvotes.length}</p>
       <p className="hackStats">Comments: {comments.length}</p>
 
-      <button
-        className="mainBtns eachHackBtns"
-        onClick={toggleEditForm}
-        name="showEditForm">{!allState.showEditForm ? 'Edit' : 'Cancel Edit'}</button>
+      {/* only these buttons will only render on the profile page */}
+      { profile &&
+        <>
+          <button
+            className="mainBtns eachHackBtns"
+            onClick={toggleEditForm}
+            name="showEditForm">{!allState.showEditForm ? 'Edit' : 'Cancel Edit'}</button>
 
-      <button
-        className="mainBtns eachHackBtns"
-        onClick={toggleDeletePrompt}
-        name="showDeletePrompt">{!allState.showDeletePrompt ? 'Delete' : 'Cancel Delete'}</button>
+          <button
+            className="mainBtns eachHackBtns"
+            onClick={toggleDeletePrompt}
+            name="showDeletePrompt">{!allState.showDeletePrompt ? 'Delete' : 'Cancel Delete'}</button>
+        </>
+      }
 
       {/* only render button if hack has comments already*/}
       {
@@ -106,6 +123,19 @@ function EachHack(props) {
         onClick={toggleCommentForm}
         className="mainBtns eachHackBtns"
         name="showCommentForm">{!allState.showCommentForm ? 'Post a Comment' : 'Cancel Comment'}</button>
+
+      {
+          !profile &&
+        <>
+          <button
+            className='mainBtns'
+            onClick={handleUpvote}>Upvote</button>
+          <button
+            className='mainBtns'
+            onClick={handleDownvote}>DownVote</button>
+        </>
+
+      }
 
       {/* if this is true, map over comments array and render the comments component */}
       {

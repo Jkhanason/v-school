@@ -19,6 +19,7 @@ function Profile (props) {
         addComments={addComments}
         editComments={editComments}
         deleteComment={deleteComment}
+        profile={true}
         />
     )
   })
