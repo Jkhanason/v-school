@@ -423,7 +423,29 @@ function maximumSubarray(arr, k) {
     }
   }
   return result
- }
+
+          //this solution came from another student
+          //needed to console everything to understand it haha
+
+    // result = Number.MIN_SAFE_INTEGER
+    // for (let i = 0; i < arr.length - k + 1; i++ ) {
+    //     console.log({i})
+
+    //     let window = (arr.slice(i, i + k))
+    //     console.log({window})
+
+    //     let answer = window.reduce((total, current) => {
+    //         return total + current;
+    //     }, 0);
+    //     console.log({answer})
+
+    //     if (answer > result) result = answer
+    //     console.log({result})
+    // }
+
+    // return result
+}
+
 
  console.log(maximumSubarray([1, 2, 6, 2, 4, 1], 3)) // 12
  console.log(maximumSubarray([4, 3, 9, 5, 1, 2], 3)) // 17
