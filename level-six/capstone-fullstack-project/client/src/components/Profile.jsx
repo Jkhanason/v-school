@@ -32,6 +32,10 @@ function Profile (props) {
       { hacks.length > 0 &&
         <h4>Your previous life hacks are shown below.</h4>
       }
+      {
+        hacks.length === 0 &&
+        <h4>You haven't posted any life hacks yet.</h4>
+      }
       {/* renders a component for each user hack */}
       {hack}
     </div>

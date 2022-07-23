@@ -146,5 +146,16 @@ lifeHackRouter.put('/comment/delete/:hackId/:commentId', (req, res, next) => {
     })
 })
 
+//filter hacks by category
+lifeHackRouter.get('/category/:category', (req, res, next) => {
+  LifeHack.find({category: req.params.category}, (err, hacks) => {
+    if(err) {
+      res.status(500)
+      return next(err)
+    }
+    res.status(200).send(hacks)
+  })
+})
+
 
 module.exports = lifeHackRouter

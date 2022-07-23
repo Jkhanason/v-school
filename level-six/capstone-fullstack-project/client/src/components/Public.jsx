@@ -1,12 +1,21 @@
-import React from 'react'
-import HackForm from './HackForm'
-import EachHack from './EachHack'
+import React from 'react';
+import HackForm from './HackForm';
+import EachHack from './EachHack';
+import Filter from './Filter';
 import {HackContext} from '../context/HackProvider';
 
 
 function Public() {
 
-  const {allLifeHacks, newLifeHack, addComments, editComments, deleteComment, upvote, downvote} = React.useContext(HackContext)
+  const {
+    allLifeHacks,
+    newLifeHack,
+    addComments,
+    editComments,
+    deleteComment,
+    upvote,
+    downvote,
+    user: {username}, filterHacks} = React.useContext(HackContext)
 
   const hacks = allLifeHacks.map(hack => {
     return (
@@ -32,6 +41,12 @@ function Public() {
 
       <p id='publicIntro2'>Or browse our list of hacks below.</p>
 
+      <Filter submit={filterHacks}/>
+
+      {
+        allLifeHacks.length === 0 &&
+        <p><span>{username}</span>, be the first to post a life hack for this category!</p>
+      }
       {hacks}
 
     </div>

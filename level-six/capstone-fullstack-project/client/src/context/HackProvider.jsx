@@ -193,6 +193,18 @@ function HackProvider(props) {
       .catch(err => console.log(err.response.data.errorMsg))
   }
 
+  //filter hacks by category
+  function filterHacks(category) {
+
+    if (category === "Show All") {
+      getAllHacks()
+    } else {
+    userAxios.get(`http://localhost:4545/api/hacks/category/${category}`)
+      .then(res => setAllLifeHacks(res.data))
+      .catch(err => console.log(err.response.data.errorMsg))
+    }
+  }
+
   return (
     <HackContext.Provider
       value={{
@@ -210,7 +222,8 @@ function HackProvider(props) {
         editComments,
         deleteComment,
         downvote,
-        upvote
+        upvote,
+        filterHacks
       }}>
       {props.children}
     </HackContext.Provider>
