@@ -34,7 +34,7 @@ function AuthForm(props) {
         onChange={handleChange}
       />
       <input
-        type='text'
+        type='password'
         name='password'
         placeholder="Password"
         value={password}

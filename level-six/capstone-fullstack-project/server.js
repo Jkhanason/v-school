@@ -6,7 +6,8 @@ require('dotenv').config();
 const {expressjwt} = require('express-jwt');
 const cors = require('cors')
 
-app.use(cors()) // register middleware 
+// register middleware
+app.use(cors())
 //displays server data in console
 app.use(morgan('dev'));
 //convert incoming requests to json

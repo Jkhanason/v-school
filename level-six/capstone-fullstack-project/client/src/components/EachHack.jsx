@@ -97,7 +97,10 @@ function EachHack(props) {
   return (
     <div className="eachHack">
       <h3>Category: {category}</h3>
-      <p>Posted by: {username}</p>
+      { !profile &&
+
+        <p>Posted by: {username}</p>
+      }
       <p id='description'>{description}</p>
       <p className="hackStats">Upvotes: {upvotes.length}</p>
       <p className="hackStats">Downvotes: {downvotes.length}</p>
