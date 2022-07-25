@@ -119,7 +119,9 @@ lifeHackRouter.put('/comment/:hackId', (req, res, next) => {
 //edit a comment
 lifeHackRouter.put('/comment/edit/:hackId/:commentId', (req, res, next) => {
   LifeHack.findOneAndUpdate(
+    //find the hack by hackID then select the comment that matches the commentId
     {_id: req.params.hackId, "comments._id": req.params.commentId },
+    /* within the comments array, update the first comment whose ID matches the find filter, to now be req.body instead */
     { $set: {"comments.$.comment" : req.body.comment }},
     {new: true},
     (err, comment) => {
@@ -134,7 +136,9 @@ lifeHackRouter.put('/comment/edit/:hackId/:commentId', (req, res, next) => {
 //delete a comment
 lifeHackRouter.put('/comment/delete/:hackId/:commentId', (req, res, next) => {
   LifeHack.findOneAndUpdate(
+    //find the hack by hackID then select the comment that matches the commentId
     {_id: req.params.hackId, "comments._id": req.params.commentId},
+    //remove from the comments array, the comment whose ID matches this filter
     { $pull: {comments: {_id: req.params.commentId}}},
     {new: true},
     (err, updatedHack) => {
