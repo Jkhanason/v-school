@@ -405,48 +405,78 @@
 // console.log(subSequence([-1,-2,3,4], 3))
 // console.log(subSequence([3,4,3,3], 2))
 
-function maximumSubarray(arr, k) {
+// function maximumSubarray(arr, k) {
 
-  let result = Number.MIN_SAFE_INTEGER;
-  let temp = 0;
+//   let result = Number.MIN_SAFE_INTEGER;
+//   let temp = 0;
 
-  for (let i = 0; i < arr.length; i++) {
-    temp += arr[i]
-    //only increments temp by k nums at a time
-    if (i >= k - 1) {
-      //update result to be the largest of temp or result
-      result = Math.max(temp, result)
-   /* subtract the first num from temp,
-      temp is now the sum of 2 nums,
-      next loop will add a new num so temp equals k total nums */
-      temp -= arr[i - (k - 1)]
-    }
-  }
-  return result
+//   for (let i = 0; i < arr.length; i++) {
+//     temp += arr[i]
+//     //only increments temp by k nums at a time
+//     if (i >= k - 1) {
+//       //update result to be the largest of temp or result
+//       result = Math.max(temp, result)
+//    /* subtract the first num from temp,
+//       temp is now the sum of 2 nums,
+//       next loop will add a new num so temp equals k total nums */
+//       temp -= arr[i - (k - 1)]
+//     }
+//   }
+//   return result
 
-          //this solution came from another student
-          //needed to console everything to understand it haha
+//           //this solution came from another student
+//           //needed to console everything to understand it haha
 
-    // result = Number.MIN_SAFE_INTEGER
-    // for (let i = 0; i < arr.length - k + 1; i++ ) {
-    //     console.log({i})
+//     // result = Number.MIN_SAFE_INTEGER
+//     // for (let i = 0; i < arr.length - k + 1; i++ ) {
+//     //     console.log({i})
 
-    //     let window = (arr.slice(i, i + k))
-    //     console.log({window})
+//     //     let window = (arr.slice(i, i + k))
+//     //     console.log({window})
 
-    //     let answer = window.reduce((total, current) => {
-    //         return total + current;
-    //     }, 0);
-    //     console.log({answer})
+//     //     let answer = window.reduce((total, current) => {
+//     //         return total + current;
+//     //     }, 0);
+//     //     console.log({answer})
 
-    //     if (answer > result) result = answer
-    //     console.log({result})
-    // }
+//     //     if (answer > result) result = answer
+//     //     console.log({result})
+//     // }
 
-    // return result
-}
+//     // return result
+// }
 
 
- console.log(maximumSubarray([1, 2, 6, 2, 4, 1], 3)) // 12
- console.log(maximumSubarray([4, 3, 9, 5, 1, 2], 3)) // 17
- console.log(maximumSubarray([1, 2, 3], 2)) // 5
+//  console.log(maximumSubarray([1, 2, 6, 2, 4, 1], 3)) // 12
+//  console.log(maximumSubarray([4, 3, 9, 5, 1, 2], 3)) // 17
+//  console.log(maximumSubarray([1, 2, 3], 2)) // 5
+
+
+
+// function anagram(str1, str2) {
+//   // //if not same length
+//   // if (str1.length !== str2.length) return false
+
+//   // for (let i = 0; i < str1.length; i++) {
+//   //   if (str2.includes(str1[i]) === -1) {
+//   //     return false
+//   //   }
+//   // }
+//   // return true
+
+//   return str1.split('').sort().join('') === str2.split('').sort().join('')
+// }
+
+// console.log(anagram('finder', 'friend'))//  --> true
+// console.log(anagram('hello', 'bye'))// --> false
+
+      //hashtable solution ^^^
+
+
+// function palindrome(str) {
+
+//   return str === str.split('').reverse().join('')
+// }
+
+// console.log(palindrome('racecar')) // ===  true
+// console.log(palindrome('table')) //  ===  false
