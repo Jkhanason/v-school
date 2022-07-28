@@ -11,6 +11,8 @@ function About() {
           <li>API calls</li>
           <li>HTML</li>
           <li>CSS</li>
+          <li>JSX</li>
+          <li>Axios</li>
           <li>Responsive Design</li>
           <li>Planning</li>
           <li>Implementation</li>
