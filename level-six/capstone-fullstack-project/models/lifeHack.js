@@ -31,3 +31,5 @@ const lifeHackSchema = new Schema({
 })
 
 module.exports = mongoose.model('LifeHack', lifeHackSchema)
+
+//populate method

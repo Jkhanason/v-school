@@ -5,8 +5,11 @@
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
 }
+body {
+  background-color: #e0e0e0;
+}
 .App {
-  /* background-color: red; */
+  background-color: rgb(244, 244, 244);
   margin: 1rem auto;
   max-width: 350px;
   min-width: 275px;
@@ -141,7 +144,7 @@ span {
 }
 .deletePrompt:hover {
   cursor: pointer;
-  background-color: rgba(235, 235, 235, 0.417);
+  background-color: #ffffff;
   border: 1px solid black;
 }
 .comments {

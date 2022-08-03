@@ -177,7 +177,13 @@ function HackProvider(props) {
   function upvote(hackId) {
     userAxios.put(`http://localhost:4545/api/hacks/upvote/${hackId}`)
       .then(res => {
-        getAllHacks()
+        setAllLifeHacks(prev => {
+          /* this will maintain state as it was and simply render the new vote
+            which fixes the issue of when filtering by hack category, adding a vote, and
+           having state refresh with all hacks and breaking the filter */
+          const oldHacks = prev.filter(each => each._id !== res.data._id)
+          return [...oldHacks, res.data]
+        })
         getUserHacks()
       })
       .catch(err => console.log(err.response.data.errorMsg))
@@ -187,7 +193,13 @@ function HackProvider(props) {
   function downvote(hackId) {
     userAxios.put(`http://localhost:4545/api/hacks/downvote/${hackId}`)
       .then(res => {
-        getAllHacks()
+        setAllLifeHacks(prev => {
+           /* this will maintain state as it was and simply render the new vote
+            which fixes the issue of when filtering by hack category, adding a vote, and
+           having state refresh with all hacks and breaking the filter */
+          const oldHacks = prev.filter(each => each._id !== res.data._id)
+          return [...oldHacks, res.data]
+        })
         getUserHacks()
       })
       .catch(err => console.log(err.response.data.errorMsg))
