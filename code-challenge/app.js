@@ -480,3 +480,25 @@
 
 // console.log(palindrome('racecar')) // ===  true
 // console.log(palindrome('table')) //  ===  false
+
+
+function insertWhitespace(str){
+
+  const isLowerCase = /[a-z]/;
+  let result = '';
+  for (let i = 0; i < str.length; i++) {
+    //if current letter is uppercase, add a space before
+    if (str[i].search(isLowerCase) === -1) {
+      result += ` ${str[i]}`
+    } else {
+      //if lowercase, add current letter
+      result += str[i]
+    }
+  }
+  //remove space from index 0
+  return result.slice(1)
+}
+
+console.log(insertWhitespace("SheWalksToTheBeach")) // "She Walks To The Beach"
+// console.log(insertWhitespace("MarvinTalksTooMuch")) // "Marvin Talks Too Much"
+// console.log(insertWhitespace("TheGreatestUpsetInHistory")) // "The Greatest Upset In History"
