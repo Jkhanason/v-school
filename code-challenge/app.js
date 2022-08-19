@@ -501,3 +501,21 @@
 // console.log(insertWhitespace("SheWalksToTheBeach")) // "She Walks To The Beach"
 // console.log(insertWhitespace("MarvinTalksTooMuch")) // "Marvin Talks Too Much"
 // console.log(insertWhitespace("TheGreatestUpsetInHistory")) // "The Greatest Upset In History"
+
+
+const filterLetters = sentence => {
+
+  //regex to find letters and white spaces
+  const findLetters = /[a-z]|\s/gi;
+  //an array containing only those characters
+  result = sentence.match(findLetters)
+
+  /* join the letters back into the correct words
+     split into an array of words, to enable sorting
+     then return the the first word
+  */
+  return result.join('').split(' ').sort()[0]
+}
+
+console.log(filterLetters('@c$cc. %aa!a bbb#?@'))
+console.log(filterLetters('h$|j..g|qr@p$ $r.|@$.jhpqg| .rpq@.$hg||j$ r.$g||pq$j@.h jh|.pq.|@gr$$ j|g$h@.p.r|q$ pgq|h$j.$|r.@ qgp@h$r$.j||. h@|$pr.j|qg.$ h|@qj.p$g$|.r @$r|hq.j|g.p$ |$.gj.rhq@p|$ .p.|@q|j$g$rh |.|$hgr@pj.q$ $grj.h@$q|p.| jhr$|$p@|..qg q|.j$g@.p$h|r $q.$@rpgj||.h .jrhg@.|$q|$p p.@r|gj$$h.q| rq$|.@|pjh.$g $.hqj@p$||g.r @$.gj|q$|h.rp @$.$h|q.g|pjr g.rq.h|@$$pj| $j@.hgq$|p|.r qhp||$j..g@r$ .qrp$gh$|@j.| h|g.$q.r$jp@| $@jq.r|gh|.p$'))
