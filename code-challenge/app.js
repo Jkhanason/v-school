@@ -536,21 +536,55 @@
 // console.log(last([1, 2, 3, 4, 5], 0)) // []
 
 
-const findSevens = arr => {
+// const findSevens = arr => {
 
-  const isSeven = /7/;
+//   const isSeven = /7/;
 
-  /* convert arr to string to use match method
-     will return truthy if a seven exists
-  */
-  if (String(arr).match(isSeven)) {
-    return 'boom'
-  } else {
-    return 'not found'
-  }
+//   /* convert arr to string to use match method
+//      will return truthy if a seven exists
+//   */
+//   if (String(arr).match(isSeven)) {
+//     return 'boom'
+//   } else {
+//     return 'not found'
+//   }
 
-}
+// }
 
-console.log(findSevens([1, 2, 3, 75, 6]))
-console.log(findSevens([1, 2, 3, 5, 6]))
-console.log(findSevens([1, 7, 3, 7, 6]))
+// console.log(findSevens([1, 2, 3, 75, 6]))
+// console.log(findSevens([1, 2, 3, 5, 6]))
+// console.log(findSevens([1, 7, 3, 7, 6]))
+
+
+// function countBoomerangs(arr) {
+
+//   let count = 0;
+
+//   for (let i = 0; i < arr.length - 2; i++) {
+//     if (arr[i] === arr[i + 2] && arr[i] !== arr[i + 1]) {
+//       count++
+//     }
+//   }
+//   return count
+// }
+
+// console.log(countBoomerangs([9, 5, 9, 5, 1, 1, 1]))// ➞ 2
+// console.log(countBoomerangs([5, 6, 6, 7, 6, 3, 9]))// ➞ 1
+// console.log(countBoomerangs([4, 4, 4, 9, 9, 9, 9]))// ➞ 0
+// console.log(countBoomerangs([1, 7, 1, 7, 1, 7, 1]))// ➞ 5
+
+// const oddishOrEvenish = num => {
+//   //convert num to a string, so it can be split into arr of each num as a string
+//   num = String(num).split('')
+
+//   const total = num.reduce((acc, num) => {
+//     //each num is a string, convert back to num to add
+//     return acc += Number(num)
+//   },0)
+
+//   return total % 2 === 0 ? 'Evenish' : 'Oddish'
+// }
+
+// console.log(oddishOrEvenish(43))// ➞ "Oddish" // 4 + 3 = 7  7 % 2 = 1
+// console.log(oddishOrEvenish(373))// ➞ "Oddish" // 3 + 7 + 3 = 13 // 13 % 2 = 1
+// console.log(oddishOrEvenish(4433))// ➞ "Evenish"// 4 + 4 + 3 + 3 = 14 // 14 % 2 = 0
