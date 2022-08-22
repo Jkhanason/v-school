@@ -588,3 +588,21 @@
 // console.log(oddishOrEvenish(43))// ➞ "Oddish" // 4 + 3 = 7  7 % 2 = 1
 // console.log(oddishOrEvenish(373))// ➞ "Oddish" // 3 + 7 + 3 = 13 // 13 % 2 = 1
 // console.log(oddishOrEvenish(4433))// ➞ "Evenish"// 4 + 4 + 3 + 3 = 14 // 14 % 2 = 0
+
+
+// const getDays = (day1, day2) => {
+//   /* num of milliseconds in one day
+//      milliseconds * seconds * minutes * hours */
+//   const oneDaysMilli = 1000 * 60 * 60 * 24;
+
+//   //convert both days to milliseconds
+//   let day1Milli = day1.getTime();
+//   let day2Milli = day2.getTime();
+
+//   return (day2Milli - day1Milli) / oneDaysMilli
+// }
+
+// console.log(getDays(new Date("June 14, 2019"), new Date("June 20, 2019")))// ➞ 6
+// // Dates may not all be in the same month/year.
+// console.log(getDays(new Date("December 29, 2018"), new Date("January 1, 2019")))// ➞ 3
+// console.log(getDays(new Date("July 20, 2019"), new Date("July 30, 2019")))// ➞ 10
