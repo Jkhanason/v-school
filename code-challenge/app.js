@@ -518,19 +518,39 @@
 //   return result.join('').split(' ').sort()[0]
 // }
 
-// console.log(filterLetters('@c$cc. %aa!a bbb#?@'))
-// console.log(filterLetters('h$|j..g|qr@p$ $r.|@$.jhpqg| .rpq@.$hg||j$ r.$g||pq$j@.h jh|.pq.|@gr$$ j|g$h@.p.r|q$ pgq|h$j.$|r.@ qgp@h$r$.j||. h@|$pr.j|qg.$ h|@qj.p$g$|.r @$r|hq.j|g.p$ |$.gj.rhq@p|$ .p.|@q|j$g$rh |.|$hgr@pj.q$ $grj.h@$q|p.| jhr$|$p@|..qg q|.j$g@.p$h|r $q.$@rpgj||.h .jrhg@.|$q|$p p.@r|gj$$h.q| rq$|.@|pjh.$g $.hqj@p$||g.r @$.gj|q$|h.rp @$.$h|q.g|pjr g.rq.h|@$$pj| $j@.hgq$|p|.r qhp||$j..g@r$ .qrp$gh$|@j.| h|g.$q.r$jp@| $@jq.r|gh|.p$'))
+// console.log(filterLetters('@c$cc. %aa!a bbb#?@')) //aaa
+// console.log(filterLetters('h$|j..g|qr@p$ $r.|@$.jhpqg| .rpq@.$hg||j$ r.$g||pq$j@.h jh|.pq.|@gr$$ j|g$h@.p.r|q$ pgq|h$j.$|r.@ qgp@h$r$.j||. h@|$pr.j|qg.$ h|@qj.p$g$|.r @$r|hq.j|g.p$ |$.gj.rhq@p|$ .p.|@q|j$g$rh |.|$hgr@pj.q$ $grj.h@$q|p.| jhr$|$p@|..qg q|.j$g@.p$h|r $q.$@rpgj||.h .jrhg@.|$q|$p p.@r|gj$$h.q| rq$|.@|pjh.$g $.hqj@p$||g.r @$.gj|q$|h.rp @$.$h|q.g|pjr g.rq.h|@$$pj| $j@.hgq$|p|.r qhp||$j..g@r$ .qrp$gh$|@j.| h|g.$q.r$jp@| $@jq.r|gh|.p$')) //gjqhrp
 
 
-const last = (arr, n) => {
-  if (n === 0) return []
+// const last = (arr, n) => {
+//   if (n === 0) return []
 
-  if (n > arr.length) return 'invalid'
+//   if (n > arr.length) return 'invalid'
 
-  return arr.slice(arr.length - n)
+//   return arr.slice(arr.length - n)
+// }
+
+// console.log(last([1, 2, 3, 4, 5], 1)) // [5]
+// console.log(last([4, 3, 9, 9, 7, 6], 3)) // [9, 7, 6]
+// console.log(last([1, 2, 3, 4, 5], 7)) // "invalid"
+// console.log(last([1, 2, 3, 4, 5], 0)) // []
+
+
+const findSevens = arr => {
+
+  const isSeven = /7/;
+
+  /* convert arr to string to use match method
+     will return truthy if a seven exists
+  */
+  if (String(arr).match(isSeven)) {
+    return 'boom'
+  } else {
+    return 'not found'
+  }
+
 }
 
-console.log(last([1, 2, 3, 4, 5], 1)) // [5]
-console.log(last([4, 3, 9, 9, 7, 6], 3)) // [9, 7, 6]
-console.log(last([1, 2, 3, 4, 5], 7)) // "invalid"
-console.log(last([1, 2, 3, 4, 5], 0)) // []
+console.log(findSevens([1, 2, 3, 75, 6]))
+console.log(findSevens([1, 2, 3, 5, 6]))
+console.log(findSevens([1, 7, 3, 7, 6]))
