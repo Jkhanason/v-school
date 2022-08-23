@@ -644,3 +644,57 @@
 // console.log(product(10,2)(5,0)(2,3))// ➞ 100 // 10 * 5 * 2 + 2 * 0 * 3
 // console.log(product(1,2)(2,3)(3,4))// ➞ 30 // 1 * 2 * 3 + 2 * 3 * 4
 // console.log(product(1,2)(0,3)(3,0))// ➞ 0 // 1 * 0 * 3 + 2 * 3 * 0
+
+
+// const allAboutStrings = str => {
+
+//   const result = [];
+//   const midpoint = Math.floor(str.length / 2);
+//   const middleChar = str.length % 2 === 0 ? str[midpoint -1] + str[midpoint] : str[midpoint];
+//   const index = str.indexOf(str[1], 2);
+
+//   result.push(str.length, str[0], str[str.length -1], middleChar, index !== -1 ? `@ index ${index}` : 'not found')
+
+//   return result
+// }
+// console.log(allAboutStrings("LASA"))// ➞ [4, "L", "A", "AS", "@ index 3"]
+// console.log(allAboutStrings("Computer"))// ➞ [8, "C", "r", "pu", "not found"]
+// console.log(allAboutStrings("Science"))// ➞ [7, "S", "e", "e", "@ index 5"]
+
+
+// const colorPatternTimes = arr => {
+
+//   //2 seconds per square
+//   timePerSquare = arr.length * 2;
+
+//   //1 second to change colors
+//   for (let i = 0; i < arr.length - 1; i++) {
+//     if (arr[i] !== arr[i + 1]) {
+//       timePerSquare++
+//     }
+//   }
+//   return timePerSquare
+
+// }
+// console.log(colorPatternTimes(["Blue"]))// ➞ 2
+// console.log(colorPatternTimes(["Red", "Yellow", "Green", "Blue"]))// ➞ 11
+// console.log(colorPatternTimes(["Blue", "Blue", "Blue", "Red", "Red", "Red"]))// ➞ 13
+// console.log(colorPatternTimes(["Green", "Blue", "Blue", "Green", "Blue", "Green", "Blue", "Green", "Red", "Red", "Yellow", "Blue", "Blue", "Blue", "Blue", "Green", "Blue", "Green", "Blue", "Green", "Green", "Blue"]))//, 59)
+// console.log(colorPatternTimes(["Blue", "Blue", "Blue", "Blue"]))//, 8)
+// console.log(colorPatternTimes(["Red", "Blue", "Red", "Red", "Yellow", "Blue", "Yellow", "Blue", "Red", "Blue", "Green", "Yellow", "Green", "Yellow", "Red", "Red", "Red", "Green", "Red", "Yellow", "Blue", "Yellow", "Green", "Yellow", "Blue", "Green", "Blue", "Red", "Yellow", "Yellow"]))//, 85)
+
+// const numInStr = arr => {
+//   resultsArr = [];
+
+//   arr.forEach(item => {
+//     if (item.match(/\d/)) {
+//       resultsArr.push(item)
+//     }
+//   })
+//   return resultsArr
+// }
+
+// console.log(numInStr(["1a", "a", "2b", "b"]))// ➞ ["1a", "2b"]
+// console.log(numInStr(["abc", "abc10"]))// ➞ ["abc10"]
+// console.log(numInStr(["abc", "ab10c", "a10bc", "bcd"]))// ➞ ["ab10c", "a10bc"]
+// console.log(numInStr(["this is a test", "test1"]))// ➞ ["test1"]
