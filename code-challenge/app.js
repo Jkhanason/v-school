@@ -606,3 +606,41 @@
 // // Dates may not all be in the same month/year.
 // console.log(getDays(new Date("December 29, 2018"), new Date("January 1, 2019")))// ➞ 3
 // console.log(getDays(new Date("July 20, 2019"), new Date("July 30, 2019")))// ➞ 10
+
+// const getLength = arr => {
+
+//   // solve with one line, pass infinity to handle and level of nesting
+
+//   // return arr.flat(Infinity).length
+
+//   //or solve recursively
+//   let length = 0
+
+//   for (let i = 0; i < arr.length; i++) {
+//     if (Array.isArray(arr[i])) {
+//       length += getLength(arr[i]);
+//     } else {
+//       length++
+//     }
+//   }
+//   return length
+// }
+// console.log(getLength([1, [2, 3]]))// ➞ 3
+// console.log(getLength([1, [2, [3, 4]]]))// ➞ 4
+// console.log(getLength([1, [2, [3, [4, [5, 6]]]]]))// ➞ 6
+// console.log(getLength([1, [2], 1, [2], 1]))// ➞ 5
+
+
+// //Currying is a transform that makes f(a,b,c) callable as f(a)(b)(c)
+// function product(a, b) {
+//   return function(c, d) {
+//     return function (e, f) {
+//       return (a * c * e) + (b * d * f)
+//     }
+//   }
+// }
+
+// console.log(product(1,2)(1,1)(2,3))// ➞ 8 // 1 * 1 * 2 + 2 * 1 * 3
+// console.log(product(10,2)(5,0)(2,3))// ➞ 100 // 10 * 5 * 2 + 2 * 0 * 3
+// console.log(product(1,2)(2,3)(3,4))// ➞ 30 // 1 * 2 * 3 + 2 * 3 * 4
+// console.log(product(1,2)(0,3)(3,0))// ➞ 0 // 1 * 0 * 3 + 2 * 3 * 0
