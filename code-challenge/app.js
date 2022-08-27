@@ -870,3 +870,46 @@
 // console.log(chunkify([2, 3, 4, 5, 6, 7], 3)) // [[2, 3, 4], [5, 6, 7]]
 // console.log(chunkify([2, 3, 4, 5, 6, 7], 1)) // [[2], [3], [4], [5], [6], [7]]
 // console.log(chunkify([2, 3, 4, 5, 6, 7], 7)) // [[2, 3, 4, 5, 6, 7]]
+
+
+// const countNumberOfOccurrences = obj => {
+
+//   const resultsObj = {};
+//   for (key in obj) {
+//     if (resultsObj[obj[key]] === undefined) {
+//       resultsObj[obj[key]] = 1;
+//     } else {
+//       resultsObj[obj[key]]++;
+//     }
+//   }
+//   return resultsObj
+// }
+// console.log(countNumberOfOccurrences({
+//   a: "moron",
+//   b: "scumbag",
+//   c: "moron",
+//   d: "idiot",
+//   e: "idiot"
+// }))// ➞ { moron: 2, scumbag: 1, idiot: 2 }
+
+// console.log(countNumberOfOccurrences({
+//   a: "moron",
+//   b: "moron",
+//   c:"moron"
+// }))// ➞ { moron: 3 }
+
+// console.log(countNumberOfOccurrences({
+//   a: "idiot",
+//   b: "scumbag"
+// }))// ➞ { idiot: 1, scumbag: 1 }
+
+// const reverseOdd = str => {
+//   str = str.split(' ');
+//   const result = str.map(word => word.length % 2 === 0 ? word : word.split('').reverse().join(''));
+
+//   return result.join(' ')
+// }
+// console.log(reverseOdd("Bananas"))// ➞ "sananaB"
+// console.log(reverseOdd("One two three four"))// ➞ "enO owt eerht four"
+// console.log(reverseOdd("Make sure uoy only esrever sdrow of ddo length")) //➞ "Make sure you only reverse words of odd length"
+
