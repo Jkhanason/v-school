@@ -698,3 +698,175 @@
 // console.log(numInStr(["abc", "abc10"]))// ➞ ["abc10"]
 // console.log(numInStr(["abc", "ab10c", "a10bc", "bcd"]))// ➞ ["ab10c", "a10bc"]
 // console.log(numInStr(["this is a test", "test1"]))// ➞ ["test1"]
+
+// const findDiv = str => {
+
+//   const result = str.match(/<div\W/g).length
+
+//   return result === 1 ? result + ' time' : result + ' times'
+// }
+
+// console.log(findDiv("<div>Hello.</div><div>My name is <b>George</b>.</div>"))// 2 times
+// console.log(findDiv("<div><h1>The Word for Today</h1><div>aardvark</div></div>"))// 2 times
+// console.log(findDiv("<div></div>"))// 1 time
+
+
+// function combinations(...args) {
+
+//   return args.reduce((acc, num) => {
+//     if (num === 0) {
+//       return acc
+//     } else {
+//       return acc *= num
+//     }
+//   })
+// }
+
+// console.log(combinations(2, 3))// ➞ 6
+// console.log(combinations(3, 7, 4))// ➞ 84
+// console.log(combinations(2, 3, 4, 5))// ➞ 120
+// console.log(combinations(6, 7, 0))// ➞ 42
+
+// const isPositiveDominant = arr => {
+
+//   //remove duplicates and spread into array
+//   const uniqueNums = [...new Set(arr)];
+
+//   let count = 0;
+
+//   uniqueNums.forEach(num => {
+//     if (num === 0) {
+//      return
+//     } if (num > 0) {
+//       count++
+//     } else {
+//       count--
+//     }
+//   })
+
+//   return count > 0
+// }
+// console.log(isPositiveDominant([1, 1, 1, 1, -3, -4]))// ➞ false
+// console.log(isPositiveDominant([5, 99, 832, -3, -4]))// ➞ true
+// console.log(isPositiveDominant([5, 0]))// ➞ true
+// console.log(isPositiveDominant([0, -4, -1]))// ➞ false
+// console.log(isPositiveDominant([52, 52, 52, -3, 2, 2, 2, -4]))// ➞ false
+// console.log(isPositiveDominant([3, 3, 3, 3, -1, -1, -1]))// ➞ false
+
+// function wordedMath (string) {
+
+//   let [num1, operator, num2] = string.toLowerCase().split(' ');
+//   const resultsKey = {
+//     1: 'One',
+//     2: 'Two',
+//     0: 'Zero'
+//   };
+//   const wordsKey = {
+//     'one': 1,
+//     'two': 2,
+//     'zero': 0
+//   };
+
+//   for (key in wordsKey) {
+//     if (num1 === key) {
+//       num1 = wordsKey[key]
+//     }
+//     if (num2 === key) {
+//       num2 = wordsKey[key]
+//     }
+//   }
+
+//   const result = operator === 'minus' ? num1 - num2 : num1 + num2
+
+//   return resultsKey[result]
+// }
+
+// console.log(wordedMath("One plus one"))// ➞ "Two"
+// console.log(wordedMath("zero Plus one"))// ➞ "One"
+// console.log(wordedMath("one minus one"))// ➞ "Zero"
+
+
+// const getTotalPrice = arr => {
+
+//   const cost = arr.reduce((acc, item) => acc += (item.quantity * item.price), 0)
+
+//   return Number(cost.toFixed(1))
+// }
+
+// console.log(getTotalPrice([
+//   { product: "Milk", quantity: 1, price: 1.50 }
+// ]))// ➞ 1.5
+
+// console.log(getTotalPrice([
+//   { product: "Milk", quantity: 1, price: 1.50 },
+//   { product: "Cereals", quantity: 1, price: 2.50 }
+// ]))// ➞ 4
+
+// console.log(getTotalPrice([
+//   { product: "Milk", quantity: 3, price: 1.50 }
+// ]))// ➞ 4.5
+
+// console.log(getTotalPrice([
+//   { product: "Milk", quantity: 1, price: 1.50 },
+//   { product: "Eggs", quantity: 12, price: 0.10 },
+//   { product: "Bread", quantity: 2, price: 1.60 },
+//   { product: "Cheese", quantity: 1, price: 4.50 }
+// ]))// ➞ 10.4
+
+// console.log(getTotalPrice([
+//   { product: "Chocolate", quantity: 1, price: 0.10 },
+//   { product: "Lollipop", quantity: 1, price: 0.20 }
+// ]))// ➞ 0.3
+
+// const isDisarium = num => {
+//   const digits = num.toString();
+//   let total = 0
+//   for (let i = 0; i < digits.length; i++) {
+//     // i + 1 because nums are 1 indexed
+//     total += Math.pow(digits[i], i + 1)
+//   }
+//   return total === num
+// }
+
+// console.log(isDisarium(75))// ➞ false // 7^1 + 5^2 = 7 + 25 = 32
+// console.log(isDisarium(135))// ➞ true // 1^1 + 3^2 + 5^3 = 1 + 9 + 125 = 135
+// console.log(isDisarium(544))// ➞ false
+// console.log(isDisarium(518))// ➞ true
+// console.log(isDisarium(8))// ➞ true
+// console.log(isDisarium(466))// ➞ false
+
+
+// const doubleSwap = (str, a, b) => {
+
+//   let result = ''
+//   str = str.split('')
+//   for (let i = 0; i < str.length; i++ ) {
+//     if(str[i] === a) {
+//       str.splice(i, 1, b)
+//     } else if (str[i] === b) {
+//       str.splice(i, 1, a)
+//     }
+//   }
+//   return str.join('')
+
+// }
+// console.log(doubleSwap( "aabbccc", "a", "b"))// ➞ "bbaaccc"
+// console.log(doubleSwap("random w#rds writt&n h&r&", "#", "&")) //➞ "random w&rds writt#n h#r#"
+// console.log(doubleSwap("128 895 556 788 999", "8", "9")) //➞ "129 985 556 799 888"
+
+
+// function chunkify(arr, n) {
+//   const result = []
+
+//   for (let i = 0; i < arr.length; i+=n) {
+//     result.push(arr.slice(i, i + n))
+//   }
+//   return result
+// }
+
+// // test data
+// console.log(chunkify([2, 3, 4, 5], 2)) // [[2, 3], [4, 5]]
+// console.log(chunkify([2, 3, 4, 5, 6], 2)) // [[2, 3], [4, 5], [6]]
+// console.log(chunkify([2, 3, 4, 5, 6, 7], 3)) // [[2, 3, 4], [5, 6, 7]]
+// console.log(chunkify([2, 3, 4, 5, 6, 7], 1)) // [[2], [3], [4], [5], [6], [7]]
+// console.log(chunkify([2, 3, 4, 5, 6, 7], 7)) // [[2, 3, 4, 5, 6, 7]]
