@@ -913,3 +913,123 @@
 // console.log(reverseOdd("One two three four"))// ➞ "enO owt eerht four"
 // console.log(reverseOdd("Make sure uoy only esrever sdrow of ddo length")) //➞ "Make sure you only reverse words of odd length"
 
+
+
+// function trackRobot (...nums) {
+  // if (!nums.length) return [0, 0]
+  // let upDown = 0;
+  // let leftRight = 0;
+
+  // const northSouth = nums.filter((num, index) => {
+  //   if (index % 2 === 0) {
+  //     return num
+  //   }})
+
+  // const eastWest = nums.filter((num, index) => {
+  //   if (index % 2 !== 0) {
+  //     return num
+  //   }})
+
+  // northSouth.forEach((num, index) => {
+  //   if (index % 2 === 0) {
+  //     upDown += num
+  //   } else {
+  //     upDown -= num
+  //   }
+  // })
+  // eastWest.forEach((num, index) => {
+  //   if (index % 2 === 0) {
+  //     leftRight += num
+  //   } else {
+  //     leftRight -= num
+  //   }
+  // })
+
+// return [leftRight, upDown]
+
+
+
+// for (var i in nums) {
+//   let d = i % 4;
+//   if (d === 0) upDown += nums[i];
+//   if (d === 1) leftRight += nums[i];
+//   if (d === 2) upDown -= nums[i];
+//   if (d === 3) leftRight -= nums[i];
+// }
+// return [leftRight, upDown];
+
+
+// }
+
+// console.log(trackRobot(20, 30, 10, 40))// ➞ [-10, 10]
+// console.log(trackRobot())// ➞ [0, 0] // No movement means the robot stays at (0, 0).
+// console.log(trackRobot(-10, 20, 10))// ➞ [20, -20]// The amount to move can be negative.
+// console.log(trackRobot(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))// [6, 5])
+
+
+
+// function doesTriangleFit(arr1, arr2) {
+//   if (arr1[0] + arr1[1] < arr1[2]) return false
+
+//   for (let i = 0; i < arr1.length; i++) {
+//     if (arr1[i] > arr2[i]) {
+//       return false
+//     }
+//   }
+//   return true
+// }
+// console.log(doesTriangleFit([1, 1, 1], [1, 1, 1]))// ➞ true
+// console.log(doesTriangleFit([1, 1, 1], [2, 2, 2]))// ➞ true
+// console.log(doesTriangleFit([1, 2, 3], [1, 2, 2]))// ➞ false
+// console.log(doesTriangleFit([1, 2, 4], [1, 2, 6]))// ➞ false
+
+
+// const highestPair = cards => {
+
+//   //filter to show only duplicate values
+//   const duplicates = cards.filter((num, index) => index !== cards.indexOf(num))
+
+//   //if none, return false. then check for each facecard and return, finally return highest number card
+//   if (!duplicates.length) return false;
+//   if (duplicates.includes('A')) return [true, 'A'];
+//   if (duplicates.includes('K')) return [true, 'K'];
+//   if (duplicates.includes('Q')) return [true, 'Q'];
+//   if (duplicates.includes('J')) return [true, 'J'];
+//   return [true, String(Math.max(...duplicates))]
+
+// }
+
+// console.log(highestPair(["A", "A", "Q", "Q", "6" ]))// ➞ [true, "A"]
+// console.log(highestPair(["A", "A", "Q", "Q", "6", 'K', 'J', '6' ]))// ➞ [true, "A"]
+// console.log(highestPair(["J", "6", "3", "10", "8"]))// ➞ false
+// console.log(highestPair(["K", "7", "3", "9", "3", '7']))// ➞ [true, "3"]
+// console.log(highestPair(["K", "9", "10", "J", "Q"]))// ➞ false
+// console.log(highestPair(["3", "5", "5", "5", "5"]))// ➞ [true, "5"]
+
+
+
+const admirable = num => {
+
+  let total = 0
+  let divisors = [];
+  for (let i = 1; i < num; i++) {
+    if (num % i === 0) {
+      total += i;
+      divisors.push(i)
+    }
+    if (total === num) {
+      return 'Perfect'
+    }
+  }
+  //I dont understand this math logic. if a number in divisors were negative and that equaled num, return that number
+  // Dont see how total - num / 2 is how to find if that number is in divisors
+	if(divisors.includes((total - num) / 2)) {
+		return (total - num) / 2
+  }
+
+  return 'Neither'
+}
+
+console.log(admirable(6)) //➞ "Perfect"
+console.log(admirable(1876))// ➞ 2
+console.log(admirable(18))// ➞ "Neither"
