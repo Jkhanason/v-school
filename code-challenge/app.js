@@ -1008,28 +1008,52 @@
 
 
 
-const admirable = num => {
+// const admirable = num => {
 
-  let total = 0
-  let divisors = [];
-  for (let i = 1; i < num; i++) {
-    if (num % i === 0) {
-      total += i;
-      divisors.push(i)
-    }
-    if (total === num) {
-      return 'Perfect'
-    }
-  }
-  //I dont understand this math logic. if a number in divisors were negative and that equaled num, return that number
-  // Dont see how total - num / 2 is how to find if that number is in divisors
-	if(divisors.includes((total - num) / 2)) {
-		return (total - num) / 2
-  }
+//   let total = 0
+//   let divisors = [];
+//   for (let i = 1; i < num; i++) {
+//     if (num % i === 0) {
+//       total += i;
+//       divisors.push(i)
+//     }
+//     if (total === num) {
+//       return 'Perfect'
+//     }
+//   }
+//   //I dont understand this math logic. if a number in divisors were negative and that equaled num, return that number
+//   // Dont see how total - num / 2 is how to find if that number is in divisors
+// 	if(divisors.includes((total - num) / 2)) {
+// 		return (total - num) / 2
+//   }
 
-  return 'Neither'
-}
+//   return 'Neither'
+// }
 
-console.log(admirable(6)) //➞ "Perfect"
-console.log(admirable(1876))// ➞ 2
-console.log(admirable(18))// ➞ "Neither"
+// console.log(admirable(6)) //➞ "Perfect"
+// console.log(admirable(1876))// ➞ 2
+// console.log(admirable(18))// ➞ "Neither"
+
+
+// function maxItems (prices, amount) {
+//   //convert arguements from strings to numbers
+//   amount = +amount.slice(1);
+//   //and sort small to large
+//   prices = prices.map(item => Number(item.slice(1))).sort((a, b) => a - b);
+//   if (prices[0] > amount) return 'Not enough funds!';
+
+//   let items = 0;
+//   let i = 0;
+//   while(amount >= prices[i]) {
+//     items++
+//     amount -= prices[i];
+//     i++
+//   }
+//   return items
+// }
+// console.log(maxItems(["$1", "$1", "$2"], "$3"))// ➞ 2
+// console.log(maxItems(["$10", "$7", "$2", "$60"], "$20"))// ➞ 3
+// console.log(maxItems(["$15", "$5", "$30", "$30", "$10"], "$2"))// ➞ "Not enough funds!"
+// console.log(maxItems(["$99", "$8"], "$9")) //1
+// console.log(maxItems(["$34", "$62", "$62", "$98", "$100"], "$101"))//, 2)
+// console.log(maxItems(["$78", "$11", "$37", "$95", "$60", "$11", "$53", "$58", "$97"], "$231"))//, 6)
