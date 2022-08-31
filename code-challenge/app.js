@@ -1057,3 +1057,17 @@
 // console.log(maxItems(["$99", "$8"], "$9")) //1
 // console.log(maxItems(["$34", "$62", "$62", "$98", "$100"], "$101"))//, 2)
 // console.log(maxItems(["$78", "$11", "$37", "$95", "$60", "$11", "$53", "$58", "$97"], "$231"))//, 6)
+
+
+const largestSwap = num => {
+  //convert to a string so it can be reversed, then convert back to number
+  const digitSwap = +String(num).split('').reverse().join('');
+
+  //check if num arg is greater than the reversed num
+  return num >= digitSwap
+}
+console.log(largestSwap(14))// ➞ false
+console.log(largestSwap(53))// ➞ true
+console.log(largestSwap(99))// ➞ true
+console.log(largestSwap(27))// ➞ false
+console.log(largestSwap(43))// ➞ true
