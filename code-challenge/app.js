@@ -1059,15 +1059,57 @@
 // console.log(maxItems(["$78", "$11", "$37", "$95", "$60", "$11", "$53", "$58", "$97"], "$231"))//, 6)
 
 
-const largestSwap = num => {
-  //convert to a string so it can be reversed, then convert back to number
-  const digitSwap = +String(num).split('').reverse().join('');
+// const largestSwap = num => {
+//   //convert to a string so it can be reversed, then convert back to number
+//   const digitSwap = +String(num).split('').reverse().join('');
 
-  //check if num arg is greater than the reversed num
-  return num >= digitSwap
+//   //check if num is greater than the reversed num
+//   return num >= digitSwap
+// }
+// console.log(largestSwap(14))// ➞ false
+// console.log(largestSwap(53))// ➞ true
+// console.log(largestSwap(99))// ➞ true
+// console.log(largestSwap(27))// ➞ false
+// console.log(largestSwap(43))// ➞ true
+
+
+
+function pairs(arr) {
+  //this one has 3 different solutions
+  if (arr.length === 0) return [];
+
+  const result = [];
+
+  //this method splits the arr into 2 halves
+
+  // const length = Math.round(arr.length / 2);
+  // const frontHalf = arr.slice(0, length);
+  // const backHalf = arr.slice(length).reverse()
+
+  // for (let i = 0; i < frontHalf.length; i++) {
+  //   !backHalf[i] ? backHalf[i] = frontHalf[i] : backHalf[i];
+  //   result.push([frontHalf[i], backHalf[i]])
+  // }
+
+
+  //this method loops forward over half the array and using i to decrement the backend
+
+  // for (let i = 0; i < arr.length / 2; i++) {
+  //   result.push([arr[i], arr[arr.length - 1 - i]])
+  // }
+
+
+  //this method has 2 pointers in the loop, start point and end point, start point is less or equal to end so stops at the midpoint
+  for (let i = 0, j = arr.length -1; i <= j; i++, j--) {
+    result.push([arr[i], arr[j]])
+  }
+
+
+  return result
 }
-console.log(largestSwap(14))// ➞ false
-console.log(largestSwap(53))// ➞ true
-console.log(largestSwap(99))// ➞ true
-console.log(largestSwap(27))// ➞ false
-console.log(largestSwap(43))// ➞ true
+
+
+console.log(pairs([1, 2, 3, 4, 5, 6, 7])) // ➞ [[1, 7], [2, 6], [3, 5], [4, 4]]
+console.log(pairs([1, 2, 3, 4, 5, 6])) // ➞ [[1, 6], [2, 5], [3, 4]]
+console.log(pairs([5, 9, 8, 1, 2])) // ➞ [[5, 2], [9, 1], [8, 8]]
+console.log(pairs([])) // ➞ []
