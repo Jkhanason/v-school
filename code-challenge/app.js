@@ -1074,42 +1074,72 @@
 
 
 
-function pairs(arr) {
-  //this one has 3 different solutions
-  if (arr.length === 0) return [];
+// function pairs(arr) {
+//   //this one has 3 different solutions
+//   if (arr.length === 0) return [];
 
-  const result = [];
+//   const result = [];
 
-  //this method splits the arr into 2 halves
+//   //this method splits the arr into 2 halves
 
-  // const length = Math.round(arr.length / 2);
-  // const frontHalf = arr.slice(0, length);
-  // const backHalf = arr.slice(length).reverse()
+//   // const length = Math.round(arr.length / 2);
+//   // const frontHalf = arr.slice(0, length);
+//   // const backHalf = arr.slice(length).reverse()
 
-  // for (let i = 0; i < frontHalf.length; i++) {
-  //   !backHalf[i] ? backHalf[i] = frontHalf[i] : backHalf[i];
-  //   result.push([frontHalf[i], backHalf[i]])
-  // }
-
-
-  //this method loops forward over half the array and using i to decrement the backend
-
-  // for (let i = 0; i < arr.length / 2; i++) {
-  //   result.push([arr[i], arr[arr.length - 1 - i]])
-  // }
+//   // for (let i = 0; i < frontHalf.length; i++) {
+//   //   !backHalf[i] ? backHalf[i] = frontHalf[i] : backHalf[i];
+//   //   result.push([frontHalf[i], backHalf[i]])
+//   // }
 
 
-  //this method has 2 pointers in the loop, start point and end point, start point is less or equal to end so stops at the midpoint
-  for (let i = 0, j = arr.length -1; i <= j; i++, j--) {
-    result.push([arr[i], arr[j]])
+//   //this method loops forward over half the array and using i to decrement the backend
+
+//   // for (let i = 0; i < arr.length / 2; i++) {
+//   //   result.push([arr[i], arr[arr.length - 1 - i]])
+//   // }
+
+
+//   //this method has 2 pointers in the loop, start point and end point, start point is less or equal to end so stops at the midpoint
+//   for (let i = 0, j = arr.length -1; i <= j; i++, j--) {
+//     result.push([arr[i], arr[j]])
+//   }
+
+
+//   return result
+// }
+
+
+// console.log(pairs([1, 2, 3, 4, 5, 6, 7])) // ➞ [[1, 7], [2, 6], [3, 5], [4, 4]]
+// console.log(pairs([1, 2, 3, 4, 5, 6])) // ➞ [[1, 6], [2, 5], [3, 4]]
+// console.log(pairs([5, 9, 8, 1, 2])) // ➞ [[5, 2], [9, 1], [8, 8]]
+// console.log(pairs([])) // ➞ []
+
+
+function sevenBoom(arr) {
+
+  for (let i = 0; i < arr.length; i++) {
+    if (findSevens(arr[i])) {
+      return 'Boom!'
+    }
   }
-
-
-  return result
+  return "there is no 7 in the array"
+}
+//helper function 
+function findSevens(num) {
+  while (num !== 0) {
+    let n = num % 10;
+    if (n === 7) {
+      return true
+    } else {
+      num = Math.floor(num / 10)
+    }
+  }
+  return false
 }
 
+// test data
+console.log(sevenBoom([1, 2, 3, 4, 5, 6, 7])) // ➞ "Boom!"
 
-console.log(pairs([1, 2, 3, 4, 5, 6, 7])) // ➞ [[1, 7], [2, 6], [3, 5], [4, 4]]
-console.log(pairs([1, 2, 3, 4, 5, 6])) // ➞ [[1, 6], [2, 5], [3, 4]]
-console.log(pairs([5, 9, 8, 1, 2])) // ➞ [[5, 2], [9, 1], [8, 8]]
-console.log(pairs([])) // ➞ []
+console.log(sevenBoom([8, 6, 33, 100])) // ➞ "there is no 7 in the array"
+
+console.log(sevenBoom([2, 55, 60, 97, 86])) // ➞ "Boom!"
