@@ -475,7 +475,7 @@
 
 // function palindrome(str) {
 
-//   return str === str.split('').reverse().join('')
+//   return str === str.split('').sort().join('')
 // }
 
 // console.log(palindrome('racecar')) // ===  true
@@ -874,15 +874,15 @@
 
 // const countNumberOfOccurrences = obj => {
 
-//   const resultsObj = {};
+//   const resultsMap = {};
 //   for (key in obj) {
-//     if (resultsObj[obj[key]] === undefined) {
-//       resultsObj[obj[key]] = 1;
+//     if (resultsMap[obj[key]] === undefined) {
+//       resultsMap[obj[key]] = 1;
 //     } else {
-//       resultsObj[obj[key]]++;
+//       resultsMap[obj[key]]++;
 //     }
 //   }
-//   return resultsObj
+//   return resultsMap
 // }
 // console.log(countNumberOfOccurrences({
 //   a: "moron",
@@ -903,15 +903,15 @@
 //   b: "scumbag"
 // }))// ➞ { idiot: 1, scumbag: 1 }
 
-// const reverseOdd = str => {
+// const sortOdd = str => {
 //   str = str.split(' ');
-//   const result = str.map(word => word.length % 2 === 0 ? word : word.split('').reverse().join(''));
+//   const result = str.map(word => word.length % 2 === 0 ? word : word.split('').sort().join(''));
 
 //   return result.join(' ')
 // }
-// console.log(reverseOdd("Bananas"))// ➞ "sananaB"
-// console.log(reverseOdd("One two three four"))// ➞ "enO owt eerht four"
-// console.log(reverseOdd("Make sure uoy only esrever sdrow of ddo length")) //➞ "Make sure you only reverse words of odd length"
+// console.log(sortOdd("Bananas"))// ➞ "sananaB"
+// console.log(sortOdd("One two three four"))// ➞ "enO owt eerht four"
+// console.log(sortOdd("Make sure uoy only esrever sdrow of ddo length")) //➞ "Make sure you only sort words of odd length"
 
 
 
@@ -1060,10 +1060,10 @@
 
 
 // const largestSwap = num => {
-//   //convert to a string so it can be reversed, then convert back to number
-//   const digitSwap = +String(num).split('').reverse().join('');
+//   //convert to a string so it can be sortd, then convert back to number
+//   const digitSwap = +String(num).split('').sort().join('');
 
-//   //check if num is greater than the reversed num
+//   //check if num is greater than the sortd num
 //   return num >= digitSwap
 // }
 // console.log(largestSwap(14))// ➞ false
@@ -1084,7 +1084,7 @@
 
 //   // const length = Math.round(arr.length / 2);
 //   // const frontHalf = arr.slice(0, length);
-//   // const backHalf = arr.slice(length).reverse()
+//   // const backHalf = arr.slice(length).sort()
 
 //   // for (let i = 0; i < frontHalf.length; i++) {
 //   //   !backHalf[i] ? backHalf[i] = frontHalf[i] : backHalf[i];
@@ -1115,31 +1115,155 @@
 // console.log(pairs([])) // ➞ []
 
 
-function sevenBoom(arr) {
+// function sevenBoom(arr) {
+//   for (let i = 0; i < arr.length; i++) {
+//     if (findSevens(arr[i])) {
+//       return 'Boom!'
+//     }
+//   }
+//   return "there is no 7 in the array"
+// }
+// //helper function
+// function findSevens(num) {
+//   while (num !== 0) {
+//     let n = num % 10;
+//     if (n === 7) {
+//       return true
+//     } else {
+//       num = Math.floor(num / 10)
+//     }
+//   }
+//   return false
+// }
 
-  for (let i = 0; i < arr.length; i++) {
-    if (findSevens(arr[i])) {
-      return 'Boom!'
+// // test data
+// console.log(sevenBoom([1, 2, 3, 4, 5, 6, 7])) // ➞ "Boom!"
+// console.log(sevenBoom([8, 6, 33, 100])) // ➞ "there is no 7 in the array"
+// console.log(sevenBoom([2, 55, 60, 97, 86])) // ➞ "Boom!"
+
+
+
+
+// var containsDuplicate = function(nums) {
+//   //add nums to a set, which removes any duplicates. if size and length do not match, there were duplicates
+//   //return new Set(nums).size !== nums.length
+
+//   /* some returns true if any items match the condiion. if theres a duplicate the some index will be
+//   different than indexOf which only returns the first match */
+
+//   //return nums.some((num, index) => nums.indexOf(num) !== index)
+
+
+//   /* create an empty new set, check if current num exists in set, if so, return true, else add current num
+//    and continue checking and adding until true, or end of array */
+
+//   //  const numSet = new Set();
+//   //  for (let num of nums) {
+//   //   if (numSet.has(num)) {
+//   //     return true
+//   //   } else {
+//   //     numSet.add(num)
+//   //   }
+//   //  }
+//   //  return false
+// }
+
+// console.log(containsDuplicate([1,2,3,1])) //true
+// console.log(containsDuplicate([1,2,3,4])) //false
+// console.log(containsDuplicate([1,1,1,3,3,4,3,2,4,2])) //true
+
+
+
+
+// function isAnagram(s, t) {
+//   if (s.length !== t.length) return false
+
+//   //convert to an array, sort letters, convert back to string, check if they match
+//   // return s.split('').sort().join('') === t.split('').sort().join('')
+
+//   const sMap = {};
+//   const tMap = {};
+
+//   //create a map of each string, {letter: occurances}
+//   for (let i = 0; i < s.length; i++) {
+//     if (!sMap[s[i]]) {
+//       sMap[s[i]] = 1
+//     } else {
+//       sMap[s[i]]++
+//     }
+//     if (!tMap[t[i]]) {
+//       tMap[t[i]] = 1
+//     } else {
+//       tMap[t[i]]++
+//     }
+//   }
+//   //if the value, number of occurances for each letter key don't match, its not an anagram
+//   for (let key in sMap) {
+//     if (sMap[key] !== tMap[key]) return false
+//   }
+//   return true
+// };
+
+// console.log(isAnagram('rat', 'tar')) //tree
+// console.log(isAnagram('happy', 'yapph')) //true
+// console.log(isAnagram('happy', 'happd')) //false
+// console.log(isAnagram('orange', 'truck')) //false
+
+
+// function twoSum(nums, target) {
+//   if (nums.length === 2) return [0, 1]
+
+//   ///brute force apporach. check each number against every other bumber to find a match
+
+//   // for (let i = 0; i < nums.length; i++) {
+//   //   for (let t= i + 1; t < nums.length; t++) {
+//   //     if (nums[i] + nums[t] === target) return [nums[i], nums[t]]
+//   //   }
+//   // }
+
+
+//   const map = {};
+//   for (let i = 0; i < nums.length; i++) {
+
+//     if (target - nums[i] in map) {
+//       //target - the current num is the second value we need
+//       //if found in map, return its value along with the current index
+//       return [map[target - nums[i]], i]
+//     } else {
+//       //add the current num to the map and nums index as value
+//       map[nums[i]] = i
+//     }
+//   }
+
+// };
+
+// console.log(twoSum([2, 11, 7, 15], 9)) // [0, 2]
+// console.log(twoSum([3, 2, 4], 6)) //[1, 2]
+// console.log(twoSum([3, 3], 6)) // [0, 1]
+
+
+
+
+function isPalindrome(str) {
+  str = str.toLowerCase()
+  //loop over str from both directions
+  for (let i = 0, t = str.length-1; i < t; i++, t--) {
+    //if current left is not a letter, increment until next letter
+    while (str[i] < 'a' || str[i] > 'z') {
+      i++
+    }
+    //if current right is not a letter, decrement until next letter
+    while (str[t] < 'a' || str[t] > 'z') {
+      t--
+    }
+    //if left and right letters dont match, its false
+    if (str[i] !== str[t]) {
+      return false
     }
   }
-  return "there is no 7 in the array"
+  //if the loop ends, everything matched, return true
+  return true
 }
-//helper function 
-function findSevens(num) {
-  while (num !== 0) {
-    let n = num % 10;
-    if (n === 7) {
-      return true
-    } else {
-      num = Math.floor(num / 10)
-    }
-  }
-  return false
-}
-
-// test data
-console.log(sevenBoom([1, 2, 3, 4, 5, 6, 7])) // ➞ "Boom!"
-
-console.log(sevenBoom([8, 6, 33, 100])) // ➞ "there is no 7 in the array"
-
-console.log(sevenBoom([2, 55, 60, 97, 86])) // ➞ "Boom!"
+console.log(isPalindrome("A man, a plan, a canal: Panama")) //true
+console.log(isPalindrome("race a car")) //false
+console.log(isPalindrome(' '))//true
