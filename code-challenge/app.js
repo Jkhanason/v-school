@@ -1244,26 +1244,148 @@
 
 
 
-function isPalindrome(str) {
-  str = str.toLowerCase()
-  //loop over str from both directions
-  for (let i = 0, t = str.length-1; i < t; i++, t--) {
-    //if current left is not a letter, increment until next letter
-    while (str[i] < 'a' || str[i] > 'z') {
-      i++
-    }
-    //if current right is not a letter, decrement until next letter
-    while (str[t] < 'a' || str[t] > 'z') {
-      t--
-    }
-    //if left and right letters dont match, its false
-    if (str[i] !== str[t]) {
-      return false
-    }
-  }
-  //if the loop ends, everything matched, return true
-  return true
-}
-console.log(isPalindrome("A man, a plan, a canal: Panama")) //true
-console.log(isPalindrome("race a car")) //false
-console.log(isPalindrome(' '))//true
+// function isPalindrome(str) {
+//   str = str.toLowerCase()
+//   //loop over str from both directions
+//   for (let i = 0, t = str.length-1; i < t; i++, t--) {
+//     //if current left is not a letter, increment until next letter
+//     while (str[i] < 'a' || str[i] > 'z') {
+//       i++
+//     }
+//     //if current right is not a letter, decrement until next letter
+//     while (str[t] < 'a' || str[t] > 'z') {
+//       t--
+//     }
+//     //if left and right letters dont match, its false
+//     if (str[i] !== str[t]) {
+//       return false
+//     }
+//   }
+//   //if the loop ends, everything matched, return true
+//   return true
+// }
+// console.log(isPalindrome("A man, a plan, a canal: Panama")) //true
+// console.log(isPalindrome("race a car")) //false
+// console.log(isPalindrome(' '))//true
+
+
+
+// function maxProfit(prices) {
+
+//   //set left and right start point
+//   let left = 0, right = 1;
+//   //set total profit to zero
+//   let totalProfit = 0;
+//   //loop until right hits the end of prices
+//   while (right < prices.length) {
+//     //if right price higher than left price
+//     if (prices[right] > prices[left]) {
+//       //save that potential profit in a temp variable
+//       let possibleProfit = prices[right] - prices[left];
+//       //update total profit to be the greater of itself or new potential profit
+//       totalProfit = Math.max(totalProfit, possibleProfit)
+//       //increment right pointer
+//       right++
+//     //else
+//     } else {
+//       //right is lower than left price, update left position to be right and increment right by one
+//       left = right;
+//       right++
+//     }
+//   }
+//     //return total profit
+//     return totalProfit
+// }
+
+// console.log(maxProfit([7, 1, 5, 3, 6, 4]))// 5
+// console.log(maxProfit([7, 6, 4, 3, 1]))// 0
+// console.log(maxProfit([12, 9, 10, 3, 7, 11]))// 8
+
+
+// var isValid = function(s) {
+
+//   //create an empty array and an object of bracket pairs
+//   const bracketStack = [];
+//   const bracketPairs = {
+//     '}': '{',
+//     ')': '(',
+//     ']': '['
+//   }
+//   //loop over string,
+//   for (const item of s) {
+//     //if current is a opening bracket, push it into array
+//     if (item === '(' || item === '{' || item === '[') {
+//       bracketStack.push(item)
+//       /* or if current is a closing bracket, check if its opening match is the last value in the array
+//        if it is, pop off last value  */
+//     } else if (bracketPairs[item] === bracketStack.at(-1)) {
+//       bracketStack.pop()
+//     } else {
+//       //otherwise return false
+//       return false
+//     }
+//   }
+//   //array will be empty if all brackets were vaild pairs
+//   return bracketStack.length === 0
+// };
+
+// console.log(isValid('()')) //true
+// console.log(isValid('()[]{}')) //true
+// console.log(isValid('(]')) //false
+
+
+
+// function reverseList(head) {
+
+//   //create a prev set to null
+//   let prev = null;
+
+//   //while head exists
+//   while (head) {
+//     //save head next in temp value
+//     let next = head.next;
+//     //set head next to be prev
+//     head.next = prev;
+//     //reset prev to be current head
+//     prev = head;
+//     //reset head to be next value saved in temp
+//     head = next;
+//   }
+//   return prev
+// }
+
+// console.log(reverseList([1,2,3,4,5])) //[5,4,3,2,1]
+// // console.log(reverseList([1,2]))//[2,1]
+// // console.log(reverseList([])) //[]
+
+
+
+// function mapLetters(str) {
+
+  // const result = {};
+  // for (let i = 0; i < str.length; i++) {
+  //   //if the key exists, push the current index
+  //   if (result[str[i]]) {
+  //     result[str[i]].push(i)
+  //   } else {
+  //     //create the key with the value of index
+  //     result[str[i]] = [i]
+  //   }
+  // }
+  // return result
+
+
+  // return str.split('').reduce((acc, letter, index) => {
+  //   if (acc[letter]) {
+  //     acc[letter].push(index)
+  //   } else {
+  //     acc[letter] = [index]
+  //   }
+  //   return acc
+  // }, {})
+
+// }
+
+// console.log(mapLetters("dodo")) // { d: [0, 2], o: [1, 3] }
+// console.log(mapLetters("froggy")) // { f: [0], r: [1], o: [2], g: [3, 4], y: [5] }
+// console.log(mapLetters("grapes")) // { g: [0], r: [1], a: [2], p: [3], e: [4], s: [5] }
