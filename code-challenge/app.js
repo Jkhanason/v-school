@@ -1389,3 +1389,18 @@
 // console.log(mapLetters("dodo")) // { d: [0, 2], o: [1, 3] }
 // console.log(mapLetters("froggy")) // { f: [0], r: [1], o: [2], g: [3, 4], y: [5] }
 // console.log(mapLetters("grapes")) // { g: [0], r: [1], a: [2], p: [3], e: [4], s: [5] }
+
+
+const removeVowels = str => {
+  const vowelsRegex = /a|e|i|o|u/gi;
+  let result = ''
+  for (let letter of str) {
+    //search will return the index, 0 if its a vowel which is falsy and -1 it its not, truthy, which runs the if statement,
+    if (letter.search(vowelsRegex)) result+= letter
+  }
+  return result
+}
+
+console.log(removeVowels("I have never seen a thin person drinking Diet Coke.")) //➞ " hv nvr sn  thn prsn drnkng Dt Ck."
+console.log(removeVowels("We're gonna build a wall!")) //➞ "W'r gnn bld  wll!"
+console.log(removeVowels("Happy Thanksgiving to all--even the haters and losers!")) //➞ "Hppy Thnksgvng t ll--vn th htrs nd lsrs!"
