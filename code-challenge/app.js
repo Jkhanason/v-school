@@ -1391,16 +1391,55 @@
 // console.log(mapLetters("grapes")) // { g: [0], r: [1], a: [2], p: [3], e: [4], s: [5] }
 
 
-const removeVowels = str => {
-  const vowelsRegex = /a|e|i|o|u/gi;
-  let result = ''
-  for (let letter of str) {
-    //search will return the index, 0 if its a vowel which is falsy and -1 it its not, truthy, which runs the if statement,
-    if (letter.search(vowelsRegex)) result+= letter
+// const removeVowels = str => {
+//   const vowelsRegex = /a|e|i|o|u/gi;
+//   let result = ''
+//   for (let letter of str) {
+//     //search will return the index, 0 if its a vowel which is falsy and -1 it its not, truthy, which runs the if statement,
+//     if (letter.search(vowelsRegex)) result+= letter
+//   }
+//   return result
+// }
+
+// console.log(removeVowels("I have never seen a thin person drinking Diet Coke.")) //➞ " hv nvr sn  thn prsn drnkng Dt Ck."
+// console.log(removeVowels("We're gonna build a wall!")) //➞ "W'r gnn bld  wll!"
+// console.log(removeVowels("Happy Thanksgiving to all--even the haters and losers!")) //➞ "Hppy Thnksgvng t ll--vn th htrs nd lsrs!"
+
+
+function diamondArrays(num) {
+  const result = [];
+  let count = 1
+
+  //build left side of pyramid, while count is less than num
+  while (count < num) {
+    //create an inner array each loop
+    const innerArray = [];
+    //push count into inner array
+    for (let i = 1; i <= count; i++) {
+      innerArray.push(count)
+    }
+    //increment count each loop. ** on the last loop, count will be equal to num **
+    count++
+    //push the inner array into results
+    result.push(innerArray)
+  }
+
+  //build right side of pyramid, decrement count back down to one, push current count into results array each loop
+  while (count > 0) {
+    //create an inner array each loop
+    const innerArray= [];
+    //push count into inner array
+    for (let i = 1; i <= count; i++) {
+      innerArray.push(count)
+    }
+    //decrement count each loop
+    count--
+    //push the inner arry to results
+    result.push(innerArray)
   }
   return result
 }
 
-console.log(removeVowels("I have never seen a thin person drinking Diet Coke.")) //➞ " hv nvr sn  thn prsn drnkng Dt Ck."
-console.log(removeVowels("We're gonna build a wall!")) //➞ "W'r gnn bld  wll!"
-console.log(removeVowels("Happy Thanksgiving to all--even the haters and losers!")) //➞ "Hppy Thnksgvng t ll--vn th htrs nd lsrs!"
+console.log(diamondArrays(1)) // ➞ [[1]]
+console.log(diamondArrays(2)) // ➞ [[1], [2, 2], [1]]
+console.log(diamondArrays(5)) // ➞ [[1], [2, 2], [3, 3, 3], [4, 4, 4, 4], [5, 5, 5, 5, 5], [4, 4, 4, 4], [3, 3, 3], [2, 2], [1]]
