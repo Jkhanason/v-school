@@ -1469,15 +1469,42 @@
 // console.log(colorPatternTimes(["Blue", "Blue", "Blue", "Red", "Red", "Red"]))// ➞ 13
 
 
-const findBottle = ((bottles, number) => {
+// const findBottle = ((bottles, number) => {
 
-  //remove the whiskey, we only care about rammsteins
-  delete bottles.whiskey
-  for (let bottle in bottles) {
-    //if the current value matches the number, return that key
-    if (bottles[bottle] === number) return bottle
+//   //remove the whiskey, we only care about rammsteins
+//   delete bottles.whiskey
+//   for (let bottle in bottles) {
+//     //if the current value matches the number, return that key
+//     if (bottles[bottle] === number) return bottle
+//   }
+// })
+// console.log(findBottle({whiskey: 100, "Rammstein A": 100, "Rammstein B": 50}, 100))// ➞ "Rammstein A"
+// console.log(findBottle({whiskey: 100, "Rammstein A": 100, "Rammstein B": 50}, 50)) //➞ "Rammstein B"
+// console.log(findBottle({whiskey: 100, "Rammstein A": 100, "Rammstein D": 70, beer: 70}, 70))// ➞ "Rammstein D"
+
+
+
+
+
+function spaceApart(arr) {
+  //find index of both '1''s
+  const startPoint = arr.indexOf('1');
+  const endPoint = arr.lastIndexOf('1');
+  //if they don't exist or aren't different indexes
+  if (startPoint === endPoint || endPoint === -1) return 'invalid'
+
+  let total = 0;
+  for (let i = startPoint + 1; i < endPoint; i++) {
+    //if any value is negative return false
+    if (arr[i] < 0) return 'invalid'
+    //add current value to total
+    total += arr[i]
   }
-})
-console.log(findBottle({whiskey: 100, "Rammstein A": 100, "Rammstein B": 50}, 100))// ➞ "Rammstein A"
-console.log(findBottle({whiskey: 100, "Rammstein A": 100, "Rammstein B": 50}, 50)) //➞ "Rammstein B"
-console.log(findBottle({whiskey: 100, "Rammstein A": 100, "Rammstein D": 70, beer: 70}, 70))// ➞ "Rammstein D"
+  return total
+
+}
+
+console.log(spaceApart([1, 0, 1,'1', 4, 3, 2, 3, 2, "1"])) // ➞ 14
+console.log(spaceApart(["1", 9, 20, 38, "1"])) // ➞ 67
+console.log(spaceApart([3, 2, 9, "1", 0, 0, -1, "1"])) // ➞ "invalid" negative number
+console.log(spaceApart([3, 2, 9, "1", 0, 0, 1])) // ➞ "invalid" only one '1'
