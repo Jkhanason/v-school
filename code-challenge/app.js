@@ -1406,40 +1406,64 @@
 // console.log(removeVowels("Happy Thanksgiving to all--even the haters and losers!")) //➞ "Hppy Thnksgvng t ll--vn th htrs nd lsrs!"
 
 
-function diamondArrays(num) {
-  const result = [];
-  let count = 1
+// function diamondArrays(num) {
+//   const result = [];
+//   let count = 1
 
-  //build left side of pyramid, while count is less than num
-  while (count < num) {
-    //create an inner array each loop
-    const innerArray = [];
-    //push count into inner array
-    for (let i = 1; i <= count; i++) {
-      innerArray.push(count)
+//   //build left side of pyramid, while count is less than num
+//   while (count < num) {
+//     //create an inner array each loop
+//     const innerArray = [];
+//     //push count into inner array
+//     for (let i = 1; i <= count; i++) {
+//       innerArray.push(count)
+//     }
+//     //increment count each loop. ** on the last loop, count will be equal to num **
+//     count++
+//     //push the inner array into results
+//     result.push(innerArray)
+//   }
+
+//   //build right side of pyramid, decrement count back down to one, push current count into results array each loop
+//   while (count > 0) {
+//     //create an inner array each loop
+//     const innerArray= [];
+//     //push count into inner array
+//     for (let i = 1; i <= count; i++) {
+//       innerArray.push(count)
+//     }
+//     //decrement count each loop
+//     count--
+//     //push the inner arry to results
+//     result.push(innerArray)
+//   }
+//   return result
+// }
+
+// console.log(diamondArrays(1)) // ➞ [[1]]
+// console.log(diamondArrays(2)) // ➞ [[1], [2, 2], [1]]
+// console.log(diamondArrays(5)) // ➞ [[1], [2, 2], [3, 3, 3], [4, 4, 4, 4], [5, 5, 5, 5, 5], [4, 4, 4, 4], [3, 3, 3], [2, 2], [1]]
+
+
+const colorPatternTimes = colors => {
+  //if theres only one color
+  if (colors.length === 1) return 2
+
+  let seconds = 0;
+
+  for (let i = 0; i < colors.length; i++) {
+    //each loop add 2 seconds per color
+    seconds += 2
+    //if not on the last color, and current color is different from the next color
+    if (colors[i + 1] && colors[i] !== colors[i + 1]) {
+      //add 1 second to change pencils
+      seconds += 1
     }
-    //increment count each loop. ** on the last loop, count will be equal to num **
-    count++
-    //push the inner array into results
-    result.push(innerArray)
   }
 
-  //build right side of pyramid, decrement count back down to one, push current count into results array each loop
-  while (count > 0) {
-    //create an inner array each loop
-    const innerArray= [];
-    //push count into inner array
-    for (let i = 1; i <= count; i++) {
-      innerArray.push(count)
-    }
-    //decrement count each loop
-    count--
-    //push the inner arry to results
-    result.push(innerArray)
-  }
-  return result
+  return seconds
 }
 
-console.log(diamondArrays(1)) // ➞ [[1]]
-console.log(diamondArrays(2)) // ➞ [[1], [2, 2], [1]]
-console.log(diamondArrays(5)) // ➞ [[1], [2, 2], [3, 3, 3], [4, 4, 4, 4], [5, 5, 5, 5, 5], [4, 4, 4, 4], [3, 3, 3], [2, 2], [1]]
+console.log(colorPatternTimes(["Blue"]))// ➞ 2
+console.log(colorPatternTimes(["Red", "Yellow", "Green", "Blue"]))// ➞ 11
+console.log(colorPatternTimes(["Blue", "Blue", "Blue", "Red", "Red", "Red"]))// ➞ 13
