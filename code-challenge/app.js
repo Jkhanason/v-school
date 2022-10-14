@@ -1445,25 +1445,39 @@
 // console.log(diamondArrays(5)) // ➞ [[1], [2, 2], [3, 3, 3], [4, 4, 4, 4], [5, 5, 5, 5, 5], [4, 4, 4, 4], [3, 3, 3], [2, 2], [1]]
 
 
-const colorPatternTimes = colors => {
-  //if theres only one color
-  if (colors.length === 1) return 2
+// const colorPatternTimes = colors => {
+//   //if theres only one color
+//   if (colors.length === 1) return 2
 
-  let seconds = 0;
+//   let seconds = 0;
 
-  for (let i = 0; i < colors.length; i++) {
-    //each loop add 2 seconds per color
-    seconds += 2
-    //if not on the last color, and current color is different from the next color
-    if (colors[i + 1] && colors[i] !== colors[i + 1]) {
-      //add 1 second to change pencils
-      seconds += 1
-    }
+//   for (let i = 0; i < colors.length; i++) {
+//     //each loop add 2 seconds per color
+//     seconds += 2
+//     //if not on the last color, and current color is different from the next color
+//     if (colors[i + 1] && colors[i] !== colors[i + 1]) {
+//       //add 1 second to change pencils
+//       seconds += 1
+//     }
+//   }
+
+//   return seconds
+// }
+
+// console.log(colorPatternTimes(["Blue"]))// ➞ 2
+// console.log(colorPatternTimes(["Red", "Yellow", "Green", "Blue"]))// ➞ 11
+// console.log(colorPatternTimes(["Blue", "Blue", "Blue", "Red", "Red", "Red"]))// ➞ 13
+
+
+const findBottle = ((bottles, number) => {
+
+  //remove the whiskey, we only care about rammsteins
+  delete bottles.whiskey
+  for (let bottle in bottles) {
+    //if the current value matches the number, return that key
+    if (bottles[bottle] === number) return bottle
   }
-
-  return seconds
-}
-
-console.log(colorPatternTimes(["Blue"]))// ➞ 2
-console.log(colorPatternTimes(["Red", "Yellow", "Green", "Blue"]))// ➞ 11
-console.log(colorPatternTimes(["Blue", "Blue", "Blue", "Red", "Red", "Red"]))// ➞ 13
+})
+console.log(findBottle({whiskey: 100, "Rammstein A": 100, "Rammstein B": 50}, 100))// ➞ "Rammstein A"
+console.log(findBottle({whiskey: 100, "Rammstein A": 100, "Rammstein B": 50}, 50)) //➞ "Rammstein B"
+console.log(findBottle({whiskey: 100, "Rammstein A": 100, "Rammstein D": 70, beer: 70}, 70))// ➞ "Rammstein D"
