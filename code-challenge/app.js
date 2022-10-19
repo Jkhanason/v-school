@@ -1483,28 +1483,46 @@
 // console.log(findBottle({whiskey: 100, "Rammstein A": 100, "Rammstein D": 70, beer: 70}, 70))// ➞ "Rammstein D"
 
 
+// function spaceApart(arr) {
+//   //find index of both '1''s
+//   const startPoint = arr.indexOf('1');
+//   const endPoint = arr.lastIndexOf('1');
+//   //if they don't exist or aren't different indexes
+//   if (startPoint === endPoint || endPoint === -1) return 'invalid'
+
+//   let total = 0;
+//   for (let i = startPoint + 1; i < endPoint; i++) {
+//     //if any value is negative return false
+//     if (arr[i] < 0) return 'invalid'
+//     //add current value to total
+//     total += arr[i]
+//   }
+//   return total
+
+// }
+
+// console.log(spaceApart([1, 0, 1,'1', 4, 3, 2, 3, 2, "1"])) // ➞ 14
+// console.log(spaceApart(["1", 9, 20, 38, "1"])) // ➞ 67
+// console.log(spaceApart([3, 2, 9, "1", 0, 0, -1, "1"])) // ➞ "invalid" negative number
+// console.log(spaceApart([3, 2, 9, "1", 0, 0, 1])) // ➞ "invalid" only one '1'
 
 
+function isPandigital (num) {
+  //convert num to a string, to create a set, then convert set into an array and join back into a string
+  // let noRepeats = Array.from(new Set(String(num))).join('')
+  // //will find digits all digits globally
+  // let regex = /[0-9]/g
+  // //returns an array containing all the numbers in no repeats
+  // let test = noRepeats.match(regex)
+  // //if the length is 10, then all digits from 0-9 are present
+  // return test.length === 10
 
-function spaceApart(arr) {
-  //find index of both '1''s
-  const startPoint = arr.indexOf('1');
-  const endPoint = arr.lastIndexOf('1');
-  //if they don't exist or aren't different indexes
-  if (startPoint === endPoint || endPoint === -1) return 'invalid'
 
-  let total = 0;
-  for (let i = startPoint + 1; i < endPoint; i++) {
-    //if any value is negative return false
-    if (arr[i] < 0) return 'invalid'
-    //add current value to total
-    total += arr[i]
-  }
-  return total
-
+  //or just check the size of the new set
+  const numSet = new Set(String(num))
+  return numSet.size === 10
 }
 
-console.log(spaceApart([1, 0, 1,'1', 4, 3, 2, 3, 2, "1"])) // ➞ 14
-console.log(spaceApart(["1", 9, 20, 38, "1"])) // ➞ 67
-console.log(spaceApart([3, 2, 9, "1", 0, 0, -1, "1"])) // ➞ "invalid" negative number
-console.log(spaceApart([3, 2, 9, "1", 0, 0, 1])) // ➞ "invalid" only one '1'
+console.log(isPandigital(98140723568910))// ➞ true
+console.log(isPandigital(90864523148909))// ➞ false 7 is missing.
+console.log(isPandigital(1234567891234567))// ➞ false no 0
