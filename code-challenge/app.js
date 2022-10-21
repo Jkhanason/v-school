@@ -1507,22 +1507,78 @@
 // console.log(spaceApart([3, 2, 9, "1", 0, 0, 1])) // ➞ "invalid" only one '1'
 
 
-function isPandigital (num) {
-  //convert num to a string, to create a set, then convert set into an array and join back into a string
-  // let noRepeats = Array.from(new Set(String(num))).join('')
-  // //will find digits all digits globally
-  // let regex = /[0-9]/g
-  // //returns an array containing all the numbers in no repeats
-  // let test = noRepeats.match(regex)
-  // //if the length is 10, then all digits from 0-9 are present
-  // return test.length === 10
+// function isPandigital (num) {
+//   //convert num to a string, to create a set, then convert set into an array and join back into a string
+//   let noRepeats = Array.from(new Set(String(num))).join('')
+//   //will find digits all digits globally
+//   let regex = /[0-9]/g
+//   //returns an array containing all the numbers in no repeats
+//   let test = noRepeats.match(regex)
+//   //if the length is 10, then all digits from 0-9 are present
+//   return test.length === 10
 
 
-  //or just check the size of the new set
-  const numSet = new Set(String(num))
-  return numSet.size === 10
-}
+//   //or just check the size of the new set
+//   const numSet = new Set(String(num))
+//   return numSet.size === 10
+// }
 
-console.log(isPandigital(98140723568910))// ➞ true
-console.log(isPandigital(90864523148909))// ➞ false 7 is missing.
-console.log(isPandigital(1234567891234567))// ➞ false no 0
+// console.log(isPandigital(98140723568910))// ➞ true
+// console.log(isPandigital(90864523148909))// ➞ false 7 is missing.
+// console.log(isPandigital(1234567891234567))// ➞ false no 0
+
+
+// function interview (questionTimes, totaTime) {
+//   if (questionTimes.length < 8 || totaTime > 120) return 'disqualified'
+//   let timeLimit = 5;
+//   for (let i = 0; i < questionTimes.length; i+=2) {
+//     if (i > 0) timeLimit += 5
+//     if (questionTimes[i] > timeLimit || questionTimes[i+ 1] > timeLimit) return 'disqualified'
+//   }
+//   return "qualified"
+// }
+// console.log(interview([5, 5, 10, 10, 15, 15, 20, 20], 120))// ➞ "qualified"
+// console.log(interview([2, 3, 8, 6, 5, 12, 10, 18], 64))// ➞  "qualified"
+// console.log(interview([5, 5, 10, 10, 25, 15, 20, 20], 120))// ➞ "disqualified" Exceeded the time limit for a medium question.
+// console.log(interview([5, 5, 10, 10, 15, 15, 20], 120))// ➞ "disqualified" Did not complete all the questions.
+// console.log(interview([5, 5, 10, 10, 15, 15, 20, 20], 130))// ➞ "disqualified"
+// // Solved all the questions in their respected time limits but exceeded the total time limit of the interview.
+
+// function allAboutStrings (str) {
+
+//   const midpoint = Math.floor(str.length / 2);
+//   let middleChar = str[midpoint];
+//   //if even length, return middle 2 characters
+//   if (str.length % 2 === 0) middleChar = str[midpoint - 1] + middleChar
+//   //find the index of the next occurance of the second letter, if there is one
+//   const secondLetterTwice = str.indexOf(str.at(1), 2);
+
+//   return [str.length, str[0], str.at(-1), middleChar, secondLetterTwice > 0 ? `@ index ${secondLetterTwice}` : "not found"]
+// }
+// console.log(allAboutStrings("LASA"))// ➞ [4, "L", "A", "AS", "@ index 3"]
+// console.log(allAboutStrings("Computer"))// ➞ [8, "C", "r", "pu", "not found"]
+// console.log(allAboutStrings("Science"))// ➞ [7, "S", "e", "e", "@ index 5"]
+
+// function zeroesToEnd (nums) {
+//   // const zeros = [];
+//   // for (let i = 0; i < nums.length; i++) {
+//   //   if (nums[i] === 0) {
+//   //     zeros.push(nums.splice(i, 1)[0]);
+//   //     i--
+//   //   }
+//   // }
+//   // return nums.concat(zeros)
+
+//   //or loop backwards and add a new zero to the end, not specifically the same zero that was spliced out
+//   for (let i = nums.length - 1; i >= 0; i--) {
+//     if (nums[i] === 0) {
+//       nums.splice(i, 1)
+//       nums.push(0)
+//     }
+//   }
+//   return nums
+// }
+// console.log(zeroesToEnd([1, 2, 0, 0, 4, 0, 5]))// ➞ [1, 2, 4, 5, 0, 0, 0]
+// console.log(zeroesToEnd([0, 0, 2, 0, 5]))// ➞ [2, 5, 0, 0, 0]
+// console.log(zeroesToEnd([0, 0]))// ➞ [0, 0]
+// console.log(zeroesToEnd([4, 4, 5]))// ➞ [4, 4, 5]
