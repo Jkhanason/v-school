@@ -1582,3 +1582,36 @@
 // console.log(zeroesToEnd([0, 0, 2, 0, 5]))// ➞ [2, 5, 0, 0, 0]
 // console.log(zeroesToEnd([0, 0]))// ➞ [0, 0]
 // console.log(zeroesToEnd([4, 4, 5]))// ➞ [4, 4, 5]
+
+
+
+
+// function doesTriangleFit (triangleOne, triangleTwo) {
+
+//   if (triangleOne[0] + triangleOne[1] < triangleOne[2]) return false
+
+//   for (let i = 0; i < triangleTwo.length; i++) {
+//     if (triangleOne[i] > triangleTwo[i]) return false
+//   }
+//   return true
+// }
+// console.log(doesTriangleFit([1, 1, 1], [1, 1, 1]))// ➞ true
+// console.log(doesTriangleFit([1, 1, 1], [2, 2, 2]))// ➞ true
+// console.log(doesTriangleFit([1, 2, 3], [1, 2, 2]))// ➞ false
+// console.log(doesTriangleFit([1, 2, 4], [1, 2, 6]))// ➞ false
+
+
+
+function numOfDigits(num){
+  let length = 0;
+  while (num >= 1) {
+    num /= 10
+    length++
+  }
+  return length
+}
+
+console.log(numOfDigits(12)) // ➞ 2
+console.log(numOfDigits(1000)) // ➞ 4
+console.log(numOfDigits(1305981031)) // ➞ 10
+console.log(numOfDigits(0)) // ➞ 1
