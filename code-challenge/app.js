@@ -1602,16 +1602,46 @@
 
 
 
-function numOfDigits(num){
-  let length = 0;
-  while (num >= 1) {
-    num /= 10
-    length++
-  }
-  return length
-}
+// function numOfDigits(num){
+//   if (num === 0) return 1;
+//   let length = 0;
+//   while (num >= 1) {
+//     num /= 10
+//     length++
+//   }
+//   return length
+// }
 
-console.log(numOfDigits(12)) // ➞ 2
-console.log(numOfDigits(1000)) // ➞ 4
-console.log(numOfDigits(1305981031)) // ➞ 10
-console.log(numOfDigits(0)) // ➞ 1
+// console.log(numOfDigits(12)) // ➞ 2
+// console.log(numOfDigits(1000)) // ➞ 4
+// console.log(numOfDigits(1305981031)) // ➞ 10
+// console.log(numOfDigits(0)) // ➞ 1
+
+// function maxItems(items, total) {
+//   //remove dollar sign and convert items to array of nums, sorted small to large
+//   items = items.map(item => Number(item.slice(1))).sort((a, b) => a-b)
+//   //convert total to num
+//   total = Number(total.slice(1));
+//   //return if total is less than smallest item
+//   if (items[0] > total) return 'Not enough funds!'
+
+//   for (let i = 0; i < items.length; i++) {
+//     //if item can be bought, decrement total by that amount
+//     if (total >= items[i]) {
+//       total -= items[i]
+//       //after decrementing, if on last item, return index + 1 to offset 0 index
+//       if (i === items.length -1) {
+//         return i + 1
+//       }
+//     } else {
+//       //when total is too small to continue return current index
+//       return i
+//     }
+//   }
+// }
+// console.log(maxItems(["$1", "$1", "$2"], "$3"))// ➞ 2
+// console.log(maxItems(["$10", "$7", "$2", "$60"], "$20"))// ➞ 3
+// console.log(maxItems(["$15", "$5", "$30", "$30", "$10"], "$2"))// ➞ "Not enough funds!"
+// console.log(maxItems(["$12", "$98", "$56", "$88"], "$489"))// 4
+// console.log(maxItems(["$57", "$97", "$47", "$91", "$70", "$78"], "$440"))// 6
+
