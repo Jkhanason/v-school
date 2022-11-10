@@ -1645,3 +1645,18 @@
 // console.log(maxItems(["$12", "$98", "$56", "$88"], "$489"))// 4
 // console.log(maxItems(["$57", "$97", "$47", "$91", "$70", "$78"], "$440"))// 6
 
+
+// function test (str) {
+//   str = str.split(',')
+//   console.log(str)
+//   for (let i = 0; i < str.length; i += 3) {
+//     console.log(str[i])
+//   }
+
+//   //return str[0]
+// }
+
+// console.log(test(`ID,Name,Start,End 16,Abraham Lincoln,1861,1865 ID,Name,Start,End 15,James Buchanan,1857,1861`))
+// //console.log(test(`ID,First,Status,Title 541,Tim,Part Time,Accountant 327,Allison,Full Time,Information Security ID,First,Status,Title 541,Tim,Full Time,Senior Accountant 100,Sally,Full Time,Line Manager`))
+
+console.log('test')
