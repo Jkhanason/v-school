@@ -1659,4 +1659,14 @@
 // console.log(test(`ID,Name,Start,End 16,Abraham Lincoln,1861,1865 ID,Name,Start,End 15,James Buchanan,1857,1861`))
 // //console.log(test(`ID,First,Status,Title 541,Tim,Part Time,Accountant 327,Allison,Full Time,Information Security ID,First,Status,Title 541,Tim,Full Time,Senior Accountant 100,Sally,Full Time,Line Manager`))
 
-console.log('test')
+
+// take in an unknown number of arrays and return a single array of al values
+// const mergedArray = (...args) => {
+
+//   return args.reduce((acc, array) => acc.concat(array), [])
+
+// }
+
+// console.log(mergedArray([1, 2, 3], [4, 5, 6])); // [1, 2, 3, 4, 5, 6]
+// console.log(mergedArray(["a", "b", "c"], [4, 5, 6])); // ['a', 'b', 'c', 4, 5, 6]
+// console.log(mergedArray([true, true], [1, 2], ["a", "b"])); // [true, true, 1, 2, 'a', 'b']
